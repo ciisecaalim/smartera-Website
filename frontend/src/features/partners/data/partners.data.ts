@@ -11,7 +11,13 @@ async function request<T>(path: string): Promise<T> {
 }
 export function partnerAssetUrl(value?: string | null) { if (!value) return ""; const correctedValue = value.replace("/uploads/swe-activities/", "/uploads/web-partners/"); return correctedValue.startsWith("http") ? correctedValue : `${ASSET_BASE_URL}${correctedValue}`; }
 function cleanPartner(partner: Partner): Partner { return { ...partner, name: cleanPublicCopy(partner.name), shortDescription: cleanPublicCopy(partner.shortDescription), aboutPartnership: cleanPublicCopy(partner.aboutPartnership) }; }
-export async function getPublishedPartners(): Promise<Partner[]> { return (await request<Partner[]>("/web/partners")).map(cleanPartner); }
+export async function getPublishedPartners(): Promise<Partner[]> {
+  try {
+    return (await request<Partner[]>("/web/partners")).map(cleanPartner);
+  } catch {
+    return [];
+  }
+}
 export async function getPublishedPartnerBySlug(slug: string): Promise<Partner | undefined> {
   try { return cleanPartner(await request<Partner>(`/web/partners/${encodeURIComponent(slug)}`)); }
   catch (error) { if (error instanceof Error && /not found/i.test(error.message)) return undefined; throw error; }
