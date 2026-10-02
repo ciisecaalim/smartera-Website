@@ -1,0 +1,53 @@
+export type TrainerExperience = {
+  id: string;
+  jobTitle: string;
+  organization: string;
+  location?: string | null;
+  startYear: number;
+  endYear?: number | null;
+  isCurrent: boolean;
+  description?: string | null;
+  sortOrder: number;
+};
+export type TrainerEducation = {
+  id: string;
+  qualification: string;
+  fieldOfStudy?: string | null;
+  institution: string;
+  startYear?: number | null;
+  endYear?: number | null;
+  description?: string | null;
+  sortOrder: number;
+};
+export type TrainerCertification = {
+  id: string;
+  name: string;
+  issuer: string;
+  year?: number | null;
+  credentialUrl?: string | null;
+  sortOrder: number;
+};
+export type Trainer = {
+  id: string;
+  slug: string;
+  fullName: string;
+  professionalTitle: string;
+  profileImage: string;
+  imageAlt: string;
+  shortBio: string;
+  fullBio?: string | null;
+  specialization: string;
+  yearsExperience: number;
+  skills: string[];
+  trainingAreas: string[];
+  linkedinUrl?: string | null;
+  githubUrl?: string | null;
+  portfolioUrl?: string | null;
+  publicEmail?: string | null;
+  published: boolean;
+  messageFormOpen: boolean;
+  status: 'ACTIVE' | 'INACTIVE' | 'AVAILABLE' | 'UNAVAILABLE';
+  experiences: TrainerExperience[];
+  educations: TrainerEducation[];
+  certifications: TrainerCertification[];
+};

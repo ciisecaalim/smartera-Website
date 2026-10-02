@@ -1,0 +1,48 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+
+import { TrainerApplicationForm } from "@/features/trainers/components/trainer-application-form";
+
+export const metadata: Metadata = {
+  title: "Apply as a Trainer | Smartera Hub",
+  description:
+    "Apply to join Smartera Hub as a professional trainer.",
+};
+
+export default function TrainerApplyPage() {
+  return (
+    <main className="min-h-screen bg-slate-50">
+      <section className="border-b border-slate-200 bg-white px-4 py-12 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-5xl">
+          <Link
+            href="/trainers"
+            className="text-sm font-bold text-[#1B519F] hover:underline"
+          >
+            ← Back to Trainers
+          </Link>
+
+          <div className="mt-6 max-w-3xl">
+            <p className="text-sm font-black uppercase tracking-[0.18em] text-[#F59223]">
+              Smartera Hub Trainers
+            </p>
+
+            <h1 className="mt-3 text-3xl font-black text-[#1B519F] sm:text-4xl">
+              Apply as a Trainer
+            </h1>
+
+            <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
+              Share your professional background, training experience,
+              availability, and practical expertise with Smartera Hub.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-10 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-5xl">
+          <TrainerApplicationForm />
+        </div>
+      </section>
+    </main>
+  );
+}

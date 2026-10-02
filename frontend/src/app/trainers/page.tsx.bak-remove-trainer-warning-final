@@ -1,0 +1,407 @@
+﻿import type { Metadata } from "next";
+
+import {
+  getPublishedTrainers,
+  TrainersBrowser,
+} from "@/features/trainers";
+
+export const metadata: Metadata = {
+  title: "Smartera Trainers | Smartera Hub",
+  description:
+    "Explore professional trainers available for corporate training, workshops, and staff development through Smartera Hub.",
+};
+
+export default function TrainersPage() {
+  const trainers = getPublishedTrainers();
+
+  return (
+    <main className="trainers-surface">
+
+      {/* =====================================================
+          SMARTERA TRAINERS HERO
+      ===================================================== */}
+      <section
+        className="
+          relative isolate overflow-hidden
+          bg-[#071D3D]
+          px-4 text-white
+          sm:px-6
+          lg:px-8
+        "
+      >
+        {/* ===================================================
+            VERY SUBTLE GRID + CURVED LINES
+        =================================================== */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+        >
+
+          {/* Horizontal + Vertical table/grid lines */}
+          <div
+            className="
+              absolute inset-0
+              opacity-[0.025]
+            "
+            style={{
+              backgroundImage: `
+                linear-gradient(
+                  rgba(255,255,255,1) 1px,
+                  transparent 1px
+                ),
+                linear-gradient(
+                  90deg,
+                  rgba(255,255,255,1) 1px,
+                  transparent 1px
+                )
+              `,
+              backgroundSize: "110px 110px",
+            }}
+          />
+
+          {/* Very subtle curved lines */}
+          <svg
+            viewBox="0 0 1600 800"
+            preserveAspectRatio="none"
+            className="
+              absolute inset-0
+              h-full w-full
+              opacity-[0.025]
+            "
+          >
+            <path
+              d="M-120 180 C 250 20, 470 330, 820 150 S 1300 40, 1740 230"
+              fill="none"
+              stroke="white"
+              strokeWidth="2"
+            />
+
+            <path
+              d="M-130 570 C 230 360, 540 690, 900 480 S 1320 350, 1740 600"
+              fill="none"
+              stroke="white"
+              strokeWidth="2"
+            />
+
+            <path
+              d="M350 -100 C 500 170, 540 350, 650 520 S 850 730, 1020 900"
+              fill="none"
+              stroke="white"
+              strokeWidth="1.5"
+            />
+          </svg>
+
+          {/* Soft background glow */}
+          <div
+            className="
+              absolute
+              -left-24 top-1/3
+              h-80 w-80
+              rounded-full
+              bg-[#1B519F]/10
+              blur-3xl
+            "
+          />
+
+          <div
+            className="
+              absolute
+              -right-20 bottom-0
+              h-80 w-80
+              rounded-full
+              bg-[#F59223]/5
+              blur-3xl
+            "
+          />
+        </div>
+
+        <div
+          className="
+            mx-auto grid
+            min-h-[calc(100vh-5rem)]
+            max-w-7xl
+            items-center
+            gap-10
+            py-10
+            lg:grid-cols-[1.05fr_.95fr]
+            lg:gap-14
+            lg:py-12
+          "
+        >
+
+          {/* =================================================
+              LEFT — TRAINER VIDEO
+          ================================================= */}
+          <div className="order-2 lg:order-1">
+            <div
+              className="
+                relative overflow-hidden
+                rounded-[28px]
+                border border-white/10
+                bg-white/[0.05]
+                p-2
+                shadow-[0_30px_70px_rgba(0,0,0,.25)]
+                backdrop-blur-sm
+              "
+            >
+              <div
+                className="
+                  relative
+                  aspect-[4/3]
+                  overflow-hidden
+                  rounded-[22px]
+                  bg-[#0B2448]
+                "
+              >
+                <video
+                  controls
+                  preload="metadata"
+                  poster="/images/training/training-intro.jpg"
+                  className="h-full w-full object-cover"
+                >
+                  <source
+                    src="/videos/trainers/trainer-intro.mp4"
+                    type="video/mp4"
+                  />
+
+                  Your browser does not support video playback.
+                </video>
+
+                {/* top badge */}
+                <div
+                  className="
+                    absolute left-4 top-4
+                    rounded-full
+                    border border-white/15
+                    bg-[#071D3D]/80
+                    px-3 py-1.5
+                    text-[9px]
+                    font-black uppercase
+                    tracking-[.16em]
+                    text-white
+                    backdrop-blur
+                  "
+                >
+                  Meet Our Trainers
+                </div>
+
+                {/* bottom caption */}
+                <div
+                  className="
+                    pointer-events-none
+                    absolute inset-x-0 bottom-0
+                    bg-gradient-to-t
+                    from-[#071D3D]
+                    via-[#071D3D]/70
+                    to-transparent
+                    px-5 pb-5 pt-16
+                  "
+                >
+                  <p
+                    className="
+                      text-[10px]
+                      font-black uppercase
+                      tracking-[.18em]
+                      text-[#F59223]
+                    "
+                  >
+                    Trainer Introduction
+                  </p>
+
+                  <p
+                    className="
+                      mt-1 text-sm
+                      font-bold text-white
+                    "
+                  >
+                    Professional expertise.
+                    Practical experience.
+                    Real-world training.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <p
+              className="
+                mt-3
+                text-[10px]
+                leading-5
+                text-blue-100/50
+              "
+            >
+              Trainer video will be replaced with approved
+              Smartera trainer media before public launch.
+            </p>
+          </div>
+
+          {/* =================================================
+              RIGHT — HERO CONTENT
+          ================================================= */}
+          <div className="order-1 lg:order-2">
+
+            <span
+              className="
+                inline-flex
+                rounded-full
+                border border-white/15
+                bg-white/[0.06]
+                px-3 py-1.5
+                text-[10px]
+                font-black uppercase
+                tracking-[0.18em]
+                text-blue-100
+              "
+            >
+              Professional Trainer Network
+            </span>
+
+            <h1
+              className="
+                mt-6
+                text-4xl
+                font-black
+                tracking-tight
+                sm:text-5xl
+                lg:text-6xl
+              "
+            >
+              Smartera{" "}
+              <span className="text-[#F59223]">
+                Trainers
+              </span>
+            </h1>
+
+            <p
+              className="
+                mt-6
+                max-w-2xl
+                text-sm
+                leading-7
+                text-blue-100/80
+                sm:text-base
+              "
+            >
+              Discover experienced professionals for
+              corporate training, workshops, practical
+              learning, and staff development.
+              Organizations can explore trainer profiles
+              and submit requests directly through
+              Smartera Hub.
+            </p>
+
+            {/* trust points */}
+            <div
+              className="
+                mt-7 grid
+                max-w-xl
+                grid-cols-2
+                gap-px
+                overflow-hidden
+                rounded-2xl
+                border border-white/10
+                bg-white/10
+                sm:grid-cols-3
+              "
+            >
+              <div className="bg-[#071D3D]/95 p-4">
+                <p className="text-[9px] font-black uppercase tracking-wider text-blue-100/50">
+                  Profiles
+                </p>
+
+                <p className="mt-1 text-sm font-black text-white">
+                  Professional
+                </p>
+              </div>
+
+              <div className="bg-[#071D3D]/95 p-4">
+                <p className="text-[9px] font-black uppercase tracking-wider text-blue-100/50">
+                  Expertise
+                </p>
+
+                <p className="mt-1 text-sm font-black text-white">
+                  Verified
+                </p>
+              </div>
+
+              <div className="col-span-2 bg-[#071D3D]/95 p-4 sm:col-span-1">
+                <p className="text-[9px] font-black uppercase tracking-wider text-blue-100/50">
+                  Requests
+                </p>
+
+                <p className="mt-1 text-sm font-black text-white">
+                  Via Smartera
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href="#trainer-directory"
+                className="
+                  inline-flex h-11
+                  items-center justify-center
+                  rounded-xl
+                  bg-[#F59223]
+                  px-5
+                  text-xs font-black
+                  text-white
+                  transition
+                  hover:-translate-y-0.5
+                  hover:bg-[#df7e12]
+                "
+              >
+                Explore Trainers
+              </a>
+
+              <a
+                href="/contact"
+                className="
+                  inline-flex h-11
+                  items-center justify-center
+                  rounded-xl
+                  border border-white/20
+                  bg-white/[0.06]
+                  px-5
+                  text-xs font-black
+                  text-white
+                  transition
+                  hover:bg-white/10
+                "
+              >
+                Contact Smartera
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =====================================================
+          TRAINER DIRECTORY
+      ===================================================== */}
+      <div id="trainer-directory">
+        <TrainersBrowser trainers={trainers} />
+      </div>
+
+      <section className="px-4 pb-16 sm:px-6 lg:px-8">
+        <div
+          className="
+            mx-auto max-w-7xl
+            rounded-2xl
+            border border-amber-200
+            bg-amber-50
+            p-4
+            text-xs leading-6
+            text-amber-800
+          "
+        >
+          The trainer profiles currently displayed are
+          fictional demo data. Real trainer qualifications,
+          employers, certifications, photos, and professional
+          claims must be verified and approved before public
+          publication.
+        </div>
+      </section>
+    </main>
+  );
+}

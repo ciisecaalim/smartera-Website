@@ -1,0 +1,36 @@
+import type { Trainer } from "../types/trainer.types";
+const API = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:5000/api";
+const ASSET = API.replace(/\/api\/?$/, "");
+type Envelope<T> = { success: boolean; data: T };
+export function trainerAsset(value: string) {
+  return value.startsWith("http")
+    ? value
+    : value.startsWith("/uploads/")
+      ? ASSET + value
+      : value;
+}
+export async function getPublishedTrainers(): Promise<Trainer[] | null> {
+  try {
+    const r = await fetch(API + "/web/trainers", { cache: "no-store" });
+    if (!r.ok) return null;
+    const p = (await r.json()) as Envelope<Trainer[]>;
+    return p.success ? p.data : null;
+  } catch {
+    return null;
+  }
+}
+export async function getTrainerBySlug(
+  slug: string,
+): Promise<Trainer | undefined> {
+  try {
+    const r = await fetch(API + "/web/trainers/" + encodeURIComponent(slug), {
+      cache: "no-store",
+    });
+    if (!r.ok) return undefined;
+    const p = (await r.json()) as Envelope<Trainer>;
+    return p.success ? p.data : undefined;
+  } catch {
+    return undefined;
+  }
+}
+export const trainers: Trainer[] = [];

@@ -1,0 +1,30 @@
+export type TrainingStatus = "upcoming" | "live" | "completed";
+
+export type TrainingActivity = {
+  id: string;
+  slug: string;
+  title: string;
+  shortDescription: string;
+  fullDescription?: string;
+  trainingType?: string;
+  status: TrainingStatus;
+  startDate: string;
+  endDate?: string;
+  targetGroup: string;
+  expectedParticipants?: number;
+  actualParticipants?: number;
+  location?: string;
+  topics: string[];
+  facilitatorNames?: string[];
+  organizer?: string;
+  partnerName?: string;
+  coverImage: string;
+  coverImageAlt: string;
+  galleryImages: { src: string; alt: string }[];
+  highlights?: string[];
+  outcomes?: string[];
+  published: boolean;
+  demoOnly: boolean;
+};
+
+export type TrainingFilters = { search: string; status: TrainingStatus | "all" };

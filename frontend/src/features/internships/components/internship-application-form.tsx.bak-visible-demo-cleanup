@@ -1,0 +1,242 @@
+﻿"use client";
+
+import {
+  useState,
+  type FormEvent,
+} from "react";
+
+import { ApplicationDocumentUpload } from "@/components/ui/application-document-upload";
+import { submitPublicForm } from "@/features/web-submissions/public-submissions.service";
+import { PublicSubmissionToast } from "@/features/web-submissions/public-submission-toast";
+
+import type {
+  Internship,
+} from "../types/internships.types";
+
+export function InternshipApplicationForm({
+  internship,
+}: {
+  internship: Internship;
+}) {
+  const [notice, setNotice] =
+    useState(false);
+  const [submissionError, setSubmissionError] = useState("");
+
+  const submit = async (
+    event: FormEvent<HTMLFormElement>,
+  ) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+
+    setSubmissionError("");
+    try {
+      await submitPublicForm(
+        "internships",
+        form,
+        {
+          internshipTitle: internship.title,
+          internshipSlug: internship.slug,
+        },
+      );
+
+      form.reset();
+      setNotice(true);
+    } catch (error) {
+      setSubmissionError(
+        error instanceof Error
+          ? error.message
+          : "Unable to submit your request. Please try again.",
+      );
+    }
+  };
+
+  const input =
+    "mt-2 h-11 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm outline-none focus:border-[#1B519F] focus:ring-2 focus:ring-[#1B519F]/10";
+
+  const textarea =
+    "mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 text-sm outline-none focus:border-[#1B519F] focus:ring-2 focus:ring-[#1B519F]/10";
+
+  return (
+    <form
+      onSubmit={submit}
+      className="
+        rounded-2xl
+        border border-slate-200
+        bg-white
+        p-6 shadow-sm
+        sm:p-8
+      "
+    >
+      <PublicSubmissionToast message={submissionError} variant="error" onDismiss={() => setSubmissionError("")} />
+      <h2 className="text-xl font-black text-[#1B519F]">
+        Candidate Information
+      </h2>
+
+      <div className="mt-6 grid gap-5 sm:grid-cols-2">
+        <label className="text-xs font-bold text-[#1B519F]">
+          Full Name
+
+          <input
+            name="fullName"
+            required
+            minLength={2}
+            maxLength={100}
+            autoComplete="name"
+            className={input}
+          />
+        </label>
+
+        <label className="text-xs font-bold text-[#1B519F]">
+          Email
+
+          <input
+            name="email"
+            type="email"
+            required
+            maxLength={150}
+            autoComplete="email"
+            className={input}
+          />
+        </label>
+
+        <label className="text-xs font-bold text-[#1B519F]">
+          Phone
+
+          <input
+            name="phone"
+            type="tel"
+            required
+            pattern="[+0-9 \(\)\-]+"
+            minLength={7}
+            maxLength={20}
+            autoComplete="tel"
+            className={input}
+          />
+        </label>
+
+        <label className="text-xs font-bold text-[#1B519F]">
+          Education Level
+
+          <select
+            name="education"
+            required
+            defaultValue=""
+            className={input}
+          >
+            <option value="">
+              Select level
+            </option>
+
+            <option>Secondary</option>
+            <option>Diploma</option>
+            <option>Undergraduate</option>
+            <option>Graduate</option>
+            <option>Other</option>
+          </select>
+        </label>
+
+        <label className="text-xs font-bold text-[#1B519F]">
+          Field of Study
+
+          <input
+            name="fieldOfStudy"
+            required
+            maxLength={100}
+            className={input}
+          />
+        </label>
+
+        <label className="text-xs font-bold text-[#1B519F]">
+          Portfolio URL
+
+          <span className="ml-1 font-normal text-slate-400">
+            (Optional)
+          </span>
+
+          <input
+            name="portfolio"
+            type="url"
+            maxLength={300}
+            placeholder="https://"
+            className={input}
+          />
+        </label>
+
+        <label className="text-xs font-bold text-[#1B519F] sm:col-span-2">
+          Current Skills
+
+          <textarea
+            name="skills"
+            required
+            minLength={3}
+            maxLength={600}
+            className={`${textarea} min-h-24`}
+          />
+        </label>
+
+        <ApplicationDocumentUpload
+          name="resume"
+          label="CV / Resume"
+          required
+        />
+
+        <div
+          className="
+            rounded-xl
+            border border-blue-100
+            bg-[#F8FBFF]
+            p-4
+            text-[10px]
+            leading-5
+            text-slate-500
+            sm:col-span-2
+          "
+        >
+          Documents are validated in the browser for
+          file type and size. Secure server-side upload,
+          validation, scanning, and storage will be
+          connected with the application backend.
+        </div>
+
+        <label className="flex items-start gap-3 text-xs leading-5 text-slate-600 sm:col-span-2">
+          <input
+            type="checkbox"
+            required
+            className="mt-1 h-4 w-4 accent-[#1B519F]"
+          />
+
+          I confirm that the information provided is
+          accurate and understand this demo form does
+          not currently store my application or files.
+        </label>
+      </div>
+
+      <PublicSubmissionToast message={notice ? "Your request has been submitted successfully." : ""} variant="success" onDismiss={() => setNotice(false)} />
+
+      <button
+        type="submit"
+        className="
+          mt-6 rounded-xl
+          bg-[#1B519F]
+          px-6 py-3
+          text-sm font-black
+          text-white
+          transition
+          hover:bg-[#174783]
+        "
+      >
+        Submit Application
+      </button>
+
+      <input
+        type="hidden"
+        name="internshipSlug"
+        value={internship.slug}
+      />
+    </form>
+  );
+}
+
+
+

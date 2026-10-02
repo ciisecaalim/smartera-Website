@@ -1,0 +1,512 @@
+"use client";
+
+import {
+  useState,
+  type FormEvent,
+} from "react";
+import { submitPublicForm } from "@/features/web-submissions/public-submissions.service";
+import { PublicSubmissionToast } from "@/features/web-submissions/public-submission-toast";
+import { publicFormDesign } from "@/components/ui/public-form-design";
+
+type TrainingInterestFormProps = {
+  trainingTitle: string;
+  trainingSlug: string;
+};
+
+export function TrainingInterestForm({
+  trainingTitle,
+  trainingSlug,
+}: TrainingInterestFormProps) {
+  const [demoSuccess, setDemoSuccess] =
+    useState(false);
+  const [submissionError, setSubmissionError] = useState("");
+
+  async function submit(
+    event: FormEvent<HTMLFormElement>,
+  ) {
+    event.preventDefault();
+
+    setSubmissionError("");
+    try { await submitPublicForm("training", event.currentTarget, { trainingTitle, trainingSlug }); setDemoSuccess(true); } catch (error) { setSubmissionError(error instanceof Error ? error.message : "Unable to submit your request. Please try again."); return; }
+
+    window.setTimeout(() => {
+      setDemoSuccess(false);
+    }, 4000);
+  }
+
+  const input = publicFormDesign.input;
+
+  return (
+    <section
+      id="training-request"
+      className="bg-[#F6F9FD] px-4 py-14 sm:px-6 lg:px-8"
+    >
+      <PublicSubmissionToast message={submissionError} variant="error" onDismiss={() => setSubmissionError("")} />
+      <div className="mx-auto max-w-7xl">
+        <div
+          className="
+            overflow-hidden
+            rounded-[28px]
+            border border-slate-200
+            bg-white
+            shadow-[0_20px_55px_rgba(8,43,87,.08)]
+            lg:grid
+            lg:grid-cols-[.72fr_1.28fr]
+          "
+        >
+          {/* =================================================
+              LEFT INFORMATION
+          ================================================= */}
+          <div
+            className="
+              relative
+              overflow-hidden
+              bg-[#071D3D]
+              p-7
+              text-white
+              sm:p-9
+              lg:p-10
+            "
+          >
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 opacity-[0.025]"
+              style={{
+                backgroundImage: `
+                  linear-gradient(
+                    rgba(255,255,255,1) 1px,
+                    transparent 1px
+                  ),
+                  linear-gradient(
+                    90deg,
+                    rgba(255,255,255,1) 1px,
+                    transparent 1px
+                  )
+                `,
+                backgroundSize: "70px 70px",
+              }}
+            />
+
+            <svg
+              viewBox="0 0 600 700"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.025]"
+            >
+              <path
+                d="M-70 180 C 110 50, 250 280, 430 150 S 650 80, 730 240"
+                fill="none"
+                stroke="white"
+                strokeWidth="2"
+              />
+
+              <path
+                d="M-80 520 C 120 360, 300 630, 470 470 S 650 390, 740 560"
+                fill="none"
+                stroke="white"
+                strokeWidth="2"
+              />
+            </svg>
+
+            <div className="relative">
+              <p className="text-[10px] font-black uppercase tracking-[.2em] text-[#F59223]">
+                Selected Training
+              </p>
+
+              <h2 className="mt-4 text-3xl font-black leading-tight sm:text-4xl">
+                Request This Training
+              </h2>
+
+              <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.06] p-5">
+                <p className="text-[9px] font-black uppercase tracking-[.16em] text-blue-100/50">
+                  Training
+                </p>
+
+                <p className="mt-2 text-lg font-black leading-7 text-white">
+                  {trainingTitle}
+                </p>
+              </div>
+
+              <p className="mt-6 text-sm leading-7 text-blue-100/75">
+                Complete the request form and provide
+                the information Smartera needs to
+                understand your training interest.
+              </p>
+
+              <div className="mt-8 space-y-5">
+                <InfoItem
+                  title="Individuals"
+                  text="Request participation or express interest in this training."
+                />
+
+                <InfoItem
+                  title="Companies & Organizations"
+                  text="Request this training for staff, teams, or organizational development."
+                />
+
+                <InfoItem
+                  title="Coordinated by Smartera"
+                  text="Smartera reviews the request before dates, delivery, trainer, or other arrangements are confirmed."
+                />
+              </div>
+            </div>
+          </div>
+
+
+          {/* =================================================
+              RIGHT REQUEST FORM
+          ================================================= */}
+          <form
+            onSubmit={submit}
+            className="p-6 sm:p-8 lg:p-10"
+          >
+            <p className="text-xs font-black uppercase tracking-[.18em] text-[#F59223]">
+              Training Request
+            </p>
+
+            <h3 className="mt-2 text-2xl font-black text-[#1B519F]">
+              Apply / Request Training
+            </h3>
+
+            <p className="mt-3 text-sm leading-6 text-slate-500">
+              The selected training is already attached
+              to this request.
+            </p>
+
+
+            {/* SELECTED TRAINING */}
+            <div className="mt-6 rounded-xl border border-blue-100 bg-[#F5F9FF] p-4">
+              <p className="text-[9px] font-black uppercase tracking-[.14em] text-slate-400">
+                Selected Training
+              </p>
+
+              <p className="mt-1 text-sm font-black text-[#1B519F]">
+                {trainingTitle}
+              </p>
+            </div>
+
+
+            <div className="mt-7 grid gap-5 sm:grid-cols-2">
+
+              <label className="text-xs font-bold text-[#1B519F]">
+                Full Name
+
+                <input
+                  name="fullName"
+                  required
+                  minLength={2}
+                  maxLength={100}
+                  autoComplete="name"
+                  className={input}
+                />
+              </label>
+
+
+              <label className="text-xs font-bold text-[#1B519F]">
+                Email
+
+                <input
+                  name="email"
+                  type="email"
+                  required
+                  maxLength={150}
+                  autoComplete="email"
+                  className={input}
+                />
+              </label>
+
+
+              <label className="text-xs font-bold text-[#1B519F]">
+                Phone
+
+                <input
+                  name="phone"
+                  type="tel"
+                  required
+                  minLength={7}
+                  maxLength={20}
+                  pattern="[+0-9 \(\)\-]+"
+                  autoComplete="tel"
+                  className={input}
+                />
+              </label>
+
+
+              <label className="text-xs font-bold text-[#1B519F]">
+                Organization
+
+                <span className="ml-1 font-normal text-slate-400">
+                  (Optional)
+                </span>
+
+                <input
+                  name="organization"
+                  maxLength={150}
+                  className={input}
+                />
+              </label>
+
+
+              <label className="text-xs font-bold text-[#1B519F]">
+                Request Type
+
+                <select
+                  name="requestType"
+                  required
+                  defaultValue=""
+                  className={input}
+                >
+                  <option value="">
+                    Select type
+                  </option>
+
+                  <option value="individual">
+                    Individual
+                  </option>
+
+                  <option value="organization">
+                    Company / Organization
+                  </option>
+
+                  <option value="group">
+                    Team / Group
+                  </option>
+                </select>
+              </label>
+
+
+              <label className="text-xs font-bold text-[#1B519F]">
+                Training Mode
+
+                <select
+                  name="trainingMode"
+                  defaultValue=""
+                  className={input}
+                >
+                  <option value="">
+                    No preference
+                  </option>
+
+                  <option value="on-site">
+                    On-site
+                  </option>
+
+                  <option value="online">
+                    Online
+                  </option>
+
+                  <option value="hybrid">
+                    Hybrid
+                  </option>
+                </select>
+              </label>
+
+
+              <label className="text-xs font-bold text-[#1B519F]">
+                Preferred Date
+
+                <input
+                  name="preferredDate"
+                  type="date"
+                  className={input}
+                />
+              </label>
+
+
+              <label className="text-xs font-bold text-[#1B519F]">
+                Number of Participants
+
+                <input
+                  name="participants"
+                  type="number"
+                  min={1}
+                  max={5000}
+                  placeholder="Example: 20"
+                  className={input}
+                />
+              </label>
+
+
+              <label className="text-xs font-bold text-[#1B519F] sm:col-span-2">
+                Requirements / Message
+
+                <textarea
+                  name="message"
+                  required
+                  minLength={20}
+                  maxLength={2000}
+                  placeholder="Tell Smartera about your training requirements..."
+                  className="
+                    mt-2
+                    min-h-32
+                    w-full
+                    rounded-xl
+                    border border-slate-200
+                    bg-white
+                    p-3
+                    text-sm
+                    text-slate-900
+                    outline-none
+                    transition
+                    focus:border-[#1B519F]
+                    focus:ring-2
+                    focus:ring-[#1B519F]/10
+                  "
+                />
+              </label>
+
+
+              <label className="flex items-start gap-3 text-xs leading-5 text-slate-600 sm:col-span-2">
+                <input
+                  type="checkbox"
+                  required
+                  className="mt-1 h-4 w-4 accent-[#1B519F]"
+                />
+
+                I confirm that the information provided
+                is accurate.
+              </label>
+            </div>
+            {/* DEMO TOAST */}
+            {demoSuccess ? (
+              <div
+                role="status"
+                aria-live="polite"
+                className="
+                  fixed
+                  right-5
+                  top-24
+                  z-[100]
+                  w-[min(390px,calc(100vw-2rem))]
+                  animate-[trainerToastIn_.3s_ease-out]
+                  rounded-2xl
+                  border
+                  border-emerald-200
+                  bg-white
+                  p-4
+                  shadow-[0_20px_55px_rgba(8,43,87,.20)]
+                "
+              >
+                <div className="flex items-start gap-3">
+                  <div
+                    className="
+                      flex
+                      h-10
+                      w-10
+                      shrink-0
+                      items-center
+                      justify-center
+                      rounded-full
+                      bg-emerald-600
+                      text-lg
+                      font-black
+                      text-white
+                    "
+                  >
+                    ✓
+                  </div>
+
+                  <div className="min-w-0">
+                    <div className="flex items-start justify-between gap-3">
+                      <p className="text-sm font-black text-emerald-700">
+                        Request Submitted Successfully
+                      </p>
+
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setDemoSuccess(false)
+                        }
+                        aria-label="Close notification"
+                        className="
+                          flex
+                          h-6
+                          w-6
+                          shrink-0
+                          items-center
+                          justify-center
+                          rounded-full
+                          text-sm
+                          font-bold
+                          text-slate-400
+                          transition
+                          hover:bg-slate-100
+                          hover:text-slate-700
+                        "
+                      >
+                        ×
+                      </button>
+                    </div>
+
+                    <p className="mt-1 text-xs leading-5 text-slate-600">
+                      Your request has been saved and sent to Smartera Hub for review.
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  className="
+                    absolute
+                    bottom-0
+                    left-0
+                    h-1
+                    w-full
+                    origin-left
+                    animate-[trainerToastProgress_4s_linear_forwards]
+                    rounded-b-2xl
+                    bg-emerald-500
+                  "
+                />
+              </div>
+            ) : null}
+
+
+            <button
+              type="submit"
+              className={publicFormDesign.primaryButton}
+            >
+              Submit Training Request
+            </button>
+
+
+            <input
+              type="hidden"
+              name="trainingSlug"
+              value={trainingSlug}
+            />
+
+            <input
+              type="hidden"
+              name="trainingTitle"
+              value={trainingTitle}
+            />
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+function InfoItem({
+  title,
+  text,
+}: {
+  title: string;
+  text: string;
+}) {
+  return (
+    <div className="border-t border-white/10 pt-4">
+      <p className="text-sm font-black text-white">
+        {title}
+      </p>
+
+      <p className="mt-1 text-xs leading-5 text-blue-100/65">
+        {text}
+      </p>
+    </div>
+  );
+}
+
+
+

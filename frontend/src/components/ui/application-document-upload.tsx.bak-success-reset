@@ -1,0 +1,164 @@
+﻿"use client";
+
+import {
+  useState,
+  type ChangeEvent,
+} from "react";
+
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
+
+const allowedTypes = new Set([
+  "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+]);
+
+type ApplicationDocumentUploadProps = {
+  name: string;
+  label: string;
+  required?: boolean;
+};
+
+export function ApplicationDocumentUpload({
+  name,
+  label,
+  required = false,
+}: ApplicationDocumentUploadProps) {
+  const [selectedFile, setSelectedFile] =
+    useState<string>("");
+
+  const [error, setError] =
+    useState<string>("");
+
+  const inputId = `${name}-document`;
+
+  const handleChange = (
+    event: ChangeEvent<HTMLInputElement>,
+  ) => {
+    const file = event.target.files?.[0];
+
+    setError("");
+    setSelectedFile("");
+
+    if (!file) {
+      return;
+    }
+
+    const extensionAllowed =
+      /\.(pdf|doc|docx)$/i.test(file.name);
+
+    const mimeAllowed =
+      !file.type || allowedTypes.has(file.type);
+
+    if (!extensionAllowed || !mimeAllowed) {
+      event.target.value = "";
+
+      setError(
+        "Please choose a PDF, DOC, or DOCX document.",
+      );
+
+      return;
+    }
+
+    if (file.size > MAX_FILE_SIZE) {
+      event.target.value = "";
+
+      setError(
+        "The document must be 5 MB or smaller.",
+      );
+
+      return;
+    }
+
+    setSelectedFile(file.name);
+  };
+
+  return (
+    <label
+      htmlFor={inputId}
+      className="block text-xs font-bold text-[#1B519F] sm:col-span-2"
+    >
+      {label}
+
+      {!required ? (
+        <span className="ml-1 font-normal text-slate-400">
+          (Optional)
+        </span>
+      ) : null}
+
+      <div
+        className="
+          mt-2 rounded-xl
+          border border-dashed border-slate-300
+          bg-[#F8FBFF]
+          p-4
+          transition
+          hover:border-[#1B519F]/40
+          hover:bg-[#EEF5FF]
+        "
+      >
+        <input
+          id={inputId}
+          name={name}
+          type="file"
+          required={required}
+          accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+          onChange={handleChange}
+          aria-describedby={`${inputId}-help ${inputId}-error`}
+          className="
+            block w-full
+            cursor-pointer
+            text-xs text-slate-600
+
+            file:mr-4
+            file:rounded-lg
+            file:border-0
+            file:bg-[#1B519F]
+            file:px-4
+            file:py-2
+            file:text-xs
+            file:font-black
+            file:text-white
+
+            hover:file:bg-[#174783]
+          "
+        />
+
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+          <span
+            id={`${inputId}-help`}
+            className="text-[10px] font-normal text-slate-500"
+          >
+            PDF, DOC or DOCX • Maximum 5 MB
+          </span>
+
+          {selectedFile ? (
+            <span
+              className="
+                max-w-full truncate
+                rounded-full
+                bg-white
+                px-3 py-1
+                text-[9px] font-bold
+                text-[#1B519F]
+                shadow-sm
+              "
+            >
+              ✓ {selectedFile}
+            </span>
+          ) : null}
+        </div>
+
+        {error ? (
+          <p
+            id={`${inputId}-error`}
+            role="alert"
+            className="mt-2 text-[10px] font-bold text-red-600"
+          >
+            {error}
+          </p>
+        ) : null}
+      </div>
+    </label>
+  );
+}

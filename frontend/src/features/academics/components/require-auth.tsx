@@ -1,0 +1,37 @@
+"use client";
+import { PageLoadingSkeleton } from "@/components/ui/PageLoadingSkeleton";
+
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, type ReactNode } from "react";
+import { useAcademicsAuth } from "@/features/academics/hooks/use-academics-auth";
+
+/** Real Web Auth guard. Academic records are served from the Student Portal. */
+export function RequireAuth({ children }: { children: ReactNode }) {
+  const { isAuthenticated, hydrated } = useAcademicsAuth();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (!hydrated) return;
+    if (!isAuthenticated) {
+      const redirect = encodeURIComponent(pathname || "/academics/my-learning");
+      router.replace(`/academics/login?redirect=${redirect}`);
+    } else {
+      router.replace("/student/academics");
+    }
+  }, [hydrated, isAuthenticated, pathname, router]);
+
+  if (!hydrated) {
+    return <PageLoadingSkeleton />;
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <div className="mx-auto max-w-3xl px-4 py-16 text-center text-slate-500" aria-busy="true">
+        Redirecting to login...
+      </div>
+    );
+  }
+
+  return <>{children}</>;
+}

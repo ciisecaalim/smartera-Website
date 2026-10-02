@@ -1,0 +1,165 @@
+﻿import Image from "next/image";
+import Link from "next/link";
+
+import { HomeIcon } from "@/features/home/components/home-icon";
+import { homeOpportunityCategories } from "@/features/home/data/home.data";
+
+/**
+ * Premium opportunities showcase for the homepage.
+ *
+ * Five equal cards are used on large screens, but the design remains
+ * compact and editorial instead of stretching content vertically.
+ */
+export function OpportunityCategoriesSection() {
+  return (
+    <section className="relative overflow-hidden bg-[#F8FAFD] py-14 sm:py-16 lg:py-20">
+      {/* Soft brand atmosphere */}
+      <div
+        className="pointer-events-none absolute -left-40 top-20 h-80 w-80 rounded-full bg-[#1655A3]/5 blur-3xl"
+        aria-hidden="true"
+      />
+
+      <div
+        className="pointer-events-none absolute -right-40 bottom-0 h-80 w-80 rounded-full bg-[#F7941D]/8 blur-3xl"
+        aria-hidden="true"
+      />
+
+      <div className="relative mx-auto w-full max-w-[1560px] px-4 sm:px-6 lg:px-8">
+        {/* Section heading */}
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#1655A3]/10 bg-white px-4 py-2 shadow-sm">
+            <span className="h-2 w-2 rounded-full bg-[#F7941D]" />
+
+            <span className="text-[10px] font-black uppercase tracking-[0.18em] text-[#1655A3] sm:text-[11px]">
+              {homeOpportunityCategories.eyebrow}
+            </span>
+          </div>
+
+          <h2 className="mt-4 text-[clamp(1.9rem,3vw,2.9rem)] font-black tracking-[-0.035em] text-[#082B57]">
+            {homeOpportunityCategories.title}
+          </h2>
+
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-slate-500 sm:text-base">
+            {homeOpportunityCategories.description}
+          </p>
+        </div>
+
+        {/* Premium five-card grid */}
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {homeOpportunityCategories.items.map((item, index) => {
+            const useOrange = index === 1 || index === 3;
+
+            return (
+              <Link
+                key={item.title}
+                href={item.href}
+                className="group relative min-w-0 overflow-hidden rounded-[26px] border border-[#DCE6F1] bg-white shadow-[0_10px_35px_rgba(8,43,87,0.07)] transition-all duration-500 hover:-translate-y-2 hover:border-[#1655A3]/25 hover:shadow-[0_28px_70px_rgba(8,43,87,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7941D] motion-reduce:transform-none"
+              >
+                {/* Top animated brand line */}
+                <div
+                  className={`absolute inset-x-0 top-0 z-30 h-[3px] origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100 ${
+                    useOrange ? "bg-[#F7941D]" : "bg-[#1655A3]"
+                  }`}
+                  aria-hidden="true"
+                />
+
+                {/* Image area */}
+                <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+                  <Image
+                    src={item.image}
+                    alt={`${item.title} - Smartera Hub`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 20vw"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.07] motion-reduce:transform-none"
+                  />
+
+                  {/* Cinematic overlay */}
+                  <div
+                    className="absolute inset-0 bg-gradient-to-t from-[#061F42]/85 via-[#082B57]/10 to-transparent"
+                    aria-hidden="true"
+                  />
+
+                  {/* Number */}
+                  <span className="absolute right-4 top-4 rounded-full border border-white/25 bg-[#082B57]/65 px-3 py-1.5 text-[10px] font-black tracking-[0.12em] text-white shadow-lg backdrop-blur-md">
+                    0{index + 1}
+                  </span>
+
+                  {/* Icon */}
+                  <span
+                    className={`absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-2xl border border-white/25 text-white shadow-xl backdrop-blur-md transition-all duration-500 group-hover:rotate-3 group-hover:scale-110 motion-reduce:transform-none ${
+                      useOrange
+                        ? "bg-[#F7941D]/95"
+                        : "bg-[#1655A3]/95"
+                    }`}
+                  >
+                    <HomeIcon
+                      name={item.icon}
+                      className="h-5.5 w-5.5"
+                    />
+                  </span>
+
+                  {/* Title over image */}
+                  <div className="absolute inset-x-0 bottom-0 p-5">
+                    <span className="text-[9px] font-black uppercase tracking-[0.18em] text-white/70">
+                      Smartera Opportunity
+                    </span>
+
+                    <h3 className="mt-1 text-[1.35rem] font-black tracking-[-0.025em] text-white">
+                      {item.title}
+                    </h3>
+                  </div>
+                </div>
+
+                {/* Compact card body */}
+                <div className="flex min-h-[180px] flex-col p-5">
+                  <p className="line-clamp-3 text-sm leading-7 text-slate-600">
+                    {item.description}
+                  </p>
+
+                  {/* Small visual accent */}
+                  <div className="mt-4 flex items-center gap-2">
+                    <span
+                      className={`h-1.5 w-7 rounded-full transition-all duration-500 group-hover:w-11 ${
+                        useOrange ? "bg-[#F7941D]" : "bg-[#1655A3]"
+                      }`}
+                    />
+
+                    <span className="h-1.5 w-1.5 rounded-full bg-slate-200" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-slate-200" />
+                  </div>
+
+                  {/* CTA */}
+                  <div className="mt-auto pt-5">
+                    <div className="flex items-center justify-between border-t border-slate-100 pt-4">
+                      <span className="text-sm font-black text-[#082B57] transition-colors duration-300 group-hover:text-[#1655A3]">
+                        Explore
+                      </span>
+
+                      <span
+                        className={`flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-500 group-hover:translate-x-1 group-hover:scale-110 group-hover:text-white motion-reduce:transform-none ${
+                          useOrange
+                            ? "border-[#F7941D]/20 bg-[#FFF4E6] text-[#E77D08] group-hover:border-[#F7941D] group-hover:bg-[#F7941D]"
+                            : "border-[#1655A3]/15 bg-[#EFF6FF] text-[#1655A3] group-hover:border-[#1655A3] group-hover:bg-[#1655A3]"
+                        }`}
+                      >
+                        →
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom glow */}
+                <div
+                  className={`pointer-events-none absolute -bottom-20 -right-20 h-40 w-40 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100 ${
+                    useOrange ? "bg-[#F7941D]/15" : "bg-[#1655A3]/15"
+                  }`}
+                  aria-hidden="true"
+                />
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}

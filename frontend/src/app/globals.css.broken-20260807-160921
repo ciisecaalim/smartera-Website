@@ -1,0 +1,243 @@
+﻿@import "tailwindcss";
+
+:root {
+  --brand-blue: #1655a3;
+  --brand-blue-dark: #124889;
+  --brand-navy: #082b57;
+  --brand-orange: #f7941d;
+  --brand-light: #eff6ff;
+  --surface: #ffffff;
+  --muted: #64748b;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: #ffffff;
+  color: #0f2746;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-rendering: optimizeLegibility;
+}
+a { text-decoration: none; }
+button, input, textarea { font: inherit; }
+::selection { background: rgba(247, 148, 29, .24); color: #082b57; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.surface-grid {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(22,85,163,.12) 1px, transparent 0);
+  background-size: 22px 22px;
+}
+
+.hero-glow {
+  background:
+    radial-gradient(circle at 88% 10%, rgba(247,148,29,.15), transparent 30%),
+    radial-gradient(circle at 8% 88%, rgba(22,85,163,.13), transparent 34%),
+    linear-gradient(135deg, #fff 0%, #f8fbff 52%, #fff9f1 100%);
+}
+
+/* SMARTERA PROFESSIONAL HERO START */
+
+@keyframes smarteraHeroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes smarteraBlobOne {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    border-radius: 42% 58% 65% 35% / 46% 42% 58% 54%;
+  }
+
+  50% {
+    transform: translate3d(26px, 18px, 0) scale(1.08);
+    border-radius: 62% 38% 42% 58% / 38% 59% 41% 62%;
+  }
+
+  100% {
+    transform: translate3d(-10px, 32px, 0) scale(0.96);
+    border-radius: 48% 52% 35% 65% / 57% 36% 64% 43%;
+  }
+}
+
+@keyframes smarteraBlobTwo {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: translate3d(-34px, 18px, 0) rotate(8deg) scale(1.1);
+  }
+
+  100% {
+    transform: translate3d(12px, -20px, 0) rotate(-5deg) scale(0.96);
+  }
+}
+
+@keyframes smarteraBlobThree {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(22px, -30px, 0) scale(1.12);
+  }
+
+  100% {
+    transform: translate3d(-18px, 12px, 0) scale(0.95);
+  }
+}
+
+@keyframes smarteraFloatingCard {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes smarteraFloatingCardSecondary {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-1deg);
+  }
+
+  50% {
+    transform: translate3d(0, -7px, 0) rotate(1deg);
+  }
+}
+
+@keyframes smarteraOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.smartera-hero-reveal {
+  opacity: 0;
+  animation: smarteraHeroReveal 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.smartera-delay-1 {
+  animation-delay: 80ms;
+}
+
+.smartera-delay-2 {
+  animation-delay: 160ms;
+}
+
+.smartera-delay-3 {
+  animation-delay: 240ms;
+}
+
+.smartera-delay-4 {
+  animation-delay: 320ms;
+}
+
+.smartera-delay-5 {
+  animation-delay: 400ms;
+}
+
+.smartera-hero-blob {
+  position: absolute;
+  pointer-events: none;
+  filter: blur(4px);
+  will-change: transform, border-radius;
+}
+
+.smartera-hero-blob-one {
+  left: -8rem;
+  top: 4rem;
+  width: 22rem;
+  height: 22rem;
+  background: rgba(22, 85, 163, 0.07);
+  animation: smarteraBlobOne 11s ease-in-out infinite alternate;
+}
+
+.smartera-hero-blob-two {
+  right: -7rem;
+  top: 3rem;
+  width: 24rem;
+  height: 24rem;
+  border-radius: 50%;
+  background: rgba(247, 148, 29, 0.10);
+  animation: smarteraBlobTwo 13s ease-in-out infinite alternate;
+}
+
+.smartera-hero-blob-three {
+  right: 28%;
+  bottom: -11rem;
+  width: 21rem;
+  height: 21rem;
+  border-radius: 50%;
+  background: rgba(22, 85, 163, 0.055);
+  animation: smarteraBlobThree 12s ease-in-out infinite alternate;
+}
+
+.smartera-floating-card {
+  animation: smarteraFloatingCard 4.4s ease-in-out infinite;
+}
+
+.smartera-floating-card-secondary {
+  animation: smarteraFloatingCardSecondary 5.2s ease-in-out infinite;
+}
+
+.smartera-orbit {
+  animation: smarteraOrbit 20s linear infinite;
+}
+
+@media (max-width: 639px) {
+  .smartera-hero-blob-one {
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .smartera-hero-blob-two {
+    width: 16rem;
+    height: 16rem;
+  }
+
+  .smartera-hero-blob-three {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .smartera-hero-reveal,
+  .smartera-hero-blob-one,
+  .smartera-hero-blob-two,
+  .smartera-hero-blob-three,
+  .smartera-floating-card,
+  .smartera-floating-card-secondary,
+  .smartera-orbit {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* SMARTERA PROFESSIONAL HERO END */

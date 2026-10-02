@@ -1,0 +1,283 @@
+"use client";
+
+import { useEffect } from "react";
+
+type Rgb = {
+  r: number;
+  g: number;
+  b: number;
+  a: number;
+};
+
+function parseRgb(value: string): Rgb | null {
+  const match = value.match(
+    /rgba?\(\s*(\d+)[,\s]+(\d+)[,\s]+(\d+)(?:[,\s/]+([\d.]+))?\s*\)/i,
+  );
+
+  if (!match) {
+    return null;
+  }
+
+  return {
+    r: Number(match[1]),
+    g: Number(match[2]),
+    b: Number(match[3]),
+    a:
+      match[4] === undefined
+        ? 1
+        : Number(match[4]),
+  };
+}
+
+function isWhiteBackground(
+  element: HTMLElement,
+): boolean {
+  let current: HTMLElement | null =
+    element.parentElement;
+
+  while (current) {
+    const style =
+      window.getComputedStyle(current);
+
+    /*
+     * Handle gradients first.
+     * Any visible colored gradient is treated
+     * as a non-white background.
+     */
+    const backgroundImage =
+      style.backgroundImage;
+
+    if (
+      backgroundImage &&
+      backgroundImage !== "none"
+    ) {
+      const colors =
+        backgroundImage.match(
+          /rgba?\([^)]+\)/g,
+        );
+
+      if (
+        colors &&
+        colors.length
+      ) {
+        const parsedColors =
+          colors
+            .map(parseRgb)
+            .filter(
+              (color): color is Rgb =>
+                Boolean(color),
+            );
+
+        if (parsedColors.length) {
+          const allWhite =
+            parsedColors.every(
+              (color) =>
+                color.r >= 245 &&
+                color.g >= 245 &&
+                color.b >= 245,
+            );
+
+          return allWhite;
+        }
+      }
+
+      return false;
+    }
+
+    const background =
+      parseRgb(
+        style.backgroundColor,
+      );
+
+    if (
+      background &&
+      background.a > 0.05
+    ) {
+      return (
+        background.r >= 245 &&
+        background.g >= 245 &&
+        background.b >= 245
+      );
+    }
+
+    current =
+      current.parentElement;
+  }
+
+  /*
+   * Default page background is treated
+   * as white.
+   */
+  return true;
+}
+
+function styleSeeMore(
+  element: HTMLElement,
+) {
+  const text =
+    element.textContent
+      ?.replace(/\s+/g, " ")
+      .trim() ?? "";
+
+  const isPlain =
+    text === "See More";
+
+  const hasDots =
+    text === "See More...";
+
+  if (
+    !isPlain &&
+    !hasDots
+  ) {
+    return;
+  }
+
+  /*
+   * IMPORTANT:
+   * Never modify textContent here.
+   * Changing DOM text during hydration
+   * causes Next.js hydration errors.
+   */
+
+  element.dataset.seeMoreAuto =
+    "true";
+
+  if (isPlain) {
+    element.dataset.seeMoreDots =
+      "true";
+  } else {
+    delete element.dataset.seeMoreDots;
+  }
+
+  const whiteBackground =
+    isWhiteBackground(element);
+
+  element.style.setProperty(
+    "color",
+    whiteBackground
+      ? "#000000"
+      : "#FFFFFF",
+    "important",
+  );
+
+  element.style.setProperty(
+    "border",
+    "none",
+    "important",
+  );
+
+  element.style.setProperty(
+    "background",
+    "transparent",
+    "important",
+  );
+
+  element.style.setProperty(
+    "box-shadow",
+    "none",
+    "important",
+  );
+}
+
+function applySeeMoreStyles() {
+  const elements =
+    document.querySelectorAll<HTMLElement>(
+      'a, button, [role="button"]',
+    );
+
+  elements.forEach(
+    styleSeeMore,
+  );
+}
+
+export function SeeMoreAutoStyle() {
+  useEffect(() => {
+    let observer:
+      MutationObserver | null =
+      null;
+
+    let timer:
+      ReturnType<typeof setTimeout> |
+      null = null;
+
+    let cancelled = false;
+
+    const start = () => {
+      /*
+       * Wait until initial document load
+       * and hydration have completed.
+       */
+      timer =
+        window.setTimeout(() => {
+          if (cancelled) {
+            return;
+          }
+
+          applySeeMoreStyles();
+
+          observer =
+            new MutationObserver(() => {
+              window.requestAnimationFrame(
+                applySeeMoreStyles,
+              );
+            });
+
+          observer.observe(
+            document.body,
+            {
+              childList: true,
+              subtree: true,
+            },
+          );
+        }, 50);
+    };
+
+    if (
+      document.readyState ===
+      "complete"
+    ) {
+      start();
+    } else {
+      window.addEventListener(
+        "load",
+        start,
+        {
+          once: true,
+        },
+      );
+    }
+
+    return () => {
+      cancelled = true;
+
+      window.removeEventListener(
+        "load",
+        start,
+      );
+
+      if (timer) {
+        window.clearTimeout(timer);
+      }
+
+      observer?.disconnect();
+    };
+  }, []);
+
+  return (
+    <style jsx global>{`
+      /*
+       * Add the three dots visually.
+       * We do NOT change React's text node.
+       */
+      [data-see-more-dots="true"]::after {
+        content: "...";
+      }
+
+      [data-see-more-auto="true"] {
+        border: 0 !important;
+        box-shadow: none !important;
+        background: transparent !important;
+      }
+    `}</style>
+  );
+}

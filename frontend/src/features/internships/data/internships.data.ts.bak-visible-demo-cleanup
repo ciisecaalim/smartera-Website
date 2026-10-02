@@ -1,0 +1,385 @@
+﻿import type {
+  Internship,
+  InternshipField,
+} from "@/features/internships/types/internships.types";
+
+/**
+ * DEMO_ONLY:
+ * Temporary development fixtures.
+ * Replace/remove before publishing real internship opportunities.
+ */
+const demoInternships: Internship[] = [
+  {
+    id: "demo-data-analysis-intern",
+    slug: "data-analysis-intern",
+    title: "Data Analysis Intern",
+    organizationName: "BluePeak Analytics",
+    field: "Data & Analytics",
+    location: "Mogadishu",
+    duration: "3 Months",
+    workMode: "On-site",
+    eligibility:
+      "Students or recent graduates interested in data analysis",
+    skills: ["Excel", "Power BI", "Data Analysis"],
+    shortDescription:
+      "Gain practical experience supporting data cleaning, reporting, dashboard preparation, and basic business analysis.",
+    fullDescription:
+      "A fictional development internship focused on practical workplace exposure in data preparation, reporting, and analysis.",
+    responsibilities: [
+      "Assist with data cleaning and preparation.",
+      "Support recurring report preparation.",
+      "Help update simple dashboards.",
+      "Organize basic datasets.",
+      "Participate in team reviews.",
+    ],
+    requirements: [
+      "Basic Excel knowledge.",
+      "Interest in data analysis.",
+      "Attention to detail.",
+      "Communication skills.",
+      "Willingness to learn.",
+    ],
+    learningOutcomes: [
+      "Prepare and clean basic datasets.",
+      "Assist with workplace reporting.",
+      "Build simple dashboards.",
+      "Understand reporting workflows.",
+      "Improve professional communication.",
+    ],
+    datePosted: "2026-08-08",
+    status: "open",
+    featured: true,
+    published: true,
+    demoOnly: true,
+  },
+
+  {
+    id: "demo-finance-intern",
+    slug: "finance-intern",
+    title: "Finance Intern",
+    organizationName: "Horizon Business Solutions",
+    field: "Finance",
+    location: "Mogadishu",
+    duration: "3 Months",
+    workMode: "On-site",
+    eligibility:
+      "Finance, accounting, or business learners and recent graduates",
+    skills: ["Accounting", "Excel", "Financial Reporting"],
+    shortDescription:
+      "Support financial documentation, reconciliation, transaction tracking, and basic reporting while gaining workplace experience.",
+    fullDescription:
+      "A fictional development internship for testing practical finance workplace experience.",
+    responsibilities: [
+      "Support financial documentation.",
+      "Assist with transaction tracking.",
+      "Help prepare reconciliations.",
+      "Organize reporting inputs.",
+    ],
+    requirements: [
+      "Foundational finance or accounting knowledge.",
+      "Basic spreadsheet confidence.",
+      "Attention to detail.",
+      "Willingness to learn.",
+    ],
+    learningOutcomes: [
+      "Practice organized financial documentation.",
+      "Understand reconciliation workflows.",
+      "Support routine reporting.",
+      "Develop professional communication.",
+    ],
+    datePosted: "2026-08-07",
+    status: "open",
+    featured: true,
+    published: true,
+    demoOnly: true,
+  },
+
+  {
+    id: "demo-marketing-intern",
+    slug: "marketing-intern",
+    title: "Marketing Intern",
+    organizationName: "Nova Growth Agency",
+    field: "Marketing",
+    location: "Mogadishu",
+    duration: "2 Months",
+    workMode: "Hybrid",
+    eligibility:
+      "Marketing, business, communications, or related learners",
+    skills: ["Digital Marketing", "Social Media", "Content"],
+    shortDescription:
+      "Gain practical marketing experience through social media coordination, content support, campaign tracking, and communication activities.",
+    fullDescription:
+      "A fictional development internship focused on practical digital marketing experience.",
+    responsibilities: [
+      "Support social media coordination.",
+      "Assist with content preparation.",
+      "Track campaign activities.",
+      "Help organize performance updates.",
+    ],
+    requirements: [
+      "Interest in marketing.",
+      "Clear communication skills.",
+      "Basic digital confidence.",
+      "Willingness to learn.",
+    ],
+    learningOutcomes: [
+      "Coordinate basic social content.",
+      "Understand campaign workflows.",
+      "Practice reporting and communication.",
+      "Build workplace collaboration skills.",
+    ],
+    datePosted: "2026-08-06",
+    status: "open",
+    featured: false,
+    published: true,
+    demoOnly: true,
+  },
+
+  {
+    id: "demo-administrative-intern",
+    slug: "administrative-intern",
+    title: "Administrative Intern",
+    organizationName: "Nexa Professional Services",
+    field: "Administration",
+    location: "Mogadishu",
+    duration: "3 Months",
+    workMode: "On-site",
+    eligibility:
+      "Students or early-career candidates interested in administration",
+    skills: ["Microsoft Office", "Communication", "Administration"],
+    shortDescription:
+      "Develop workplace administration skills through documentation, office support, scheduling, and professional communication.",
+    fullDescription:
+      "A fictional development internship focused on practical administration experience.",
+    responsibilities: [
+      "Support scheduling.",
+      "Organize routine documents.",
+      "Assist with office communication.",
+      "Support daily operational tasks.",
+    ],
+    requirements: [
+      "Basic Microsoft Office skills.",
+      "Professional communication.",
+      "Organization skills.",
+      "Attention to detail.",
+    ],
+    learningOutcomes: [
+      "Practice office organization.",
+      "Support workplace documentation.",
+      "Build professional communication.",
+      "Understand everyday operations.",
+    ],
+    datePosted: "2026-08-05",
+    status: "open",
+    featured: false,
+    published: true,
+    demoOnly: true,
+  },
+
+  {
+    id: "demo-software-development-intern",
+    slug: "software-development-intern",
+    title: "Software Development Intern",
+    organizationName: "Sahan Digital Labs",
+    field: "Technology",
+    location: "Mogadishu",
+    duration: "4 Months",
+    workMode: "Hybrid",
+    eligibility:
+      "Computer science learners or recent graduates",
+    skills: ["JavaScript", "React", "Web Development"],
+    shortDescription:
+      "Support frontend development, interface implementation, debugging, testing, and collaborative software projects.",
+    fullDescription:
+      "A fictional development internship focused on practical software development workflows.",
+    responsibilities: [
+      "Support frontend development tasks.",
+      "Build reusable interface components.",
+      "Assist with debugging and testing.",
+      "Participate in code reviews.",
+    ],
+    requirements: [
+      "Basic JavaScript knowledge.",
+      "Basic React understanding.",
+      "Interest in software development.",
+      "Willingness to learn.",
+    ],
+    learningOutcomes: [
+      "Build practical web features.",
+      "Understand collaborative development.",
+      "Practice debugging and testing.",
+      "Use Git-based workflows.",
+    ],
+    datePosted: "2026-08-04",
+    status: "open",
+    featured: false,
+    published: true,
+    demoOnly: true,
+  },
+
+  {
+    id: "demo-it-support-intern",
+    slug: "it-support-intern",
+    title: "IT Support Intern",
+    organizationName: "Hillaac Technologies",
+    field: "Technology",
+    location: "Mogadishu",
+    duration: "3 Months",
+    workMode: "On-site",
+    eligibility:
+      "Technology learners interested in technical support",
+    skills: ["IT Support", "Networking", "Troubleshooting"],
+    shortDescription:
+      "Gain hands-on experience assisting users, troubleshooting computers, configuring basic networks, and supporting technical operations.",
+    fullDescription:
+      "A fictional development internship focused on IT support and troubleshooting.",
+    responsibilities: [
+      "Assist users with basic technical issues.",
+      "Support computer troubleshooting.",
+      "Help configure devices.",
+      "Document recurring technical problems.",
+    ],
+    requirements: [
+      "Basic computer knowledge.",
+      "Interest in networking.",
+      "Problem-solving mindset.",
+      "Professional communication.",
+    ],
+    learningOutcomes: [
+      "Troubleshoot common computer issues.",
+      "Support basic networking.",
+      "Document technical problems.",
+      "Improve customer support skills.",
+    ],
+    datePosted: "2026-08-03",
+    status: "open",
+    featured: false,
+    published: true,
+    demoOnly: true,
+  },
+
+  {
+    id: "demo-graphic-design-intern",
+    slug: "graphic-design-intern",
+    title: "Graphic Design Intern",
+    organizationName: "PixelCraft Studio",
+    field: "Creative",
+    location: "Mogadishu",
+    duration: "2 Months",
+    workMode: "On-site",
+    eligibility:
+      "Design learners with basic creative software knowledge",
+    skills: ["Photoshop", "Illustrator", "Canva"],
+    shortDescription:
+      "Build practical design experience supporting branding, social media graphics, promotional materials, and visual content production.",
+    fullDescription:
+      "A fictional development internship focused on practical graphic design experience.",
+    responsibilities: [
+      "Create social media graphics.",
+      "Support branding tasks.",
+      "Prepare promotional materials.",
+      "Organize reusable design assets.",
+    ],
+    requirements: [
+      "Basic graphic design knowledge.",
+      "Basic creative portfolio.",
+      "Attention to visual detail.",
+      "Willingness to receive feedback.",
+    ],
+    learningOutcomes: [
+      "Create practical visual content.",
+      "Improve design consistency.",
+      "Work with creative briefs.",
+      "Build stronger portfolio samples.",
+    ],
+    datePosted: "2026-08-02",
+    status: "open",
+    featured: false,
+    published: true,
+    demoOnly: true,
+  },
+
+  {
+    id: "demo-project-assistant-intern",
+    slug: "project-assistant-intern",
+    title: "Project Assistant Intern",
+    organizationName: "Rajo Development Group",
+    field: "Business",
+    location: "Mogadishu",
+    duration: "3 Months",
+    workMode: "On-site",
+    eligibility:
+      "Business, project management, or administration learners",
+    skills: ["Project Coordination", "Documentation", "Reporting"],
+    shortDescription:
+      "Support project documentation, activity tracking, reporting, coordination, and basic project implementation tasks.",
+    fullDescription:
+      "A fictional development internship focused on entry-level project coordination experience.",
+    responsibilities: [
+      "Support project documentation.",
+      "Track basic activities.",
+      "Assist with reporting.",
+      "Help coordinate team tasks.",
+    ],
+    requirements: [
+      "Basic organization skills.",
+      "Microsoft Office knowledge.",
+      "Professional communication.",
+      "Interest in project work.",
+    ],
+    learningOutcomes: [
+      "Support project coordination.",
+      "Prepare basic project documentation.",
+      "Understand activity tracking.",
+      "Improve professional reporting.",
+    ],
+    datePosted: "2026-08-01",
+    status: "open",
+    featured: false,
+    published: true,
+    demoOnly: true,
+  },
+];
+
+const approvedInternships: Internship[] = [];
+
+export const internships: Internship[] = [
+  ...approvedInternships,
+  ...demoInternships,
+];
+
+export const internshipFields: InternshipField[] = [
+  "Technology",
+  "Data & Analytics",
+  "Business",
+  "Finance",
+  "Marketing",
+  "Creative",
+  "Healthcare",
+  "Administration",
+];
+
+export const getPublishedInternships = () =>
+  internships.filter(
+    (item) => item.published && item.status !== "draft",
+  );
+
+export const getFeaturedInternships = () =>
+  getPublishedInternships().filter(
+    (item) => item.featured,
+  );
+
+export const getInternshipBySlug = (slug: string) =>
+  getPublishedInternships().find(
+    (item) => item.slug === slug,
+  );
+
+export const internshipTracks =
+  getPublishedInternships().map((item) => ({
+    id: item.slug,
+    eyebrow: item.field,
+    title: item.title,
+    shortDescription: item.shortDescription,
+    meta: `${item.location} - ${item.duration}`,
+    href: `/opportunities/internships/${item.slug}`,
+  }));

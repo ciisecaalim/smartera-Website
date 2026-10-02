@@ -1,0 +1,120 @@
+﻿import Image from "next/image";
+import Link from "next/link";
+
+import { HomeIcon } from "@/features/home/components/home-icon";
+import { homeHero } from "@/features/home/data/home.data";
+
+export function HeroSection() {
+  return (
+    <section className="relative overflow-hidden bg-gradient-to-br from-white via-[#F8FBFF] to-[#FFF7EB] py-12 sm:py-14 lg:py-16">
+      <div
+        className="pointer-events-none absolute -left-28 top-0 h-72 w-72 rounded-full bg-[#1655A3]/5 blur-3xl"
+        aria-hidden="true"
+      />
+
+      <div
+        className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-[#F7941D]/10 blur-3xl"
+        aria-hidden="true"
+      />
+
+      <div className="mx-auto grid w-full max-w-[1240px] items-center gap-10 px-4 sm:px-6 lg:px-8 xl:grid-cols-[0.86fr_1.14fr] xl:gap-14">
+        <div className="min-w-0">
+          <span className="inline-flex rounded-full border border-[#F7941D]/20 bg-[#FFF4E6] px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.14em] text-[#D96E00]">
+            {homeHero.eyebrow}
+          </span>
+
+          <h1 className="mt-5 max-w-[15ch] text-[clamp(2.6rem,4vw,4.2rem)] font-black leading-[1.02] tracking-[-0.035em] text-[#082B57]">
+            {homeHero.title}
+          </h1>
+
+          <p className="mt-6 max-w-xl text-sm leading-7 text-slate-600 sm:text-base sm:leading-8 lg:text-lg">
+            {homeHero.description}
+          </p>
+
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <Link
+              href={homeHero.primaryAction.href}
+              className="group inline-flex items-center justify-center rounded-xl bg-[#1655A3] px-6 py-3.5 text-sm font-extrabold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:bg-[#124889] hover:shadow-xl motion-reduce:transform-none"
+            >
+              {homeHero.primaryAction.label}
+              <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
+            </Link>
+
+            <Link
+              href={homeHero.secondaryAction.href}
+              className="group inline-flex items-center justify-center rounded-xl border border-[#1655A3]/30 bg-white px-6 py-3.5 text-sm font-extrabold text-[#1655A3] transition-all duration-300 hover:-translate-y-1 hover:border-[#F7941D] hover:shadow-lg motion-reduce:transform-none"
+            >
+              {homeHero.secondaryAction.label}
+              <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
+            </Link>
+          </div>
+
+          <div className="mt-8 grid gap-3 sm:grid-cols-3">
+            {homeHero.benefits.map(
+              (benefit) => (
+                <div
+                  key={benefit.title}
+                  className="group flex items-center gap-3 rounded-2xl bg-white/70 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-lg motion-reduce:transform-none"
+                >
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#EFF6FF] text-[#1655A3] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#FFF3E4] group-hover:text-[#F7941D]">
+                    <HomeIcon
+                      name={benefit.icon}
+                      className="h-5 w-5"
+                    />
+                  </span>
+
+                  <span>
+                    <strong className="block text-xs font-extrabold text-[#082B57]">
+                      {benefit.title}
+                    </strong>
+
+                    <span className="mt-1 block text-[11px] leading-4 text-slate-500">
+                      {benefit.description}
+                    </span>
+                  </span>
+                </div>
+              ),
+            )}
+          </div>
+        </div>
+
+        <div className="relative min-w-0">
+          <div
+            className="absolute -inset-5 rounded-[42px] bg-gradient-to-br from-[#1655A3]/10 to-[#F7941D]/15 blur-2xl"
+            aria-hidden="true"
+          />
+
+          <div className="group relative aspect-[4/3] overflow-hidden rounded-[32px] bg-slate-100 shadow-[0_30px_80px_rgba(8,43,87,0.16)] sm:aspect-[16/10] xl:aspect-[4/3]">
+            <Image
+              src={homeHero.image}
+              alt="Dhalinyaro wada baranaya oo laptop isticmaalaya"
+              fill
+              priority
+              sizes="(max-width: 1279px) 100vw, 55vw"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05] motion-reduce:transform-none"
+            />
+
+            <div
+              className="absolute inset-0 bg-gradient-to-t from-[#082B57]/15 via-transparent to-transparent"
+              aria-hidden="true"
+            />
+
+            <div className="absolute bottom-5 right-5 rounded-2xl border border-white/50 bg-white/95 px-5 py-4 shadow-xl backdrop-blur">
+              <p className="text-sm font-black text-[#082B57]">
+                Empowering Youth.
+              </p>
+
+              <p className="mt-1 text-xs text-slate-500">
+                Building Futures.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

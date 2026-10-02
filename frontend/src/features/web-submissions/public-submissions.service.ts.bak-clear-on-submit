@@ -1,0 +1,29 @@
+const API_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:5000/api";
+export type PublicSubmissionSource = "contact"|"about"|"training"|"trainers"|"internships"|"job-assistance"|"job-seekers"|"ict-services"|"partners"|"blogs";
+export async function submitPublicForm(source: PublicSubmissionSource, form: HTMLFormElement, context: Record<string,string> = {}) {
+  validatePublicSubmission(source, form);
+  if (form.dataset.submitting === "true") throw new Error("This form is already being submitted.");
+  form.dataset.submitting = "true"; form.setAttribute("aria-busy", "true");
+  const buttons = Array.from(form.querySelectorAll<HTMLButtonElement>('button[type="submit"],button:not([type])'));
+  buttons.forEach((button) => {
+    button.dataset.submissionLabel = button.textContent || "Submit";
+    button.disabled = true;
+    button.textContent = "Submitting...";
+  });
+  const body = new FormData(form); Object.entries(context).forEach(([key,value])=>body.set(key,value));
+  try {
+    const response = await fetch(`${API_URL}/web/forms/${source}`, { method:"POST", body });
+    const payload = await response.json().catch(() => null) as {success?:boolean;message?:string}|null;
+    if (!response.ok || !payload?.success) throw new Error(payload?.message || "Unable to submit the form right now.");
+    return payload;
+  } finally {
+    delete form.dataset.submitting;
+    form.removeAttribute("aria-busy");
+    buttons.forEach((button) => {
+      button.disabled = false;
+      button.textContent = button.dataset.submissionLabel || "Submit";
+      delete button.dataset.submissionLabel;
+    });
+  }
+}
+import { validatePublicSubmission } from "./public-submission-validation";

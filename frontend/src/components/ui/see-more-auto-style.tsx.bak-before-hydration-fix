@@ -1,0 +1,209 @@
+"use client";
+
+import { useEffect } from "react";
+
+type Rgb = {
+  r: number;
+  g: number;
+  b: number;
+  a: number;
+};
+
+function parseRgb(value: string): Rgb | null {
+  const match = value.match(
+    /rgba?\(\s*(\d+)[,\s]+(\d+)[,\s]+(\d+)(?:[,\s/]+([\d.]+))?\s*\)/i,
+  );
+
+  if (!match) {
+    return null;
+  }
+
+  return {
+    r: Number(match[1]),
+    g: Number(match[2]),
+    b: Number(match[3]),
+    a:
+      match[4] === undefined
+        ? 1
+        : Number(match[4]),
+  };
+}
+
+function getEffectiveBackground(
+  element: HTMLElement,
+): Rgb {
+  let current: HTMLElement | null =
+    element.parentElement;
+
+  while (current) {
+    const style =
+      window.getComputedStyle(current);
+
+    const parsed =
+      parseRgb(style.backgroundColor);
+
+    if (
+      parsed &&
+      parsed.a > 0.05
+    ) {
+      return parsed;
+    }
+
+    current =
+      current.parentElement;
+  }
+
+  return {
+    r: 255,
+    g: 255,
+    b: 255,
+    a: 1,
+  };
+}
+
+function luminance(
+  r: number,
+  g: number,
+  b: number,
+) {
+  const convert = (value: number) => {
+    const channel =
+      value / 255;
+
+    return channel <= 0.03928
+      ? channel / 12.92
+      : Math.pow(
+          (channel + 0.055) / 1.055,
+          2.4,
+        );
+  };
+
+  const R = convert(r);
+  const G = convert(g);
+  const B = convert(b);
+
+  return (
+    0.2126 * R +
+    0.7152 * G +
+    0.0722 * B
+  );
+}
+
+function styleSeeMore(
+  element: HTMLElement,
+) {
+  const text =
+    element.textContent
+      ?.replace(/\s+/g, " ")
+      .trim() ?? "";
+
+  if (
+    text !== "See More" &&
+    text !== "See More..."
+  ) {
+    return;
+  }
+
+  if (text === "See More") {
+    element.textContent =
+      "See More...";
+  }
+
+  const background =
+    getEffectiveBackground(element);
+
+  const isLight =
+    luminance(
+      background.r,
+      background.g,
+      background.b,
+    ) >= 0.7;
+
+  element.style.setProperty(
+    "color",
+    isLight
+      ? "#000000"
+      : "#FFFFFF",
+    "important",
+  );
+
+  element.style.setProperty(
+    "border",
+    "none",
+    "important",
+  );
+
+  element.style.setProperty(
+    "background",
+    "transparent",
+    "important",
+  );
+
+  element.style.setProperty(
+    "box-shadow",
+    "none",
+    "important",
+  );
+
+  element.style.setProperty(
+    "outline",
+    "none",
+    "important",
+  );
+
+  element.style.setProperty(
+    "text-decoration",
+    "none",
+    "important",
+  );
+
+  element.setAttribute(
+    "data-see-more-auto",
+    "true",
+  );
+}
+
+function applySeeMoreStyles() {
+  const elements =
+    document.querySelectorAll<HTMLElement>(
+      'a, button, [role="button"]',
+    );
+
+  elements.forEach(
+    styleSeeMore,
+  );
+}
+
+export function SeeMoreAutoStyle() {
+  useEffect(() => {
+    applySeeMoreStyles();
+
+    const observer =
+      new MutationObserver(() => {
+        window.requestAnimationFrame(
+          applySeeMoreStyles,
+        );
+      });
+
+    observer.observe(
+      document.body,
+      {
+        childList: true,
+        subtree: true,
+      },
+    );
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  return (
+    <style jsx global>{`
+      [data-see-more-auto="true"]:hover {
+        text-decoration: underline !important;
+        text-underline-offset: 4px;
+      }
+    `}</style>
+  );
+}

@@ -1,0 +1,205 @@
+﻿import Image from "next/image";
+import Link from "next/link";
+
+import { HomeIcon } from "@/features/home/components/home-icon";
+import { homeHero } from "@/features/home/data/home.data";
+
+/**
+ * Premium Smartera Hub homepage hero.
+ *
+ * The layout stays visually centered inside the available viewport,
+ * while CSS-only blob and floating-card animations keep the hero alive
+ * without forcing the page into a client component.
+ */
+export function HeroSection() {
+  return (
+    <section className="relative isolate overflow-hidden bg-gradient-to-br from-white via-[#F8FBFF] to-[#FFF8EE]">
+      {/* Animated background blobs */}
+      <div
+        className="smartera-hero-blob smartera-hero-blob-one"
+        aria-hidden="true"
+      />
+
+      <div
+        className="smartera-hero-blob smartera-hero-blob-two"
+        aria-hidden="true"
+      />
+
+      <div
+        className="smartera-hero-blob smartera-hero-blob-three"
+        aria-hidden="true"
+      />
+
+      {/* Decorative dot pattern */}
+      <div
+        className="pointer-events-none absolute right-[4%] top-[9%] hidden grid-cols-5 gap-2 opacity-40 xl:grid"
+        aria-hidden="true"
+      >
+        {Array.from({ length: 20 }).map((_, index) => (
+          <span
+            key={index}
+            className="h-1.5 w-1.5 rounded-full bg-[#F7941D]"
+          />
+        ))}
+      </div>
+
+      <div className="relative mx-auto flex min-h-[calc(100svh-80px)] w-full max-w-[1280px] items-center px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12">
+        <div className="grid w-full grid-cols-1 items-center gap-10 lg:gap-12 xl:grid-cols-[0.88fr_1.12fr] xl:gap-16">
+          {/* LEFT CONTENT */}
+          <div className="min-w-0 xl:pr-2">
+            <div className="smartera-hero-reveal smartera-delay-1">
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#F7941D]/30 bg-[#FFF4E6]/95 px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.14em] text-[#D96E00] shadow-sm sm:text-xs">
+                <span
+                  className="h-2 w-2 rounded-full bg-[#F7941D]"
+                  aria-hidden="true"
+                />
+
+                {homeHero.eyebrow}
+              </span>
+            </div>
+
+            <h1 className="smartera-hero-reveal smartera-delay-2 mt-5 max-w-[15ch] text-[clamp(2.65rem,4.2vw,4.6rem)] font-black leading-[1.01] tracking-[-0.04em] text-[#082B57] sm:mt-6">
+              {homeHero.title}
+            </h1>
+
+            <p className="smartera-hero-reveal smartera-delay-3 mt-5 max-w-[590px] text-[15px] leading-7 text-slate-600 sm:text-base sm:leading-8 lg:text-lg">
+              {homeHero.description}
+            </p>
+
+            {/* CTA buttons */}
+            <div className="smartera-hero-reveal smartera-delay-4 mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Link
+                href={homeHero.primaryAction.href}
+                className="group inline-flex min-h-12 items-center justify-center rounded-xl bg-[#1655A3] px-6 py-3.5 text-sm font-extrabold text-white shadow-[0_12px_30px_rgba(22,85,163,0.22)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:bg-[#124889] hover:shadow-[0_18px_38px_rgba(22,85,163,0.28)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7941D] focus-visible:ring-offset-2 motion-reduce:transform-none"
+              >
+                {homeHero.primaryAction.label}
+
+                <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
+              </Link>
+
+              <Link
+                href={homeHero.secondaryAction.href}
+                className="group inline-flex min-h-12 items-center justify-center rounded-xl border border-[#1655A3]/25 bg-white/85 px-6 py-3.5 text-sm font-extrabold text-[#1655A3] shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-[#F7941D] hover:bg-white hover:text-[#D96E00] hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7941D] motion-reduce:transform-none"
+              >
+                {homeHero.secondaryAction.label}
+
+                <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
+              </Link>
+            </div>
+
+            {/* Benefit indicators */}
+            <div className="smartera-hero-reveal smartera-delay-5 mt-8 grid gap-3 sm:grid-cols-3">
+              {homeHero.benefits.map((benefit) => (
+                <article
+                  key={benefit.title}
+                  className="group flex min-w-0 items-center gap-3 rounded-2xl border border-slate-200/80 bg-white/75 p-3.5 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1.5 hover:border-[#F7941D]/40 hover:bg-white hover:shadow-lg motion-reduce:transform-none"
+                >
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#EFF6FF] text-[#1655A3] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#FFF1DF] group-hover:text-[#F7941D]">
+                    <HomeIcon
+                      name={benefit.icon}
+                      className="h-5 w-5"
+                    />
+                  </span>
+
+                  <span className="min-w-0">
+                    <strong className="block text-xs font-black leading-5 text-[#082B57]">
+                      {benefit.title}
+                    </strong>
+
+                    <span className="mt-0.5 block text-[11px] leading-4 text-slate-500">
+                      {benefit.description}
+                    </span>
+                  </span>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          {/* RIGHT VISUAL */}
+          <div className="smartera-hero-reveal smartera-delay-3 relative mx-auto w-full max-w-[720px] xl:max-w-none">
+            {/* Glow behind image */}
+            <div
+              className="absolute -inset-5 rounded-[42px] bg-gradient-to-br from-[#1655A3]/15 via-transparent to-[#F7941D]/20 blur-2xl"
+              aria-hidden="true"
+            />
+
+            {/* Orange decorative ring */}
+            <div
+              className="smartera-orbit pointer-events-none absolute -right-5 -top-5 hidden h-28 w-28 rounded-full border-2 border-dashed border-[#F7941D]/35 lg:block"
+              aria-hidden="true"
+            />
+
+            {/* Main image */}
+            <div className="group relative aspect-[16/10] overflow-hidden rounded-[30px] border-[5px] border-white bg-slate-100 shadow-[0_30px_80px_rgba(8,43,87,0.17)] xl:aspect-[4/3]">
+              <Image
+                src={homeHero.image}
+                alt="Dhalinyaro wada baranaya oo laptop ku shaqeynaya"
+                fill
+                priority
+                sizes="(max-width: 1279px) 100vw, 55vw"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.055] motion-reduce:transform-none"
+              />
+
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-[#082B57]/25 via-transparent to-transparent"
+                aria-hidden="true"
+              />
+
+              {/* Blue/orange brand ribbon */}
+              <div
+                className="pointer-events-none absolute bottom-0 right-0 h-16 w-[45%] skew-x-[-22deg] bg-[#1655A3]/90"
+                aria-hidden="true"
+              />
+
+              <div
+                className="pointer-events-none absolute bottom-0 right-0 h-8 w-[31%] skew-x-[-22deg] bg-[#F7941D]"
+                aria-hidden="true"
+              />
+            </div>
+
+            {/* Floating professional card */}
+            <div className="smartera-floating-card absolute -bottom-5 right-3 flex max-w-[240px] items-center gap-3 rounded-2xl border border-white/70 bg-white/95 p-4 shadow-[0_18px_45px_rgba(8,43,87,0.16)] backdrop-blur sm:right-6 lg:-bottom-6">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#EFF6FF] text-[#1655A3]">
+                <HomeIcon
+                  name="users"
+                  className="h-5 w-5"
+                />
+              </span>
+
+              <div>
+                <p className="text-sm font-black text-[#082B57]">
+                  Empowering Youth.
+                </p>
+
+                <p className="mt-0.5 text-xs leading-5 text-slate-500">
+                  Building better futures.
+                </p>
+              </div>
+            </div>
+
+            {/* Small floating badge */}
+            <div className="smartera-floating-card-secondary absolute -left-3 top-[18%] hidden rounded-2xl border border-white/70 bg-white/95 px-4 py-3 shadow-[0_16px_40px_rgba(8,43,87,0.14)] backdrop-blur md:block">
+              <p className="text-[10px] font-extrabold uppercase tracking-[0.12em] text-[#F7941D]">
+                Smartera Hub
+              </p>
+
+              <p className="mt-1 text-xs font-black text-[#082B57]">
+                Learn. Build. Grow.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Subtle bottom fade */}
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white/75 to-transparent"
+        aria-hidden="true"
+      />
+    </section>
+  );
+}

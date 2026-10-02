@@ -1,0 +1,124 @@
+﻿import { contactIntro } from "@/features/contact/data/contact.data";
+
+type ContactIconName =
+  | "message"
+  | "clock"
+  | "support";
+
+function ContactIcon({
+  name,
+}: {
+  name: ContactIconName;
+}) {
+  const common =
+    "h-5 w-5";
+
+  if (name === "clock") {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        className={common}
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="8" />
+        <path d="M12 7v5l3 2" />
+      </svg>
+    );
+  }
+
+  if (name === "support") {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        className={common}
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="8" r="3" />
+        <path d="M5 20c.7-4 3-6 7-6s6.3 2 7 6" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      className={common}
+      aria-hidden="true"
+    >
+      <path d="M4 5h16v11H8l-4 4V5Z" />
+      <path d="M8 9h8M8 12h5" />
+    </svg>
+  );
+}
+
+
+export function ContactIntroSection() {
+  return (
+    <section className="relative overflow-hidden bg-[#F4F7FF] pb-12 pt-8 sm:pb-14 sm:pt-10 lg:pb-16">
+      <div
+        className="pointer-events-none absolute left-1/2 top-0 h-64 w-[70%] -translate-x-1/2 rounded-full bg-[#075EDE]/6 blur-3xl"
+        aria-hidden="true"
+      />
+
+      <div className="relative mx-auto w-full max-w-[1180px] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-[#F6A21A]/25 bg-[#FFF8E8] px-4 py-2 text-[10px] font-black uppercase tracking-[0.16em] text-[#C77B00] shadow-sm">
+            <span className="h-2 w-2 rounded-full bg-[#F6A21A]" />
+
+            {contactIntro.eyebrow}
+          </span>
+
+          <h1 className="mt-4 text-[clamp(2rem,3.2vw,3.2rem)] font-black leading-tight tracking-[-0.035em] text-[#063B86]">
+            {contactIntro.title}
+          </h1>
+
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
+            {contactIntro.description}
+          </p>
+        </div>
+
+        <div className="mx-auto mt-8 grid max-w-4xl gap-4 md:grid-cols-3">
+          {contactIntro.methods.map(
+            (method, index) => (
+              <article
+                key={method.number}
+                className="group flex items-start gap-4 rounded-[20px] border border-slate-200 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-[#075EDE]/20 hover:shadow-lg motion-reduce:transform-none"
+              >
+                <span
+                  className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white transition-all duration-300 group-hover:scale-110 ${
+                    index === 1
+                      ? "bg-[#F6A21A]"
+                      : "bg-[#075EDE]"
+                  }`}
+                >
+                  <ContactIcon
+                    name={method.icon}
+                  />
+                </span>
+
+                <div>
+                  <h2 className="text-sm font-black text-[#063B86]">
+                    {method.title}
+                  </h2>
+
+                  <p className="mt-1 text-xs leading-5 text-slate-500">
+                    {method.description}
+                  </p>
+                </div>
+              </article>
+            ),
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}

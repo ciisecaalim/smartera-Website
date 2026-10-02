@@ -1,0 +1,148 @@
+﻿import type { PublicSubmissionSource } from "./public-submissions.service";
+
+const personFields = new Set(["fullName", "contactPerson"]);
+const organizationFields = new Set(["organization", "organizationName"]);
+const addressFields = new Set(["location", "address", "workplace"]);
+const textFields = new Set(["message", "requirements", "experience", "motivation", "summary", "skills", "trainingNeeded", "subject"]);
+const integerFields: Record<string, [number, number]> = { participants: [1, 10000], expectedUsers: [1, 10000000] };
+const enumFields: Partial<Record<PublicSubmissionSource, Record<string, string[]>>> = {
+  contact: { subject: ["training", "employment", "internship", "partnership", "ict", "other"] },
+  about: { inquiryType: ["general", "training", "career", "ict", "partnership", "events", "other"] },
+  training: { requestType: ["individual", "organization", "group"], trainingMode: ["on-site", "online", "hybrid"] },
+  trainers: { trainingMode: ["on-site", "online", "hybrid"] },
+  internships: { education: ["Secondary", "Diploma", "Undergraduate", "Graduate", "Other"] },
+  "job-assistance": { education: ["Secondary", "Diploma", "Undergraduate", "Graduate", "Other"] },
+  "job-seekers": { kind: ["training", "work"] },
+  "ict-services": { projectStage: ["idea", "requirements", "existing", "improvement"], budgetRange: ["discuss", "small", "medium", "large"] },
+  partners: { organizationType: ["company", "ngo", "education", "healthcare", "government", "other"], partnershipInterest: ["training", "career", "ict", "academic", "events", "other"] },
+  blogs: { messageType: ["question", "feedback", "correction", "business", "other"] },
+};
+
+function lowInformation(value: string) {
+  const compact = value.toLocaleLowerCase().replace(/\s/g, "");
+  if (!/\p{L}/u.test(compact) || /^(.)\1{5,}$/u.test(compact) || /^(.{1,4})\1{3,}$/u.test(compact)) return true;
+  const letters = [...compact].filter((character) => /\p{L}/u.test(character)).length;
+  const digits = [...compact].filter((character) => /\p{N}/u.test(character)).length;
+  return digits > letters * 2;
+}
+function setError(form: HTMLFormElement, name: string, message: string): never {
+  const input = form.elements.namedItem(name);
+  if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement || input instanceof HTMLSelectElement) { input.setCustomValidity(message); input.reportValidity(); input.focus(); }
+  throw new Error(message);
+}
+export function validatePublicSubmission(source: PublicSubmissionSource, form: HTMLFormElement) {
+  Array.from(form.elements).forEach((element) => { if (element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement || element instanceof HTMLSelectElement) element.setCustomValidity(""); });
+  const data = new FormData(form);
+  for (const [name, raw] of data.entries()) {
+    if (typeof raw !== "string") continue;
+    const value = raw.trim(); if (!value) continue;
+    // Trainer-specific field validation
+    if (
+      source === "trainers" &&
+      name === "trainingNeeded" &&
+      (value.length < 10 ||
+        value.length > 180 ||
+        lowInformation(value))
+    )
+      setError(
+        form,
+        name,
+        "Training Needed must contain 10 to 180 meaningful characters.",
+      );
+
+    if (
+      source === "trainers" &&
+      name === "participants" &&
+      (!/^\d+$/.test(value) ||
+        Number(value) < 1 ||
+        Number(value) > 5000)
+    )
+      setError(
+        form,
+        name,
+        "Number of Participants must be a whole number between 1 and 5000.",
+      );
+
+    if (
+      source === "trainers" &&
+      name === "location" &&
+      (value.length < 3 ||
+        value.length > 150 ||
+        !/^[\p{L}\p{M}\p{N} .,'’/#()-]+$/u.test(value) ||
+        lowInformation(value))
+    )
+      setError(
+        form,
+        name,
+        "Location must contain 3 to 150 meaningful characters.",
+      );
+
+    if (
+      source === "trainers" &&
+      name === "duration" &&
+      (value.length < 2 ||
+        value.length > 100 ||
+        lowInformation(value))
+    )
+      setError(
+        form,
+        name,
+        "Expected Duration must contain 2 to 100 meaningful characters, for example: 2 days.",
+      );
+
+    if (
+      source === "trainers" &&
+      name === "message" &&
+      (value.length < 20 ||
+        value.length > 2000 ||
+        lowInformation(value))
+    )
+      setError(
+        form,
+        name,
+        "Training Requirements must contain 20 to 2000 meaningful characters.",
+      );
+    if (personFields.has(name) && (!/^[\p{L}\p{M}'â€™ -]{2,100}$/u.test(value) || lowInformation(value))) setError(form, name, "Enter a meaningful person name.");
+    if (organizationFields.has(name) && (value.length < 2 || value.length > 150 || lowInformation(value))) setError(form, name, "Enter a meaningful organization name.");
+    if (addressFields.has(name) && (value.length < 3 || value.length > 180 || !/^[\p{L}\p{M}\p{N} .,'â€™/#()-]+$/u.test(value) || lowInformation(value))) setError(form, name, "Enter a meaningful address or location.");
+    if (name === "email") {
+      const emailMatch = /^([^\s@]+)@([^\s@]+\.[^\s@]+)$/.exec(value);
+      const localPart = emailMatch?.[1] ?? "";
+
+      if (
+        !emailMatch ||
+        value.length > 150 ||
+        !/\p{L}/u.test(localPart)
+      ) {
+        setError(
+          form,
+          name,
+          "Enter a valid email address with at least one letter before @.",
+        );
+      }
+    }
+    if (name === "phone") { const digits=value.replace(/\D/g, ""); if (!/^\+?[0-9 ()-]{7,20}$/.test(value) || digits.length < 7 || digits.length > 15 || new Set(digits).size < 2) setError(form, name, "Enter a valid phone number."); }
+    if (textFields.has(name) && (value.length < (name === "subject" ? 3 : 10) || lowInformation(value))) setError(form, name, "Enter meaningful information instead of repeated or numeric-only text.");
+    if (["website", "portfolio"].includes(name)) { try { const url=new URL(value); if (!['http:','https:'].includes(url.protocol)) throw new Error(); } catch { setError(form, name, "Enter a valid HTTP or HTTPS URL."); } }
+    if (integerFields[name]) { const [min,max]=integerFields[name]; if (!/^\d+$/.test(value) || Number(value)<min || Number(value)>max) setError(form,name,`Enter a whole number between ${min} and ${max}.`); }
+    if (["preferredDate", "preferredStartDate"].includes(name)) {
+      const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+      const date = match ? new Date(Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3]))) : null;
+      if (!match || !date || date.getUTCFullYear() !== Number(match[1]) || date.getUTCMonth() !== Number(match[2]) - 1 || date.getUTCDate() !== Number(match[3])) setError(form, name, "Choose a valid date.");
+      const now = new Date();
+      const today =
+        `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+
+      if (value <= today)
+        setError(
+          form,
+          name,
+          "Choose a future date. Today and past dates are not allowed.",
+        );
+    }
+    const allowed=enumFields[source]?.[name]; if (allowed && !allowed.includes(value)) setError(form, name, "Select a valid option.");
+  }
+}
+
+
+

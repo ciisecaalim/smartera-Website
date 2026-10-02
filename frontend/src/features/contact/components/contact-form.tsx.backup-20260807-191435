@@ -1,0 +1,365 @@
+﻿"use client";
+
+import {
+  FormEvent,
+  useState,
+} from "react";
+
+type ContactFormValues = {
+  fullName: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+};
+
+type ContactFormErrors = Partial<
+  Record<keyof ContactFormValues, string>
+>;
+
+const initialValues: ContactFormValues = {
+  fullName: "",
+  email: "",
+  phone: "",
+  subject: "",
+  message: "",
+};
+
+/**
+ * Client-side validation improves UX only.
+ *
+ * When a backend contact endpoint is introduced, the server must repeat
+ * all validation and remain authoritative.
+ */
+export function ContactForm() {
+  const [values, setValues] =
+    useState<ContactFormValues>(initialValues);
+
+  const [errors, setErrors] =
+    useState<ContactFormErrors>({});
+
+  const [status, setStatus] =
+    useState<string>("");
+
+  function validate(): ContactFormErrors {
+    const nextErrors: ContactFormErrors = {};
+
+    const fullName = values.fullName.trim();
+    const email = values.email.trim();
+    const phone = values.phone.trim();
+    const subject = values.subject.trim();
+    const message = values.message.trim();
+
+    if (fullName.length < 2) {
+      nextErrors.fullName =
+        "Fadlan geli magacaaga oo dhammeystiran.";
+    }
+
+    if (
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    ) {
+      nextErrors.email =
+        "Fadlan geli email sax ah.";
+    }
+
+    if (
+      phone &&
+      !/^[0-9+\-\s()]{7,20}$/.test(phone)
+    ) {
+      nextErrors.phone =
+        "Fadlan geli phone number sax ah.";
+    }
+
+    if (subject.length < 3) {
+      nextErrors.subject =
+        "Fadlan dooro ama geli subject sax ah.";
+    }
+
+    if (message.length < 10) {
+      nextErrors.message =
+        "Fariintu waa inay ka badnaataa 10 xaraf.";
+    }
+
+    if (message.length > 2000) {
+      nextErrors.message =
+        "Fariintu kama badnaan karto 2000 xaraf.";
+    }
+
+    return nextErrors;
+  }
+
+  function handleSubmit(
+    event: FormEvent<HTMLFormElement>,
+  ) {
+    event.preventDefault();
+
+    const nextErrors = validate();
+
+    setErrors(nextErrors);
+
+    if (Object.keys(nextErrors).length > 0) {
+      setStatus("");
+      return;
+    }
+
+    /*
+     * Phase-one static website:
+     * never show a fake successful submission.
+     */
+    setStatus(
+      "Foomka waa sax. Online submission-ka waxaa la hawlgelin doonaa marka backend-ka contact-ka la ansixiyo.",
+    );
+  }
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      className="rounded-[28px] border border-slate-200 bg-white p-5 shadow-[0_18px_55px_rgba(6,59,134,0.09)] sm:p-6 lg:p-7"
+    >
+      <div className="grid gap-4 sm:grid-cols-2">
+        <FormInput
+          id="fullName"
+          label="Magaca oo Dhammeystiran"
+          value={values.fullName}
+          error={errors.fullName}
+          placeholder="Magacaaga"
+          onChange={(value) =>
+            setValues((current) => ({
+              ...current,
+              fullName: value,
+            }))
+          }
+        />
+
+        <FormInput
+          id="email"
+          type="email"
+          label="Email"
+          value={values.email}
+          error={errors.email}
+          placeholder="name@example.com"
+          onChange={(value) =>
+            setValues((current) => ({
+              ...current,
+              email: value,
+            }))
+          }
+        />
+
+        <FormInput
+          id="phone"
+          type="tel"
+          label="Phone"
+          value={values.phone}
+          error={errors.phone}
+          placeholder="Phone number"
+          onChange={(value) =>
+            setValues((current) => ({
+              ...current,
+              phone: value,
+            }))
+          }
+        />
+
+        <div>
+          <label
+            htmlFor="subject"
+            className="mb-2 block text-xs font-black text-[#063B86]"
+          >
+            Subject
+          </label>
+
+          <select
+            id="subject"
+            value={values.subject}
+            onChange={(event) =>
+              setValues((current) => ({
+                ...current,
+                subject: event.target.value,
+              }))
+            }
+            aria-invalid={
+              errors.subject ? true : undefined
+            }
+            aria-describedby={
+              errors.subject
+                ? "subject-error"
+                : undefined
+            }
+            className="h-12 w-full rounded-xl border border-slate-200 bg-[#F8FBFF] px-4 text-sm text-slate-700 outline-none transition-all duration-300 focus:border-[#075EDE] focus:bg-white focus:ring-4 focus:ring-[#075EDE]/10"
+          >
+            <option value="">
+              Dooro subject
+            </option>
+
+            <option value="training">
+              Training & Academy
+            </option>
+
+            <option value="employment">
+              Employment
+            </option>
+
+            <option value="internship">
+              Internship
+            </option>
+
+            <option value="partnership">
+              Partnership
+            </option>
+
+            <option value="ict">
+              ICT Solutions
+            </option>
+
+            <option value="other">
+              Other
+            </option>
+          </select>
+
+          {errors.subject && (
+            <p
+              id="subject-error"
+              className="mt-1.5 text-xs text-red-600"
+            >
+              {errors.subject}
+            </p>
+          )}
+        </div>
+      </div>
+
+      <div className="mt-4">
+        <label
+          htmlFor="message"
+          className="mb-2 block text-xs font-black text-[#063B86]"
+        >
+          Fariintaada
+        </label>
+
+        <textarea
+          id="message"
+          rows={6}
+          maxLength={2000}
+          value={values.message}
+          onChange={(event) =>
+            setValues((current) => ({
+              ...current,
+              message: event.target.value,
+            }))
+          }
+          aria-invalid={
+            errors.message ? true : undefined
+          }
+          aria-describedby={
+            errors.message
+              ? "message-error"
+              : "message-count"
+          }
+          placeholder="Noogu sharax waxa aad u baahan tahay..."
+          className="w-full resize-none rounded-xl border border-slate-200 bg-[#F8FBFF] px-4 py-3 text-sm leading-7 text-slate-700 outline-none transition-all duration-300 focus:border-[#075EDE] focus:bg-white focus:ring-4 focus:ring-[#075EDE]/10"
+        />
+
+        <div className="mt-1.5 flex items-center justify-between gap-4">
+          <div>
+            {errors.message && (
+              <p
+                id="message-error"
+                className="text-xs text-red-600"
+              >
+                {errors.message}
+              </p>
+            )}
+          </div>
+
+          <p
+            id="message-count"
+            className="text-[10px] text-slate-400"
+          >
+            {values.message.length}/2000
+          </p>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        className="group mt-5 flex min-h-12 w-full items-center justify-center rounded-xl bg-[#075EDE] px-6 py-3.5 text-sm font-black text-white shadow-[0_10px_25px_rgba(7,94,222,0.20)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#064FC0] hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F6A21A] focus-visible:ring-offset-2 motion-reduce:transform-none"
+      >
+        Dir Fariinta
+
+        <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
+          →
+        </span>
+      </button>
+
+      {status && (
+        <div
+          role="status"
+          className="mt-4 rounded-xl border border-[#075EDE]/15 bg-[#EEF5FF] px-4 py-3 text-xs leading-6 text-[#063B86]"
+        >
+          {status}
+        </div>
+      )}
+    </form>
+  );
+}
+
+
+type FormInputProps = {
+  id: keyof ContactFormValues;
+  label: string;
+  value: string;
+  placeholder: string;
+  error?: string;
+  type?: "text" | "email" | "tel";
+  onChange: (value: string) => void;
+};
+
+function FormInput({
+  id,
+  label,
+  value,
+  placeholder,
+  error,
+  type = "text",
+  onChange,
+}: FormInputProps) {
+  const errorId = `${id}-error`;
+
+  return (
+    <div>
+      <label
+        htmlFor={id}
+        className="mb-2 block text-xs font-black text-[#063B86]"
+      >
+        {label}
+      </label>
+
+      <input
+        id={id}
+        type={type}
+        value={value}
+        onChange={(event) =>
+          onChange(event.target.value)
+        }
+        placeholder={placeholder}
+        aria-invalid={
+          error ? true : undefined
+        }
+        aria-describedby={
+          error ? errorId : undefined
+        }
+        className="h-12 w-full rounded-xl border border-slate-200 bg-[#F8FBFF] px-4 text-sm text-slate-700 outline-none transition-all duration-300 focus:border-[#075EDE] focus:bg-white focus:ring-4 focus:ring-[#075EDE]/10"
+      />
+
+      {error && (
+        <p
+          id={errorId}
+          className="mt-1.5 text-xs text-red-600"
+        >
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}

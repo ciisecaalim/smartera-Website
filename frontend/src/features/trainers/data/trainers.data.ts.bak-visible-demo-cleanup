@@ -1,0 +1,523 @@
+﻿import type { Trainer } from "../types/trainer.types";
+
+export const trainers: Trainer[] = [
+  {
+    slug: "mohamed-abdi-sales-marketing",
+    name: "Mohamed Abdi",
+    professionalTitle: "Sales & Marketing Trainer",
+    image: "/images/training/training-intro.jpg",
+    shortBio:
+      "Sales and marketing professional focused on practical selling, customer engagement, field marketing, and business growth.",
+    expertise: [
+      "Sales & Marketing",
+      "Business Development",
+      "Customer Service",
+    ],
+    education: [
+      "Bachelor's Degree in Business Administration",
+    ],
+    certifications: [
+      "Professional Sales Training",
+      "Digital Marketing Fundamentals",
+    ],
+    experience: [
+      {
+        role: "Sales & Marketing Lead",
+        organization: "Horumar Business Group — Demo",
+        period: "3+ years",
+        summary:
+          "Worked on sales operations, customer acquisition, field campaigns, and team development.",
+      },
+    ],
+    trainingExperience: [
+      "Sales Skills",
+      "Field Marketing",
+      "Customer Service",
+    ],
+    languages: ["Somali", "English"],
+    availableFor: [
+      "Corporate Training",
+      "Workshops",
+      "Staff Development",
+    ],
+    featured: true,
+    published: true,
+    demoOnly: true,
+  },
+  {
+    slug: "amina-hassan-data-analytics",
+    name: "Amina Hassan",
+    professionalTitle: "Data Analytics Trainer",
+    image: "/images/training/training-intro.jpg",
+    shortBio:
+      "Data professional experienced in turning business data into useful reports, dashboards, and practical insights.",
+    expertise: [
+      "Data & Analytics",
+      "Microsoft Excel",
+      "Power BI",
+    ],
+    education: [
+      "Bachelor's Degree in Information Technology",
+    ],
+    certifications: [
+      "Data Analytics Professional Training",
+      "Business Intelligence Fundamentals",
+    ],
+    experience: [
+      {
+        role: "Data Analyst",
+        organization: "BluePeak Analytics — Demo",
+        period: "4+ years",
+        summary:
+          "Supported reporting, dashboard development, data cleaning, and business performance analysis.",
+      },
+    ],
+    trainingExperience: [
+      "Microsoft Excel",
+      "Power BI",
+      "Data Cleaning",
+    ],
+    languages: ["Somali", "English"],
+    availableFor: [
+      "Corporate Training",
+      "Technical Workshops",
+      "Team Upskilling",
+    ],
+    featured: true,
+    published: true,
+    demoOnly: true,
+  },
+  {
+    slug: "abdullahi-farah-ict",
+    name: "Abdullahi Farah",
+    professionalTitle: "ICT & Digital Skills Trainer",
+    image: "/images/training/training-intro.jpg",
+    shortBio:
+      "ICT professional focused on practical computer skills, workplace technology, technical support, and digital productivity.",
+    expertise: [
+      "ICT",
+      "Computer Skills",
+      "Technical Support",
+    ],
+    education: [
+      "Bachelor's Degree in Computer Science",
+    ],
+    certifications: [
+      "IT Support Professional Training",
+    ],
+    experience: [
+      {
+        role: "ICT Specialist",
+        organization: "Hillaac Technologies — Demo",
+        period: "5+ years",
+        summary:
+          "Worked with digital systems, end-user support, computer environments, and technology adoption.",
+      },
+    ],
+    trainingExperience: [
+      "Computer Basics",
+      "Workplace ICT",
+      "IT Support",
+    ],
+    languages: ["Somali", "English"],
+    availableFor: [
+      "Corporate Training",
+      "Workshops",
+      "Digital Skills Programs",
+    ],
+    featured: false,
+    published: true,
+    demoOnly: true,
+  },
+  {
+    slug: "safiya-ali-accounting",
+    name: "Safiya Ali",
+    professionalTitle: "Accounting & Finance Trainer",
+    image: "/images/training/training-intro.jpg",
+    shortBio:
+      "Accounting professional with practical experience in financial records, reporting, bookkeeping, and workplace finance skills.",
+    expertise: [
+      "Accounting & Finance",
+      "Bookkeeping",
+      "Microsoft Excel",
+    ],
+    education: [
+      "Bachelor's Degree in Accounting",
+    ],
+    certifications: [
+      "Professional Accounting Training",
+    ],
+    experience: [
+      {
+        role: "Accountant",
+        organization: "Horizon Business Solutions — Demo",
+        period: "4+ years",
+        summary:
+          "Handled accounting records, reconciliations, reporting, and financial documentation.",
+      },
+    ],
+    trainingExperience: [
+      "Accounting Basics",
+      "Financial Reporting",
+      "Excel for Accounting",
+    ],
+    languages: ["Somali", "English"],
+    availableFor: [
+      "Corporate Training",
+      "Finance Workshops",
+      "Staff Development",
+    ],
+    featured: false,
+    published: true,
+    demoOnly: true,
+  },
+  {
+    slug: "yusuf-abdullahi-project-management",
+    name: "Yusuf Abdullahi",
+    professionalTitle: "Project Management Trainer",
+    image: "/images/training/training-intro.jpg",
+    shortBio:
+      "Project professional focused on planning, coordination, team execution, monitoring, and practical project delivery.",
+    expertise: [
+      "Project Management",
+      "Leadership",
+      "Team Management",
+    ],
+    education: [
+      "Bachelor's Degree in Management",
+    ],
+    certifications: [
+      "Project Management Professional Training",
+    ],
+    experience: [
+      {
+        role: "Project Coordinator",
+        organization: "Horumar Development Group — Demo",
+        period: "5+ years",
+        summary:
+          "Supported project planning, implementation, team coordination, and progress monitoring.",
+      },
+    ],
+    trainingExperience: [
+      "Project Planning",
+      "Team Coordination",
+      "Project Monitoring",
+    ],
+    languages: ["Somali", "English"],
+    availableFor: [
+      "Corporate Training",
+      "Management Workshops",
+      "Team Development",
+    ],
+    featured: false,
+    published: true,
+    demoOnly: true,
+  },
+  {
+    slug: "hodan-mohamed-customer-service",
+    name: "Hodan Mohamed",
+    professionalTitle: "Customer Service Trainer",
+    image: "/images/training/training-intro.jpg",
+    shortBio:
+      "Customer experience professional specializing in communication, service quality, client handling, and workplace professionalism.",
+    expertise: [
+      "Customer Service",
+      "Communication Skills",
+      "Sales & Marketing",
+    ],
+    education: [
+      "Bachelor's Degree in Business Administration",
+    ],
+    certifications: [
+      "Customer Experience Training",
+    ],
+    experience: [
+      {
+        role: "Customer Service Supervisor",
+        organization: "Wadaag Services — Demo",
+        period: "4+ years",
+        summary:
+          "Led customer support activities and supported service quality and staff development.",
+      },
+    ],
+    trainingExperience: [
+      "Customer Service",
+      "Professional Communication",
+      "Client Handling",
+    ],
+    languages: ["Somali", "English", "Arabic"],
+    availableFor: [
+      "Corporate Training",
+      "Customer Service Workshops",
+      "Staff Development",
+    ],
+    featured: false,
+    published: true,
+    demoOnly: true,
+  },
+  {
+    slug: "maryan-ali-human-resources",
+    name: "Maryan Ali",
+    professionalTitle: "HR & Workplace Skills Trainer",
+    image: "/images/training/training-intro.jpg",
+    shortBio:
+      "Human resources professional focused on workplace performance, employee development, communication, and organizational practices.",
+    expertise: [
+      "Human Resources",
+      "Leadership",
+      "Communication Skills",
+    ],
+    education: [
+      "Bachelor's Degree in Human Resource Management",
+    ],
+    certifications: [
+      "Human Resource Management Training",
+    ],
+    experience: [
+      {
+        role: "HR Officer",
+        organization: "Nexa Professional Services — Demo",
+        period: "4+ years",
+        summary:
+          "Supported recruitment, employee records, staff coordination, and workplace development.",
+      },
+    ],
+    trainingExperience: [
+      "Workplace Skills",
+      "HR Fundamentals",
+      "Team Communication",
+    ],
+    languages: ["Somali", "English"],
+    availableFor: [
+      "Corporate Training",
+      "HR Workshops",
+      "Staff Development",
+    ],
+    featured: false,
+    published: true,
+    demoOnly: true,
+  },
+  {
+    slug: "abdirizak-mohamed-entrepreneurship",
+    name: "Abdirizak Mohamed",
+    professionalTitle: "Entrepreneurship Trainer",
+    image: "/images/training/training-intro.jpg",
+    shortBio:
+      "Business development professional helping learners and teams understand business models, customer value, and practical entrepreneurship.",
+    expertise: [
+      "Entrepreneurship",
+      "Business Development",
+      "Sales & Marketing",
+    ],
+    education: [
+      "Bachelor's Degree in Business Management",
+    ],
+    certifications: [
+      "Entrepreneurship Development Training",
+    ],
+    experience: [
+      {
+        role: "Business Development Advisor",
+        organization: "Kobac Enterprise Group — Demo",
+        period: "5+ years",
+        summary:
+          "Supported business planning, customer development, market analysis, and growth activities.",
+      },
+    ],
+    trainingExperience: [
+      "Entrepreneurship",
+      "Business Models",
+      "Business Growth",
+    ],
+    languages: ["Somali", "English"],
+    availableFor: [
+      "Entrepreneurship Workshops",
+      "Corporate Training",
+      "Business Development Programs",
+    ],
+    featured: false,
+    published: true,
+    demoOnly: true,
+  },
+  {
+    slug: "ikram-abdullahi-digital-marketing",
+    name: "Ikram Abdullahi",
+    professionalTitle: "Digital Marketing Trainer",
+    image: "/images/training/training-intro.jpg",
+    shortBio:
+      "Digital marketing professional focused on content strategy, online campaigns, audience growth, and practical brand communication.",
+    expertise: [
+      "Digital Marketing",
+      "Content Strategy",
+      "Sales & Marketing",
+    ],
+    education: [
+      "Bachelor's Degree in Marketing",
+    ],
+    certifications: [
+      "Digital Marketing Professional Training",
+    ],
+    experience: [
+      {
+        role: "Digital Marketing Specialist",
+        organization: "Nova Growth Agency — Demo",
+        period: "3+ years",
+        summary:
+          "Worked on digital campaigns, content planning, audience engagement, and performance reporting.",
+      },
+    ],
+    trainingExperience: [
+      "Digital Marketing",
+      "Social Media Strategy",
+      "Content Planning",
+    ],
+    languages: ["Somali", "English"],
+    availableFor: [
+      "Corporate Training",
+      "Marketing Workshops",
+      "Digital Skills Programs",
+    ],
+    featured: false,
+    published: true,
+    demoOnly: true,
+  },
+  {
+    slug: "nasteexo-hassan-graphic-design",
+    name: "Nasteexo Hassan",
+    professionalTitle: "Graphic Design Trainer",
+    image: "/images/training/training-intro.jpg",
+    shortBio:
+      "Creative professional specializing in visual communication, graphic design fundamentals, branding, and practical design workflows.",
+    expertise: [
+      "Graphic Design",
+      "Branding",
+      "Creative Skills",
+    ],
+    education: [
+      "Diploma in Graphic Design",
+    ],
+    certifications: [
+      "Professional Graphic Design Training",
+    ],
+    experience: [
+      {
+        role: "Graphic Designer",
+        organization: "Midab Creative Studio — Demo",
+        period: "4+ years",
+        summary:
+          "Created visual identities, marketing materials, social media designs, and brand assets.",
+      },
+    ],
+    trainingExperience: [
+      "Graphic Design",
+      "Visual Branding",
+      "Design Fundamentals",
+    ],
+    languages: ["Somali", "English"],
+    availableFor: [
+      "Creative Workshops",
+      "Corporate Training",
+      "Design Programs",
+    ],
+    featured: false,
+    published: true,
+    demoOnly: true,
+  },
+  {
+    slug: "ismaail-ahmed-software-development",
+    name: "Ismaail Ahmed",
+    professionalTitle: "Software Development Trainer",
+    image: "/images/training/training-intro.jpg",
+    shortBio:
+      "Software professional focused on web development, programming fundamentals, problem solving, and practical application development.",
+    expertise: [
+      "Software Development",
+      "Web Development",
+      "ICT",
+    ],
+    education: [
+      "Bachelor's Degree in Computer Science",
+    ],
+    certifications: [
+      "Web Development Professional Training",
+    ],
+    experience: [
+      {
+        role: "Software Developer",
+        organization: "Sahan Digital — Demo",
+        period: "4+ years",
+        summary:
+          "Worked on web applications, frontend development, technical problem solving, and software delivery.",
+      },
+    ],
+    trainingExperience: [
+      "Web Development",
+      "Programming Fundamentals",
+      "Software Skills",
+    ],
+    languages: ["Somali", "English"],
+    availableFor: [
+      "Technical Training",
+      "Programming Workshops",
+      "Corporate Upskilling",
+    ],
+    featured: false,
+    published: true,
+    demoOnly: true,
+  },
+  {
+    slug: "farhiya-osman-leadership",
+    name: "Farhiya Osman",
+    professionalTitle: "Leadership & Management Trainer",
+    image: "/images/training/training-intro.jpg",
+    shortBio:
+      "Management professional focused on leadership development, teamwork, communication, planning, and organizational performance.",
+    expertise: [
+      "Leadership",
+      "Management",
+      "Communication Skills",
+    ],
+    education: [
+      "Master's Degree in Management",
+    ],
+    certifications: [
+      "Leadership Development Training",
+    ],
+    experience: [
+      {
+        role: "Operations Manager",
+        organization: "Nolosha Services Group — Demo",
+        period: "6+ years",
+        summary:
+          "Led teams, coordinated operations, supported performance improvement, and managed organizational activities.",
+      },
+    ],
+    trainingExperience: [
+      "Leadership Skills",
+      "Team Management",
+      "Professional Communication",
+    ],
+    languages: ["Somali", "English", "Arabic"],
+    availableFor: [
+      "Leadership Training",
+      "Management Workshops",
+      "Executive Team Development",
+    ],
+    featured: false,
+    published: true,
+    demoOnly: true,
+  },
+];
+
+export function getPublishedTrainers() {
+  return trainers.filter((trainer) => trainer.published);
+}
+
+export function getTrainerBySlug(slug: string) {
+  return trainers.find(
+    (trainer) =>
+      trainer.slug === slug &&
+      trainer.published,
+  );
+}
+

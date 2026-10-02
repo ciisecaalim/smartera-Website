@@ -1,0 +1,466 @@
+﻿import type {
+  Job,
+  JobCategory,
+} from "@/features/jobs/types/jobs.types";
+
+/**
+ * DEMO_ONLY:
+ * Development fixtures for Job Assistance UI testing.
+ * Replace with approved real opportunities before production publishing.
+ */
+const demoJobs: Job[] = [
+  {
+    id: "demo-data-analyst",
+    slug: "junior-data-analyst",
+    title: "Junior Data Analyst",
+    companyName: "BluePeak Analytics",
+    isVerifiedEmployer: false,
+    category: "Technology",
+    location: "Mogadishu",
+    employmentType: "Full-time",
+    workMode: "On-site",
+    experienceLevel: "Entry Level",
+    skills: ["Excel", "Power BI", "Data Analysis"],
+    summary:
+      "Support reporting, data cleaning, dashboard preparation, and basic business analysis.",
+    description:
+      "A fictional development job used to test the Smartera Hub Job Assistance interface.",
+    responsibilities: [
+      "Support data cleaning and preparation.",
+      "Assist with recurring reports.",
+      "Help prepare dashboards.",
+      "Maintain organized datasets.",
+    ],
+    requirements: [
+      "Basic understanding of data analysis.",
+      "Microsoft Excel knowledge.",
+      "Attention to detail.",
+      "Professional communication.",
+    ],
+    datePosted: "2026-08-12",
+    status: "published",
+    featured: true,
+    published: true,
+    applicationMethod: "internal",
+    demoOnly: true,
+  },
+  {
+    id: "demo-accountant",
+    slug: "junior-accountant",
+    title: "Junior Accountant",
+    companyName: "Horizon Business Solutions",
+    isVerifiedEmployer: false,
+    category: "Finance",
+    location: "Mogadishu",
+    employmentType: "Full-time",
+    workMode: "On-site",
+    experienceLevel: "Junior",
+    skills: ["Accounting", "Excel", "Financial Reporting"],
+    summary:
+      "Assist with financial records, reconciliation, transactions, and routine financial reporting.",
+    description:
+      "A fictional accounting opportunity used for development testing.",
+    responsibilities: [
+      "Maintain routine financial records.",
+      "Assist with reconciliations.",
+      "Support transaction tracking.",
+      "Prepare reporting inputs.",
+    ],
+    requirements: [
+      "Foundational accounting knowledge.",
+      "Spreadsheet skills.",
+      "Attention to detail.",
+      "Professional conduct.",
+    ],
+    datePosted: "2026-08-11",
+    status: "published",
+    featured: true,
+    published: true,
+    applicationMethod: "internal",
+    demoOnly: true,
+  },
+  {
+    id: "demo-marketing",
+    slug: "marketing-officer",
+    title: "Marketing Officer",
+    companyName: "Nova Growth Agency",
+    isVerifiedEmployer: false,
+    category: "Marketing",
+    location: "Mogadishu",
+    employmentType: "Full-time",
+    workMode: "Hybrid",
+    experienceLevel: "Junior",
+    skills: ["Digital Marketing", "Social Media", "Communication"],
+    summary:
+      "Support campaigns, social media activity, content coordination, and marketing reporting.",
+    description:
+      "A fictional marketing opportunity used for development testing.",
+    responsibilities: [
+      "Support campaign activities.",
+      "Coordinate social content.",
+      "Assist with campaign reporting.",
+      "Communicate with team members.",
+    ],
+    requirements: [
+      "Interest in digital marketing.",
+      "Communication skills.",
+      "Basic content knowledge.",
+      "Willingness to learn.",
+    ],
+    datePosted: "2026-08-10",
+    status: "published",
+    featured: false,
+    published: true,
+    applicationMethod: "internal",
+    demoOnly: true,
+  },
+  {
+    id: "demo-admin",
+    slug: "administrative-assistant",
+    title: "Administrative Assistant",
+    companyName: "Nexa Professional Services",
+    isVerifiedEmployer: false,
+    category: "Administration",
+    location: "Mogadishu",
+    employmentType: "Full-time",
+    workMode: "On-site",
+    experienceLevel: "Entry Level",
+    skills: ["Microsoft Office", "Communication", "Administration"],
+    summary:
+      "Support scheduling, documentation, office communication, and daily administrative activities.",
+    description:
+      "A fictional administration opportunity used for development testing.",
+    responsibilities: [
+      "Support scheduling.",
+      "Organize documents.",
+      "Assist with office communication.",
+      "Support operational tasks.",
+    ],
+    requirements: [
+      "Microsoft Office knowledge.",
+      "Organization skills.",
+      "Professional communication.",
+      "Attention to detail.",
+    ],
+    datePosted: "2026-08-09",
+    status: "published",
+    featured: false,
+    published: true,
+    applicationMethod: "internal",
+    demoOnly: true,
+  },
+  {
+    id: "demo-frontend",
+    slug: "frontend-developer",
+    title: "Frontend Developer",
+    companyName: "Sahan Digital",
+    isVerifiedEmployer: false,
+    category: "Technology",
+    location: "Mogadishu",
+    employmentType: "Full-time",
+    workMode: "Hybrid",
+    experienceLevel: "Junior",
+    skills: ["React", "TypeScript", "Tailwind CSS"],
+    summary:
+      "Build responsive interfaces and collaborate with product and development teams.",
+    description:
+      "A fictional frontend opportunity used for development testing.",
+    responsibilities: [
+      "Build frontend interfaces.",
+      "Create reusable components.",
+      "Assist with testing.",
+      "Support responsive implementation.",
+    ],
+    requirements: [
+      "JavaScript knowledge.",
+      "Basic React experience.",
+      "Responsive design knowledge.",
+      "Teamwork skills.",
+    ],
+    datePosted: "2026-08-08",
+    status: "published",
+    featured: false,
+    published: true,
+    applicationMethod: "internal",
+    demoOnly: true,
+  },
+  {
+    id: "demo-it-support",
+    slug: "it-support-technician",
+    title: "IT Support Technician",
+    companyName: "Hillaac Technologies",
+    isVerifiedEmployer: false,
+    category: "Technology",
+    location: "Mogadishu",
+    employmentType: "Full-time",
+    workMode: "On-site",
+    experienceLevel: "Entry Level",
+    skills: ["IT Support", "Networking", "Troubleshooting"],
+    summary:
+      "Provide technical support, troubleshoot routine issues, and assist users with devices and systems.",
+    description:
+      "A fictional IT support opportunity used for development testing.",
+    responsibilities: [
+      "Support users.",
+      "Troubleshoot computer issues.",
+      "Assist with networking.",
+      "Document technical problems.",
+    ],
+    requirements: [
+      "Basic IT knowledge.",
+      "Troubleshooting skills.",
+      "Communication skills.",
+      "Professional conduct.",
+    ],
+    datePosted: "2026-08-07",
+    status: "published",
+    featured: false,
+    published: true,
+    applicationMethod: "internal",
+    demoOnly: true,
+  },
+  {
+    id: "demo-barista",
+    slug: "barista",
+    title: "Barista",
+    companyName: "Urban Brew Cafe",
+    isVerifiedEmployer: false,
+    category: "Other Professional Jobs",
+    location: "Mogadishu",
+    employmentType: "Full-time",
+    workMode: "On-site",
+    experienceLevel: "Junior",
+    skills: ["Coffee Preparation", "Customer Service", "Cash Handling"],
+    summary:
+      "Prepare beverages, serve customers professionally, and support daily cafe operations.",
+    description:
+      "A fictional skilled-work opportunity consolidated into Job Assistance.",
+    responsibilities: [
+      "Prepare beverages.",
+      "Serve customers.",
+      "Maintain the work station.",
+      "Support cash handling.",
+    ],
+    requirements: [
+      "Relevant practical skills.",
+      "Customer service ability.",
+      "Professional conduct.",
+      "Reliability.",
+    ],
+    datePosted: "2026-08-06",
+    status: "published",
+    featured: false,
+    published: true,
+    applicationMethod: "internal",
+    demoOnly: true,
+  },
+  {
+    id: "demo-security",
+    slug: "security-guard",
+    title: "Security Guard",
+    companyName: "Guardian Services",
+    isVerifiedEmployer: false,
+    category: "Other Professional Jobs",
+    location: "Mogadishu",
+    employmentType: "Full-time",
+    workMode: "On-site",
+    experienceLevel: "Junior",
+    skills: ["Access Control", "Observation", "Safety Awareness"],
+    summary:
+      "Monitor access, support site safety, follow procedures, and report unusual activity.",
+    description:
+      "A fictional security opportunity consolidated into Job Assistance.",
+    responsibilities: [
+      "Monitor access.",
+      "Complete observation rounds.",
+      "Follow safety procedures.",
+      "Report unusual activity.",
+    ],
+    requirements: [
+      "Observation skills.",
+      "Professional communication.",
+      "Reliability.",
+      "Safety awareness.",
+    ],
+    datePosted: "2026-08-05",
+    status: "published",
+    featured: false,
+    published: true,
+    applicationMethod: "internal",
+    demoOnly: true,
+  },
+  {
+    id: "demo-customer-service",
+    slug: "customer-service-officer",
+    title: "Customer Service Officer",
+    companyName: "Wadaag Services",
+    isVerifiedEmployer: false,
+    category: "Other Professional Jobs",
+    location: "Mogadishu",
+    employmentType: "Full-time",
+    workMode: "On-site",
+    experienceLevel: "Entry Level",
+    skills: ["Customer Service", "Communication", "Problem Solving"],
+    summary:
+      "Respond to customer enquiries and support professional service delivery.",
+    description:
+      "A fictional customer service opportunity used for development testing.",
+    responsibilities: [
+      "Respond to enquiries.",
+      "Resolve basic service concerns.",
+      "Maintain interaction records.",
+      "Support customers.",
+    ],
+    requirements: [
+      "Communication skills.",
+      "Customer service mindset.",
+      "Problem solving.",
+      "Professional conduct.",
+    ],
+    datePosted: "2026-08-04",
+    status: "published",
+    featured: false,
+    published: true,
+    applicationMethod: "internal",
+    demoOnly: true,
+  },
+  {
+    id: "demo-graphic-designer",
+    slug: "graphic-designer",
+    title: "Graphic Designer",
+    companyName: "Midab Creative Studio",
+    isVerifiedEmployer: false,
+    category: "Marketing",
+    location: "Mogadishu",
+    employmentType: "Contract",
+    workMode: "Hybrid",
+    experienceLevel: "Junior",
+    skills: ["Illustrator", "Photoshop", "Branding"],
+    summary:
+      "Create visual assets, social media graphics, and consistent materials for campaigns.",
+    description:
+      "A fictional design opportunity used for development testing.",
+    responsibilities: [
+      "Create graphics.",
+      "Support branding.",
+      "Prepare campaign assets.",
+      "Maintain visual consistency.",
+    ],
+    requirements: [
+      "Design software knowledge.",
+      "Basic portfolio.",
+      "Creativity.",
+      "Attention to detail.",
+    ],
+    datePosted: "2026-08-03",
+    status: "published",
+    featured: false,
+    published: true,
+    applicationMethod: "internal",
+    demoOnly: true,
+  },
+  {
+    id: "demo-sales",
+    slug: "sales-representative",
+    title: "Sales Representative",
+    companyName: "Kobac Trading",
+    isVerifiedEmployer: false,
+    category: "Marketing",
+    location: "Mogadishu",
+    employmentType: "Full-time",
+    workMode: "On-site",
+    experienceLevel: "Junior",
+    skills: ["Sales", "Negotiation", "Customer Relations"],
+    summary:
+      "Build customer relationships, present products, and support business growth.",
+    description:
+      "A fictional sales opportunity used for development testing.",
+    responsibilities: [
+      "Engage customers.",
+      "Present products.",
+      "Support sales targets.",
+      "Maintain customer relationships.",
+    ],
+    requirements: [
+      "Communication skills.",
+      "Interest in sales.",
+      "Confidence.",
+      "Professional conduct.",
+    ],
+    datePosted: "2026-08-02",
+    status: "published",
+    featured: false,
+    published: true,
+    applicationMethod: "internal",
+    demoOnly: true,
+  },
+  {
+    id: "demo-project",
+    slug: "project-coordinator",
+    title: "Project Coordinator",
+    companyName: "Horumar Development Group",
+    isVerifiedEmployer: false,
+    category: "Administration",
+    location: "Mogadishu",
+    employmentType: "Contract",
+    workMode: "Hybrid",
+    experienceLevel: "Mid Level",
+    skills: ["Project Coordination", "Reporting", "Documentation"],
+    summary:
+      "Coordinate activities, track deliverables, organize documents, and support reporting.",
+    description:
+      "A fictional project coordination opportunity used for development testing.",
+    responsibilities: [
+      "Coordinate activities.",
+      "Track deliverables.",
+      "Maintain documentation.",
+      "Support progress reporting.",
+    ],
+    requirements: [
+      "Organization skills.",
+      "Reporting knowledge.",
+      "Communication skills.",
+      "Project coordination experience.",
+    ],
+    datePosted: "2026-08-01",
+    status: "published",
+    featured: false,
+    published: true,
+    applicationMethod: "internal",
+    demoOnly: true,
+  },
+];
+
+const approvedJobs: Job[] = [];
+
+export const jobs: Job[] = [
+  ...approvedJobs,
+  ...demoJobs,
+];
+
+export const jobCategories: JobCategory[] = [
+  "Technology",
+  "Healthcare",
+  "Finance",
+  "Marketing",
+  "Education",
+  "Administration",
+  "Engineering",
+  "Other Professional Jobs",
+];
+
+export const getPublishedJobs = () =>
+  jobs.filter(
+    (job) =>
+      job.published &&
+      job.status !== "draft" &&
+      job.status !== "archived" &&
+      job.status !== "closed" &&
+      job.status !== "filled",
+  );
+
+export const getFeaturedJobs = () =>
+  getPublishedJobs().filter((job) => job.featured);
+
+export const getJobBySlug = (slug: string) =>
+  getPublishedJobs().find((job) => job.slug === slug);

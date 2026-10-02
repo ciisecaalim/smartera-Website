@@ -1,0 +1,131 @@
+﻿import Image from "next/image";
+import Link from "next/link";
+
+import { getPublishedTrainings } from "@/features/training/data/training.data";
+
+export function TrainingIntroSection() {
+  const trainings = getPublishedTrainings();
+
+  const counts = {
+    live: trainings.filter(
+      (item) => item.status === "live",
+    ).length,
+    upcoming: trainings.filter(
+      (item) => item.status === "upcoming",
+    ).length,
+    completed: trainings.filter(
+      (item) => item.status === "completed",
+    ).length,
+  };
+
+  const trainingTypes = [
+    ...new Set(
+      trainings
+        .map((item) => item.trainingType)
+        .filter(Boolean),
+    ),
+  ];
+
+  return (
+    <section className="flex min-h-screen items-center bg-white px-4 py-6 sm:px-6 lg:h-screen lg:px-8">
+      <div className="training-intro-panel mx-auto w-full max-w-[1400px] overflow-hidden rounded-[26px] border border-blue-100 bg-gradient-to-br from-[#F7FAFF] via-white to-[#EEF5FF] shadow-[0_18px_55px_rgba(6,59,134,.08)] lg:flex lg:h-[calc(100%-3rem)] lg:flex-col">
+        <div className="grid lg:min-h-0 lg:flex-1 lg:grid-cols-[.92fr_1.08fr]">
+          <div className="relative z-10 flex flex-col justify-center p-6 sm:p-8 lg:p-10">
+            <p className="text-xs font-black uppercase tracking-[.16em] text-[#F59223]">
+              Training Activities
+            </p>
+
+            <h1 className="mt-4 max-w-[14ch] text-[clamp(2.35rem,4vw,3.75rem)] font-black leading-[1.01] tracking-[-.05em] text-[#1B519F]">
+              Practical Training Activities for Your Future
+            </h1>
+
+            <p className="mt-4 max-w-xl text-sm leading-6 text-slate-600 sm:text-[15px]">
+              Explore Smartera Hub training activities,
+              workshops, practical learning sessions,
+              and capacity-building programs designed
+              to strengthen professional skills and
+              workplace confidence.
+            </p>
+
+            <div className="mt-5 flex flex-wrap items-center gap-3">
+              <Link
+                href="#training-activities"
+                className="inline-flex h-11 items-center rounded-xl bg-[#1B519F] px-6 text-sm font-black text-white shadow-[0_10px_25px_rgba(7,94,222,.22)] transition hover:-translate-y-0.5 hover:bg-[#174783] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1B519F]"
+              >
+                Explore Activities
+              </Link>
+
+              <span className="text-xs font-bold text-slate-500">
+                Read-only public activity showcase
+              </span>
+            </div>
+          </div>
+
+          <div className="relative min-h-[280px] overflow-hidden sm:min-h-[320px] lg:min-h-0">
+            <Image
+              src="/images/training/training-intro.jpg"
+              alt="Instructor guiding participants during a professional training activity"
+              fill
+              priority
+              sizes="(max-width:1024px) 100vw,55vw"
+              className="object-cover"
+            />
+
+            <div className="training-image-fade absolute inset-0 bg-gradient-to-r from-white/80 via-white/5 to-transparent lg:from-white/45" />
+
+            <div className="absolute right-3 top-4 rounded-xl border border-white/70 bg-white/90 px-3 py-2.5 shadow-lg backdrop-blur sm:right-6 sm:top-6">
+              <p className="text-[8px] font-black uppercase tracking-wide text-slate-400">
+                Live now
+              </p>
+
+              <p className="mt-1 text-base font-black text-emerald-600">
+                {counts.live} Activities
+              </p>
+            </div>
+
+            <div className="absolute bottom-5 left-3 rounded-xl border border-white/70 bg-white/90 px-3 py-2.5 shadow-lg backdrop-blur sm:left-6">
+              <p className="text-[8px] font-black uppercase tracking-wide text-slate-400">
+                Coming next
+              </p>
+
+              <p className="mt-1 text-base font-black text-[#1B519F]">
+                {counts.upcoming} Upcoming
+              </p>
+            </div>
+
+            <div className="absolute bottom-16 right-3 rounded-xl border border-white/70 bg-white/90 px-3 py-2.5 shadow-lg backdrop-blur sm:right-6">
+              <p className="text-[8px] font-black uppercase tracking-wide text-slate-400">
+                Public archive
+              </p>
+
+              <p className="mt-1 text-base font-black text-slate-700">
+                {counts.completed} Completed
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid border-t border-blue-100 bg-white/90 sm:grid-cols-[1.15fr_2.85fr] sm:items-center">
+          <div className="border-b border-blue-100 px-7 py-5 sm:border-b-0 sm:border-r">
+            <p className="text-xl font-black text-[#1B519F]">
+              One activity.
+              <br />
+              Many practical topics.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-3 px-7 py-5">
+            {trainingTypes.map((type) => (
+              <span
+                key={type}
+                className="text-xs font-black uppercase tracking-[.08em] text-slate-500"
+              >
+                {type}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,0 +1,88 @@
+﻿import Image from "next/image";
+import Link from "next/link";
+
+import { HomeIcon } from "@/features/home/components/home-icon";
+import { homeOpportunityCategories } from "@/features/home/data/home.data";
+
+/**
+ * Homepage opportunity categories.
+ *
+ * Desktop uses five equal-width cards while smaller screens progressively
+ * collapse to fewer columns to preserve readability and touch targets.
+ */
+export function OpportunityCategoriesSection() {
+  return (
+    <section className="bg-white py-12 sm:py-14 lg:py-16">
+      <div className="mx-auto w-full max-w-[1500px] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#1655A3]">
+            {homeOpportunityCategories.eyebrow}
+          </p>
+
+          <h2 className="mt-2 text-[clamp(1.8rem,3vw,2.6rem)] font-black tracking-tight text-[#082B57]">
+            {homeOpportunityCategories.title}
+          </h2>
+
+          <p className="mt-3 text-sm leading-7 text-slate-500 sm:text-base">
+            {homeOpportunityCategories.description}
+          </p>
+        </div>
+
+        <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {homeOpportunityCategories.items.map((item) => (
+            <Link
+              key={item.title}
+              href={item.href}
+              className="group flex min-w-0 flex-col overflow-hidden rounded-[22px] border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:scale-[1.015] hover:border-[#F7941D]/40 hover:shadow-[0_20px_50px_rgba(8,43,87,0.13)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7941D] motion-reduce:transform-none"
+            >
+              {/* Image */}
+              <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
+                <Image
+                  src={item.image}
+                  alt={`${item.title} - Smartera Hub`}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 20vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.08] motion-reduce:transform-none"
+                />
+
+                <div
+                  className="absolute inset-0 bg-gradient-to-t from-[#082B57]/30 via-transparent to-transparent"
+                  aria-hidden="true"
+                />
+
+                <span className="absolute bottom-3 left-4 flex h-11 w-11 items-center justify-center rounded-xl border border-white/30 bg-[#1655A3] text-white shadow-lg transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-110 group-hover:bg-[#F7941D] motion-reduce:transform-none">
+                  <HomeIcon
+                    name={item.icon}
+                    className="h-5 w-5"
+                  />
+                </span>
+              </div>
+
+              {/* Content */}
+              <div className="flex flex-1 flex-col p-5">
+                <h3 className="text-lg font-black text-[#082B57]">
+                  {item.title}
+                </h3>
+
+                <p className="mt-3 min-h-[72px] text-sm leading-6 text-slate-600">
+                  {item.description}
+                </p>
+
+                {/* Balanced View All button */}
+                <div className="mt-auto pt-5">
+                  <span className="flex h-11 w-full items-center justify-between rounded-xl bg-[#F3F7FC] px-4 text-sm font-extrabold text-[#1655A3] transition-all duration-300 group-hover:bg-[#1655A3] group-hover:text-white">
+                    <span>View All</span>
+
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-[#1655A3] shadow-sm transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#F7941D]">
+                      →
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

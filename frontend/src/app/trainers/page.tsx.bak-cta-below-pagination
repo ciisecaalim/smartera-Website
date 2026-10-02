@@ -1,0 +1,40 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+
+import {
+  getPublishedTrainers,
+  TrainersBrowser,
+  TrainersHeroSection,
+} from "@/features/trainers";
+
+export const metadata: Metadata = {
+  title: "Smartera Trainers | Smartera Hub",
+  description:
+    "Learn from experienced professionals who combine practical skills with real-world industry experience.",
+};
+
+export default async function TrainersPage() {
+  const trainers = await getPublishedTrainers();
+
+  return (
+    <main className="trainers-surface min-h-screen">
+      <TrainersHeroSection />
+
+      <section className="px-4 pt-8 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl justify-center sm:justify-end">
+          <Link
+            href="/trainers/apply"
+            className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[#1B519F] px-6 py-3 text-sm font-black text-white shadow-sm transition hover:bg-[#143f7d] focus:outline-none focus:ring-2 focus:ring-[#1B519F] focus:ring-offset-2"
+          >
+            Apply as a Trainer →
+          </Link>
+        </div>
+      </section>
+
+      <TrainersBrowser
+        trainers={trainers || []}
+        failed={trainers === null}
+      />
+    </main>
+  );
+}

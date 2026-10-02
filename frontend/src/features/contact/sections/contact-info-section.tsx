@@ -1,0 +1,6 @@
+
+import { article as Larticle, div as Ldiv, h3 as Lh3, p as Lp, section as Lsection, span as Lspan } from "@/i18n/elements";
+import { Container } from "@/components/ui/container"; import { SectionHeading } from "@/components/ui/section-heading"; import { siteConfig } from "@/config/site";
+export function ContactInfoSection(){const items=[['Email',siteConfig.contact.email||'Configure NEXT_PUBLIC_SITE_EMAIL'],['Phone',siteConfig.contact.phone||'Configure NEXT_PUBLIC_SITE_PHONE'],['Location',siteConfig.contact.location||'Configure NEXT_PUBLIC_SITE_LOCATION']]; return <Lsection className="bg-white py-16"><Container><SectionHeading eyebrow="Contact Channels" title="Dooro habka kuugu fudud." description="Public contact values waxaa si ammaan ah looga maamulaa environment configuration; package-ku ma abuuro contact details aan la ansixin." centered/><Ldiv className="mt-10 grid gap-5 md:grid-cols-3">{items.map(([t,v],i)=><Larticle key={t} className="rounded-[22px] border border-slate-200 p-6 transition-all hover:-translate-y-2 hover:border-[#F59223]/40 hover:shadow-xl"><Lspan className="text-xs font-black text-[#F59223]">0{i+1}</Lspan><Lh3 className="mt-3 font-black text-[#1B519F]">{t}</Lh3><Lp className="mt-2 break-words text-sm leading-7 text-slate-600">{v}</Lp></Larticle>)}</Ldiv></Container></Lsection>}
+
+

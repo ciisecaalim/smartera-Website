@@ -1,0 +1,185 @@
+"use client";
+import Image from "next/image";
+import Link from "next/link";
+import { useMemo, useState } from "react";
+import type { Trainer } from "../types/trainer.types";
+import { trainerAsset } from "../data/trainers.data";
+export function TrainersBrowser({
+  trainers,
+  failed = false,
+}: {
+  trainers: Trainer[];
+  failed?: boolean;
+}) {
+  const [q, setQ] = useState("");
+  const [experienceRange, setExperienceRange] = useState("");
+const shown = useMemo(() => {
+    const needle = q.trim().toLowerCase();
+
+    return trainers.filter((t) => {
+      const years = Number(t.yearsExperience) || 0;
+
+      const matchesExperience =
+        !experienceRange ||
+        (experienceRange === "1-3" &&
+          years >= 1 &&
+          years <= 3) ||
+        (experienceRange === "3-5" &&
+          years > 3 &&
+          years <= 5) ||
+        (experienceRange === "5-10" &&
+          years > 5 &&
+          years <= 10) ||
+        (experienceRange === "10+" &&
+          years > 10);
+
+      const matchesSearch =
+        !needle ||
+        [
+          t.fullName,
+          t.professionalTitle,
+          t.specialization,
+          ...t.skills,
+        ]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase()
+          .includes(needle);
+
+      return matchesExperience && matchesSearch;
+    });
+  }, [trainers, q, experienceRange]);
+  return (
+    <section id="trainers-directory" className="px-4 pb-20 pt-10 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
+          <label className="relative flex-1">
+            <span className="sr-only">Search trainers</span>
+            <input
+              type="search"
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder="Search trainers by name, skills, or expertise..."
+              className="trainer-input h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm shadow-sm outline-none focus:border-[#1B519F]"
+            />
+          </label>
+          <div className="flex max-w-full gap-2 overflow-x-auto pb-1">
+            <div className="w-full sm:w-auto">
+              <label
+                htmlFor="trainer-experience"
+                className="sr-only"
+              >
+                Filter trainers by experience
+              </label>
+
+              <select
+                id="trainer-experience"
+                value={experienceRange}
+                onChange={(event) =>
+                  setExperienceRange(event.target.value)
+                }
+                className="trainer-input h-12 w-full min-w-[220px] rounded-xl border border-slate-200 bg-white px-4 text-sm font-semibold text-[#1B519F] shadow-sm outline-none transition focus:border-[#1B519F] sm:w-auto"
+              >
+                <option value="">
+                  All Experience
+                </option>
+
+                <option value="1-3">
+                  1–3 Years Experience
+                </option>
+
+                <option value="3-5">
+                  3–5 Years Experience
+                </option>
+
+                <option value="5-10">
+                  5–10 Years Experience
+                </option>
+
+                <option value="10+">
+                  10+ Years Experience
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        {failed ? (
+          <Empty
+            title="We’re unable to load trainers right now."
+            text="Please try again shortly."
+          />
+        ) : shown.length ? (
+          <div className="mt-7 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {shown.map((t) => (
+              <article
+                key={t.slug}
+                className="trainer-card grid min-h-[250px] grid-cols-[135px_1fr] overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+              >
+                <div className="relative overflow-hidden rounded-xl bg-slate-100">
+                  <Image
+                    unoptimized={trainerAsset(t.profileImage).startsWith(
+                      "http",
+                    )}
+                    src={trainerAsset(t.profileImage)}
+                    alt={t.imageAlt}
+                    fill
+                    sizes="135px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="flex min-w-0 flex-col p-3">
+                  <h2 className="text-lg font-black text-[#1B519F]">
+                    {t.fullName}
+                  </h2>
+                  <p className="text-xs font-semibold text-slate-600">
+                    {t.professionalTitle}
+                  </p>
+                  <p className="mt-1 text-[11px] font-black text-[#F59223]">{t.specialization}</p>
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {t.skills.slice(0, 3).map((s) => (
+                      <span
+                        key={s}
+                        className="rounded-full bg-[#EEF5FF] px-2.5 py-1 text-[10px] font-bold text-[#1B519F]"
+                      >
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="mt-3 text-[11px] font-bold text-[#1B519F]">
+                    {t.yearsExperience}+ Years Experience
+                  </p>
+                  <p className="mt-2 line-clamp-2 text-xs leading-5 text-slate-500">
+                    {t.shortBio}
+                  </p>
+                  <Link
+                    href={"/trainers/" + t.slug}
+                    className="mt-auto self-end rounded-lg border border-blue-400 px-4 py-2 text-xs font-bold text-[#1B519F] hover:bg-[#1B519F] hover:text-white"
+                  >
+                    View Profile →
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <Empty
+            title={
+              q || experienceRange
+                ? "No trainers found for your search."
+                : "No trainers are available right now."
+            }
+            text={q ? "Try another name, skill, or specialization." : ""}
+          />
+        )}
+      </div>
+    </section>
+  );
+}
+function Empty({ title, text }: { title: string; text: string }) {
+  return (
+    <div className="trainer-card mt-8 rounded-2xl border border-dashed border-slate-300 bg-white p-12 text-center">
+      <h2 className="text-lg font-black text-[#1B519F]">{title}</h2>
+      {text ? <p className="mt-2 text-sm text-slate-500">{text}</p> : null}
+    </div>
+  );
+}

@@ -1,0 +1,196 @@
+(Optional)|(Ikhtiyaari)
+Wireframing|Qorshaynta qaab-dhismeedka bogagga
+Prototyping|Samaynta tusaalooyin tijaabo ah
+Responsive Design|Naqshad la qabsata cabbirka shaashadda
+Frontend|Qaybta isticmaaluhu arko
+Technology categories|Qaybaha teknoolojiyadda
+Custom Web Development|Samaynta bogag gaar ah
+Modern, responsive websites built around your organization and audience.|Bogag casri ah oo la qabsada shaashadaha, looguna talagalay hay’addaada iyo dadka aad u adeegto.
+We design accessible, maintainable public websites that clearly communicate your services and support your digital presence.|Waxaan naqshadeynaa bogag dadweyne oo si fudud loo adeegsan karo loona dayactiri karo, kuwaas oo si cad u soo bandhiga adeegyadaada iyo joogitaankaaga internetka.
+Clear digital presence|Joogitaan internet oo cad
+Responsive user experience|Adeegsi ku habboon shaashad kasta
+Maintainable structure|Qaab-dhismeed la dayactiri karo
+Businesses|Ganacsiyada
+NGOs|Hay’adaha aan dawliga ahayn
+Education providers|Bixiyayaasha waxbarashada
+Corporate websites|Bogagga shirkadaha
+Program websites|Bogagga barnaamijyada
+Information portals|Bogagga macluumaadka
+Web Applications & Systems|Barnaamijyada iyo nidaamyada internetka
+Purpose-built web applications that simplify operations and improve productivity.|Barnaamijyo internet oo si gaar ah loo dhisay, fududeeyana hawlaha, korna u qaada waxsoosaarka.
+We turn defined operational requirements into practical browser-based systems with clear workflows and reliable interfaces.|Waxaan baahiyaha shaqo ee la qeexay u beddelnaa nidaamyo biraawsarka ku shaqeeya oo leh habsocod cad iyo adeegsi lagu kalsoon yahay.
+Simpler workflows|Habsocod shaqo oo fudud
+Centralized information|Macluumaad meel dhexe ku urursan
+Role-appropriate interfaces|Adeegsi ku habboon door kasta
+Growing organizations|Hay’adaha kobcaya
+Operations teams|Kooxaha hawlgalka
+Service providers|Bixiyayaasha adeegyada
+Internal portals|Bogagga gudaha
+Workflow systems|Nidaamyada habsocodka shaqada
+Service-management tools|Agabka maaraynta adeegyada
+Business Management Solutions|Xalalka maaraynta ganacsiga
+Complete systems for organizations, schools, NGOs, and service teams.|Nidaamyo dhammaystiran oo loogu talagalay hay’adaha, dugsiyada, hay’adaha aan dawliga ahayn iyo kooxaha adeegyada.
+We structure connected modules around the daily management needs of your organization.|Waxaan dhisnaa qaybo isku xiran oo daboola baahiyaha maaraynta maalinlaha ah ee hay’addaada.
+Organized operations|Hawlo habaysan
+Consistent records|Diiwaanno isku waafaqsan
+Clearer oversight|Kormeer cad
+Schools|Dugsiyada
+SMEs|Ganacsiyada yaryar iyo kuwa dhexe
+Administration systems|Nidaamyada maamulka
+Program management|Maaraynta barnaamijyada
+Operations tracking|Dabagalka hawlaha
+Database & Data Solutions|Xalalka xogta iyo kaydka xogta
+Efficient database design, management, and data organization solutions.|Xalal wax ku ool ah oo loogu talagalay naqshadaynta, maaraynta iyo habaynta kaydka xogta.
+We help organizations structure information so records remain useful, consistent, and easier to manage.|Waxaan hay’adaha ka caawinnaa habaynta macluumaadka si diiwaannadu u noqdaan kuwo waxtar leh, isku waafaqsan oo fudud in la maareeyo.
+Structured records|Diiwaanno habaysan
+Improved data quality|Tayada xogta oo hagaagta
+Reliable retrieval|Soo helidda xogta oo lagu kalsoon yahay
+Data-driven teams|Kooxaha ku shaqeeya xogta
+Institutions|Hay’adaha
+Multi-program organizations|Hay’adaha leh barnaamijyo badan
+Record systems|Nidaamyada diiwaannada
+Data consolidation|Isku geynta xogta
+Information registers|Diiwaannada macluumaadka
+IT Support & Maintenance|Taageerada iyo dayactirka IT
+Reliable technical support and maintenance to keep systems running.|Taageero farsamo iyo dayactir lagu kalsoon yahay oo nidaamyada ku haya shaqada.
+We provide agreed technical assistance, maintenance, and improvement support after delivery.|Waxaan bixinnaa taageerada farsamo, dayactirka iyo hagaajinta lagu heshiiyey kaddib marka nidaamka la wareejiyo.
+Responsive assistance|Caawimaad degdeg ah
+Planned maintenance|Dayactir qorshaysan
+Documented improvements|Hagaajin la diiwaangeliyey
+Organizations with active systems|Hay’adaha leh nidaamyo shaqaynaya
+Small IT teams|Kooxaha IT ee yaryar
+Service operators|Hawl-wadeennada adeegyada
+System maintenance|Dayactirka nidaamka
+Issue resolution|Xallinta cilladaha
+Technical guidance|Hagid farsamo
+Hosting & Deployment|Martigelinta iyo hawlgelinta
+Secure deployment planning and dependable hosting support.|Qorshayn hawlgelin ammaan ah iyo taageero martigelin lagu kalsoon yahay.
+We prepare applications for their intended environment and support practical release, configuration, and monitoring needs.|Waxaan barnaamijyada u diyaarinnaa deegaanka loogu talagalay, annagoo taageerna baahiyaha hawlgelinta, habaynta iyo kormeerka.
+Structured releases|Sii-dayn habaysan
+Environment configuration|Habaynta deegaanka nidaamka
+Operational continuity|Joogtaynta hawlaha
+Website owners|Milkiilayaasha bogagga
+Application teams|Kooxaha barnaamijyada
+Digital programs|Barnaamijyada dijitaalka ah
+Website deployment|Hawlgelinta bogga
+Application releases|Sii-daynta barnaamijyada
+Hosting transitions|Beddelidda martigelinta
+System Security|Amniga nidaamka
+Practical safeguards that protect systems and organizational data.|Tallaabooyin wax ku ool ah oo ilaaliya nidaamyada iyo xogta hay’adaha.
+We incorporate sensible access, validation, backup, and operational safeguards based on the solution context.|Waxaan ku darnaa ilaalinta gelitaanka, xaqiijinta xogta, kaydinta nuqullada iyo amniga hawlaha ee ku habboon xalka.
+Reduced exposure|Khatar yarayn
+Clear access controls|Xakamayn gelitaan oo cad
+Safer operations|Hawlo ammaan badan
+Organizations handling records|Hay’adaha maareeya diiwaannada
+Public platforms|Madalaha dadweynaha
+Internal systems|Nidaamyada gudaha
+Access reviews|Dib-u-eegista oggolaanshaha gelitaanka
+Security hardening|Xoojinta amniga
+Backup planning|Qorshaynta nuqullada kaydka
+Data & Reporting Solutions|Xalalka xogta iyo warbixinta
+Reports and dashboards that turn data into clearer business insight.|Warbixinno iyo bogag xogeed oo xogta u beddela faham ganacsi oo cad.
+We organize meaningful measures into practical reports and dashboards that support review and planning.|Waxaan cabbirrada muhiimka ah u habaynaa warbixinno iyo bogag xogeed oo taageera dib-u-eegista iyo qorshaynta.
+Clearer reporting|Warbixin cad
+Consistent measures|Cabbirro isku waafaqsan
+Better visibility|Aragti wanaagsan
+Management teams|Kooxaha maamulka
+Programs|Barnaamijyada
+Operations leaders|Hoggaamiyayaasha hawlgalka
+Management dashboards|Bogagga xogta maamulka
+Program reports|Warbixinnada barnaamijyada
+Performance summaries|Soo koobidda waxqabadka
+Digital Transformation|U gudbidda nidaamyada dijitaalka ah
+Practical technology adoption that improves processes and service delivery.|Adeegsiga teknoolojiyad wax ku ool ah oo hagaajisa habraacyada iyo bixinta adeegyada.
+We help teams assess manual processes, prioritize improvements, and introduce suitable digital workflows.|Waxaan kooxaha ka caawinnaa qiimaynta habraacyada gacanta lagu qabto, kala hormarinta hagaajinta iyo hirgelinta habsocod dijitaal ah oo ku habboon.
+Practical modernization|Casriyeyn wax ku ool ah
+Better workflows|Habsocod shaqo oo wanaagsan
+Phased improvement|Hagaajin marxalado leh
+Organizations modernizing operations|Hay’adaha casriyeynaya hawlahooda
+Process digitization|Dijitaal ka dhigista habraacyada
+Workflow redesign|Dib-u-naqshadaynta habsocodka shaqada
+System planning|Qorshaynta nidaamka
+Mobile Solutions|Xalalka moobilka
+Mobile-friendly solutions that bring services closer to users.|Xalal ku habboon moobilka oo adeegyada u soo dhoweeya isticmaalayaasha.
+We plan and build mobile experiences where portable access materially improves the service.|Waxaan qorshaynaa oo dhisnaa adeegyo moobil marka adeegsiga meel kasta uu si weyn u wanaajinayo adeegga.
+Mobile access|Adeegsiga moobilka
+Focused experiences|Adeegsi diiradaysan
+Wider reach|Gaaritaan ballaaran
+Field teams|Kooxaha goobaha ka shaqeeya
+Community programs|Barnaamijyada bulshada
+Field data tools|Agabka xog ururinta goobaha
+Mobile service interfaces|Bogagga adeegyada moobilka
+Responsive applications|Barnaamijyo la qabsada shaashadaha
+Improve Efficiency|Kordhi hufnaanta
+Automate repetitive tasks, simplify workflows, and save valuable time.|Hawlaha soo noqnoqda ka dhig kuwo toos u shaqeeya, fududee habsocodka shaqada, waqtina badbaadi.
+Reduce Operational Complexity|Yaree adkaanta hawlaha
+Use well-designed systems to simplify daily processes and reduce unnecessary manual work.|Adeegso nidaamyo si wanaagsan loo naqshadeeyey si aad u fududayso hawlaha maalinlaha ah una yarayso shaqada gacanta ee aan loo baahnayn.
+Better Decisions|Go’aanno wanaagsan
+Use structured data, reports, and dashboards to support clearer organizational decisions.|Adeegso xog habaysan, warbixinno iyo bogag xogeed si aad u taageerto go’aannada hay’adda.
+Scalable Solutions|Xalal la ballaarin karo
+Build systems that can evolve as your organization grows and its needs change.|Dhis nidaamyo horumari kara marka hay’addaadu korto oo baahideedu isbeddesho.
+Understand|Faham
+We learn about your organization, current challenges, and goals.|Waxaan barannaa hay’addaada, caqabadaha hadda jira iyo yoolalkaaga.
+Plan|Qorshee
+We define the appropriate solution, scope, and delivery approach.|Waxaan qeexnaa xalka ku habboon, baaxaddiisa iyo habka loo fulinayo.
+We develop the solution according to agreed requirements.|Waxaan xalka u dhisnaa sida ku cad shuruudaha lagu heshiiyey.
+Test|Tijaabi
+We test functionality, quality, usability, and reliability.|Waxaan tijaabinnaa shaqaynta, tayada, fudaydka adeegsiga iyo isku hallaynta.
+Deploy|Hawlgeli
+We prepare and release the solution into its intended environment.|Waxaan xalka u diyaarinnaa oo ka hawlgelinnaa deegaanka loogu talagalay.
+Support|Taageero
+We provide agreed maintenance, improvements, and technical assistance.|Waxaan bixinnaa dayactirka, hagaajinta iyo caawimaadda farsamo ee lagu heshiiyey.
+Education & Training|Waxbarashada iyo tababarka
+NGOs & Non-Profits|Hay’adaha aan dawliga ahayn iyo kuwa aan macaash doonka ahayn
+Healthcare|Caafimaadka
+Retail & Business|Tafaariiqda iyo ganacsiga
+Government & Public Sector|Dawladda iyo qaybta dadweynaha
+Finance & Microfinance|Maaliyadda iyo maalgelinta yar-yar
+Startups & SMEs|Ganacsiyada cusub, kuwa yaryar iyo kuwa dhexe
+Professional Services|Adeegyada xirfadeed
+School Management System|Nidaamka maamulka dugsiga
+Education Management Solution|Xalka maaraynta waxbarashada
+A centralized demo system for student records, staff, classes, attendance, and institutional reporting.|Nidaam tusaale ah oo mideeya diiwaannada ardayda, shaqaalaha, fasallada, xaadirinta iyo warbixinta hay’adda.
+NGO Monitoring & Reporting System|Nidaamka kormeerka iyo warbixinta hay’adaha aan dawliga ahayn
+Monitoring & Reporting|Kormeerka iyo warbixinta
+A demo solution for program tracking, beneficiary records, activity monitoring, and reporting.|Xal tusaale ah oo loogu talagalay dabagalka barnaamijyada, diiwaannada ka-faa’iidaystayaasha, kormeerka hawlaha iyo warbixinta.
+Training Center Website|Bogga xarunta tababarka
+Public Website|Bogga dadweynaha
+A demo public website presenting training activities, services, opportunities, and information.|Bog dadweyne oo tusaale ah, soo bandhigana hawlaha tababarka, adeegyada, fursadaha iyo macluumaadka.
+Modern, responsive and SEO-friendly websites that represent your brand and engage your audience.|Bogag casri ah oo shaashadaha la qabsada, raadintana ku habboon, kuwaas oo matala summaddaada soona jiita dadka aad u adeegto.
+Developer building and testing a responsive business website|Horumariye dhisaya oo tijaabinaya bog ganacsi oo shaashadaha la qabsada
+Mobile Apps & Websites|Barnaamijyada moobilka iyo bogagga internetka
+We build fast, user-friendly mobile applications and websites tailored to your customers and business goals.|Waxaan dhisnaa barnaamijyo moobil iyo bogag internet oo degdeg ah, fududna in la isticmaalo, kuna habboon macaamiishaada iyo yoolalka ganacsigaaga.
+Software team building mobile applications and websites|Koox barnaamijyo dhista oo samaynaysa barnaamijyada moobilka iyo bogagga internetka
+Custom management systems to automate operations, manage teams and improve productivity.|Nidaamyo maamul oo gaar ah oo hawlaha toosiya, kooxaha maareeya, waxsoosaarkana kordhiya.
+ICT consultant planning a custom management system|La-taliye ICT oo qorshaynaya nidaam maamul oo gaar ah
+Workflow automation that reduces manual tasks, saves time and improves efficiency.|Habsocod shaqo oo toos ah oo yareeya hawlaha gacanta, badbaadiya waqtiga, kordhiyana hufnaanta.
+Technology team designing automated business workflows|Koox teknoolojiyadeed oo naqshadaynaysa habsocod ganacsi oo toos ah
+Secure, scalable database design, development and management for reliable systems.|Naqshadayn, dhisid iyo maarayn kayd xogeed oo ammaan ah, la ballaarin karo, laguna kalsoon yahay.
+Engineer managing secure cloud databases|Injineer maareynaya kaydadka xogta daruurta ee ammaan ah
+Secure and well-documented APIs that connect your systems and extend functionality.|Isku xirayaasha API oo ammaan ah, si fiicanna loo diiwaangeliyey, isku xirana nidaamyadaada, ballaariyana shaqadooda.
+Backend engineer designing secure API integrations|Injineer nidaamyada gudaha oo naqshadaynaya isku xirro API oo ammaan ah
+Fast, secure and reliable deployment for your systems and applications.|Hawlgelin degdeg ah, ammaan ah oo lagu kalsoon yahay oo loogu talagalay nidaamyadaada iyo barnaamijyadaada.
+ICT infrastructure prepared for application deployment and hosting|Kaabeyaasha ICT oo loo diyaariyey hawlgelinta iyo martigelinta barnaamijyada
+Ongoing technical support that keeps your essential systems running smoothly.|Taageero farsamo oo joogto ah oo nidaamyadaada muhiimka ah si habsami leh u shaqaysiisa.
+Technical support specialist helping a business customer|Khabiir taageero farsamo oo caawinaya macmiil ganacsi
+Regular updates, backups and optimization that keep your systems healthy.|Cusboonaysiin, nuqullo kayd ah iyo hagaajin joogto ah oo nidaamyadaada xaalad wanaagsan ku haya.
+Systems engineer performing secure server maintenance|Injineer nidaamyo oo samaynaya dayactir ammaan ah oo adeegaha ah
+Custom Solutions|Xalal gaar ah
+Solutions tailored to your unique needs and business goals.|Xalal loo habeeyey baahiyahaaga gaarka ah iyo yoolalkaaga ganacsi.
+Modern Technology|Teknoolojiyad casri ah
+Modern tools and proven practices for scalable, secure systems.|Agab casri ah iyo habab la xaqiijiyey oo loogu talagalay nidaamyo ammaan ah oo la ballaarin karo.
+Ongoing Support|Taageero joogto ah
+Continuous support to ensure your systems run smoothly.|Taageero joogto ah si loo hubiyo in nidaamyadaadu si habsami leh u shaqeeyaan.
+Business-Focused Approach|Hab diiradda saara ganacsiga
+Real value that drives growth and operational efficiency.|Qiime dhab ah oo horseeda koboc iyo hufnaan shaqo.
+We understand your challenges, goals and requirements.|Waxaan fahannaa caqabadahaaga, yoolalkaaga iyo baahiyahaaga.
+We plan the solution, resources and timeline for success.|Waxaan qorshaynaa xalka, agabka iyo waqtiga guusha lagu gaarayo.
+Design|Naqshadee
+We design intuitive, user-friendly and scalable solutions.|Waxaan naqshadeynaa xalal si fudud loo fahmi karo, loo adeegsan karo, loona ballaarin karo.
+Develop|Dhis
+We build robust, secure and high-performing systems.|Waxaan dhisnaa nidaamyo adag, ammaan ah oo waxqabad sare leh.
+We test thoroughly for quality, security and reliability.|Waxaan si dhammaystiran u tijaabinnaa tayada, amniga iyo isku hallaynta.
+Deploy & Support|Hawlgeli oo taageer
+We deploy and provide support for long-term success.|Waxaan hawlgelinnaa oo bixinnaa taageero lagu gaaro guul waarta.
+We design, develop and support digital solutions that help businesses and organizations work smarter, grow faster and create a greater impact.|Waxaan naqshadeynaa, dhisnaa oo taageernaa xalal dijitaal ah oo ganacsiyada iyo hay’adaha ka caawiya inay si hufan u shaqeeyaan, dhaqso u koraan, waxqabad weynna yeeshaan.
+Smartera Hub ICT solutions and digital infrastructure|Xalalka ICT iyo kaabeyaasha dijitaalka ah ee Smartera Hub

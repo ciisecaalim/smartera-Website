@@ -1,0 +1,265 @@
+export type InternshipSuccessStory = {
+  id: string;
+  slug: string;
+  name: string;
+  internshipTitle: string;
+  organization: string;
+  summary: string;
+  fullStory: string;
+  highlights: string[];
+  learning: string[];
+  outcome: string;
+  mediaType: "Photo" | "Video";
+  mediaSrc: string;
+  posterImage?: string;
+  demoOnly: boolean;
+  published: boolean;
+};
+
+export const internshipSuccessStories: InternshipSuccessStory[] = [
+  {
+    id: "success-01",
+    slug: "data-analysis-journey",
+    name: "Ahmed Mohamed",
+    internshipTitle: "Data Analysis Internship",
+    organization: "Organization",
+    summary:
+      "A journey showing how practical workplace exposure can strengthen data analysis skills and professional confidence.",
+    fullStory:
+      "This is professional placeholder content for a future approved internship story. Replace this text with the candidate's real experience, the activities completed during the internship, and the value gained from the practical placement.",
+    highlights: [
+      "Worked with practical data tasks",
+      "Improved workplace communication",
+      "Practiced structured reporting",
+      "Built confidence using analysis tools",
+    ],
+    learning: [
+      "Data cleaning and preparation",
+      "Basic reporting workflows",
+      "Professional teamwork",
+      "Workplace communication",
+    ],
+    outcome:
+      "Placeholder outcome: describe the verified result of the internship here after Smartera Hub approves the final story.",
+    mediaType: "Photo",
+    mediaSrc: "/images/home/internships.jpg",
+    demoOnly: true,
+    published: true,
+  },
+  {
+    id: "success-02",
+    slug: "finance-internship-journey",
+    name: "Amina Hassan",
+    internshipTitle: "Finance Internship",
+    organization: "Organization",
+    summary:
+      "A story highlighting practical experience in financial documentation, reporting, and workplace communication.",
+    fullStory:
+      "This placeholder will later contain the approved finance internship journey, including responsibilities, practical learning, workplace exposure, and professional development.",
+    highlights: [
+      "Supported financial documentation",
+      "Practiced spreadsheet workflows",
+      "Observed reporting processes",
+      "Developed workplace discipline",
+    ],
+    learning: [
+      "Financial record organization",
+      "Basic reconciliation",
+      "Reporting support",
+      "Professional communication",
+    ],
+    outcome:
+      "Placeholder outcome: replace with the verified internship result when real content is approved.",
+    mediaType: "Video",
+    mediaSrc: "https://www.w3schools.com/html/mov_bbb.mp4",
+    posterImage: "/images/home/internships.jpg",
+    demoOnly: true,
+    published: true,
+  },
+  {
+    id: "success-03",
+    slug: "marketing-internship-journey",
+    name: "Hodan Mohamed",
+    internshipTitle: "Marketing Internship",
+    organization: "Organization",
+    summary:
+      "An internship journey focused on social media, campaign support, communication, and professional growth.",
+    fullStory:
+      "Use this area for the approved story about the candidate's marketing internship, campaign exposure, responsibilities, learning experience, and professional progress.",
+    highlights: [
+      "Supported social media activities",
+      "Participated in content preparation",
+      "Observed campaign workflows",
+      "Improved communication skills",
+    ],
+    learning: [
+      "Content coordination",
+      "Digital marketing basics",
+      "Campaign support",
+      "Team communication",
+    ],
+    outcome:
+      "Placeholder outcome: add the real verified result once the story is approved for public publication.",
+    mediaType: "Photo",
+    mediaSrc: "/images/home/internships.jpg",
+    demoOnly: true,
+    published: true,
+  },
+  {
+    id: "success-04",
+    slug: "software-development-journey",
+    name: "Yusuf Abdullahi",
+    internshipTitle: "Software Development Internship",
+    organization: "Organization",
+    summary:
+      "A story showing practical experience with web development, teamwork, testing, and project-based learning.",
+    fullStory:
+      "This placeholder is reserved for the candidate's approved software development internship story, including projects, responsibilities, tools, collaboration, and lessons learned.",
+    highlights: [
+      "Worked on practical web tasks",
+      "Practiced debugging",
+      "Participated in team workflows",
+      "Improved development confidence",
+    ],
+    learning: [
+      "Frontend development",
+      "Testing and debugging",
+      "Git workflows",
+      "Team collaboration",
+    ],
+    outcome:
+      "Placeholder outcome: replace with the verified internship outcome when approved.",
+    mediaType: "Video",
+    mediaSrc: "https://www.w3schools.com/html/mov_bbb.mp4",
+    posterImage: "/images/home/internships.jpg",
+    demoOnly: true,
+    published: true,
+  },
+  {
+    id: "success-05",
+    slug: "administration-internship-journey",
+    name: "Maryan Ali",
+    internshipTitle: "Administration Internship",
+    organization: "Organization",
+    summary:
+      "A journey focused on office administration, documentation, organization, and professional communication.",
+    fullStory:
+      "Use this placeholder for the approved administration internship experience, including daily responsibilities, office systems, professional communication, and practical learning.",
+    highlights: [
+      "Supported office documentation",
+      "Practiced scheduling",
+      "Improved workplace organization",
+      "Developed professional communication",
+    ],
+    learning: [
+      "Office administration",
+      "Document management",
+      "Scheduling",
+      "Professional communication",
+    ],
+    outcome:
+      "Placeholder outcome: insert the verified result after final approval.",
+    mediaType: "Photo",
+    mediaSrc: "/images/home/internships.jpg",
+    demoOnly: true,
+    published: true,
+  },
+  {
+    id: "success-06",
+    slug: "it-support-internship-journey",
+    name: "Abdullahi Farah",
+    internshipTitle: "IT Support Internship",
+    organization: "Organization",
+    summary:
+      "A success story highlighting troubleshooting, user support, networking basics, and technical confidence.",
+    fullStory:
+      "This placeholder will later contain the approved IT support internship story, including technical tasks, user support experience, troubleshooting, and professional development.",
+    highlights: [
+      "Supported users with technical issues",
+      "Practiced troubleshooting",
+      "Observed networking activities",
+      "Improved customer support skills",
+    ],
+    learning: [
+      "Computer troubleshooting",
+      "Basic networking",
+      "Technical documentation",
+      "User support",
+    ],
+    outcome:
+      "Placeholder outcome: replace with verified public information when available.",
+    mediaType: "Video",
+    mediaSrc: "https://www.w3schools.com/html/mov_bbb.mp4",
+    posterImage: "/images/home/internships.jpg",
+    demoOnly: true,
+    published: true,
+  },
+  {
+    id: "success-07",
+    slug: "graphic-design-internship-journey",
+    name: "Safiya Mohamed",
+    internshipTitle: "Graphic Design Internship",
+    organization: "Organization",
+    summary:
+      "A design journey showing portfolio development, branding practice, feedback, and workplace creativity.",
+    fullStory:
+      "This placeholder is intended for the approved design internship story covering creative responsibilities, feedback, branding work, portfolio development, and professional growth.",
+    highlights: [
+      "Created practical visual content",
+      "Worked with design feedback",
+      "Supported branding tasks",
+      "Built portfolio experience",
+    ],
+    learning: [
+      "Graphic design workflow",
+      "Brand consistency",
+      "Creative feedback",
+      "Portfolio development",
+    ],
+    outcome:
+      "Placeholder outcome: add the verified result after the final public story is approved.",
+    mediaType: "Photo",
+    mediaSrc: "/images/home/internships.jpg",
+    demoOnly: true,
+    published: true,
+  },
+  {
+    id: "success-08",
+    slug: "project-assistant-journey",
+    name: "Abdirizak Mohamed",
+    internshipTitle: "Project Assistant Internship",
+    organization: "Organization",
+    summary:
+      "A story focused on project coordination, reporting, documentation, and practical teamwork.",
+    fullStory:
+      "Use this professional placeholder for the future approved project internship story, including activities, reporting responsibilities, coordination, teamwork, and professional development.",
+    highlights: [
+      "Supported project documentation",
+      "Tracked basic activities",
+      "Practiced reporting",
+      "Improved teamwork",
+    ],
+    learning: [
+      "Project coordination",
+      "Documentation",
+      "Activity tracking",
+      "Reporting",
+    ],
+    outcome:
+      "Placeholder outcome: replace this text with the verified internship outcome when available.",
+    mediaType: "Video",
+    mediaSrc: "https://www.w3schools.com/html/mov_bbb.mp4",
+    posterImage: "/images/home/internships.jpg",
+    demoOnly: true,
+    published: true,
+  },
+];
+
+export const getPublishedInternshipSuccessStories = () =>
+  internshipSuccessStories.filter((story) => story.published);
+
+export const getInternshipSuccessStoryBySlug = (slug: string) =>
+  getPublishedInternshipSuccessStories().find(
+    (story) => story.slug === slug,
+  );
+

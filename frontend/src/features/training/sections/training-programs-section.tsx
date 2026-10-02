@@ -1,0 +1,21 @@
+import { Container } from "@/components/ui/container";
+import TrainingBrowser from "@/features/training/components/training-browser";
+import { getPublishedTrainings } from "@/features/training/data/training.data";
+
+export async function TrainingProgramsSection() {
+  const trainings =
+    await getPublishedTrainings();
+
+  return (
+    <section
+      id="training-activities"
+      className="scroll-mt-24 bg-[#F7FAFF] py-10 lg:py-12"
+    >
+      <Container>
+        <TrainingBrowser
+          trainings={trainings}
+        />
+      </Container>
+    </section>
+  );
+}

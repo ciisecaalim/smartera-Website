@@ -1,0 +1,4 @@
+import { Container } from "@/components/ui/container"; import { SectionHeading } from "@/components/ui/section-heading"; import { InteractiveCard } from "@/components/ui/interactive-card";
+const items=[['Practical Skills','Wax la barto oo la adeegsan karo.'],['Career Direction','Jihada xirfadda oo sii caddaata.'],['Mentorship','Hagid iyo taageero xirfadeed.'],['Continuous Growth','Learning iyo development joogto ah.']]; export function OpportunitiesBenefitsSection(){return <section className="bg-[#F6FAFF] py-16 lg:py-20"><Container><SectionHeading eyebrow="What It Enables" title="Fursado kuu horseeda horumar." centered/><div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">{items.map(([t,d],i)=><InteractiveCard key={t}><span className="text-xs font-black text-[#F59223]">0{i+1}</span><h3 className="mt-4 font-black text-[#1B519F]">{t}</h3><p className="mt-2 text-sm leading-7 text-slate-600">{d}</p></InteractiveCard>)}</div></Container></section>}
+
+

@@ -1,0 +1,5 @@
+import { Container } from "@/components/ui/container"; import { SectionHeading } from "@/components/ui/section-heading";
+const items=['Professional communication','Guest experience','Service consistency','Teamwork under pressure','Hygiene & readiness','Problem solving']; export function HospitalitySkillsSection(){return <section className="bg-[#F6FAFF] py-16 lg:py-20"><Container><SectionHeading eyebrow="Industry Skills" title="Xirfadaha ka dambeeya adeeg heer sare ah." description="Hospitality-ga fiican wuxuu u baahan yahay farsamo, dabeecad, nidaam iyo fahamka macaamilka." centered/><div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{items.map((x,idx)=><div key={x} className="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#F59223]/40 hover:shadow-lg"><span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1B519F] text-xs font-black text-white">0{idx+1}</span><p className="font-extrabold text-[#1B519F]">{x}</p></div>)}</div></Container></section>}
+
+
+

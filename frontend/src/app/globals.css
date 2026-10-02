@@ -1,0 +1,1710 @@
+@import "tailwindcss";
+
+/* ==========================================================
+   SMARTERA HUB GLOBAL DESIGN FOUNDATION
+   ========================================================== */
+
+:root {
+  --brand-blue: #1b519f;
+  --brand-blue-hover: #174783;
+  --brand-orange: #f59223;
+  --brand-orange-hover: #d97808;
+  --brand-heading: #10213b;
+  --brand-text: #475569;
+  --brand-light: #f2f6fc;
+  --brand-subtle: #f7fafe;
+  --brand-border: #dce5f0;
+  --smartera-blue: var(--brand-blue);
+  --smartera-blue-dark: var(--brand-blue-hover);
+  --smartera-navy: var(--brand-heading);
+  --smartera-orange: var(--brand-orange);
+  --smartera-light-blue: var(--brand-light);
+  --smartera-background: #ffffff;
+  --smartera-text: var(--brand-text);
+  --smartera-muted: #64748b;
+}
+
+/* System dark uses a softer charcoal so it stays distinct from explicit Dark. */
+html.smartera-system-dark body,
+html.smartera-system-dark header,
+html.smartera-system-dark main,
+html.smartera-system-dark footer,
+html.smartera-system-dark section,
+html.smartera-system-dark article,
+html.smartera-system-dark aside,
+html.smartera-system-dark nav,
+html.smartera-system-dark form,
+html.smartera-system-dark dialog,
+html.smartera-system-dark .home-page-hero {
+  background-color: #171717 !important;
+}
+
+html.smartera-system-dark [class*="bg-white"],
+html.smartera-system-dark [class*="bg-slate"],
+html.smartera-system-dark [class*="bg-blue-50"],
+html.smartera-system-dark [class*="bg-emerald-50"],
+html.smartera-system-dark [class*="bg-violet-50"],
+html.smartera-system-dark [class*="bg-orange-50"],
+html.smartera-system-dark [class*="bg-amber-50"] {
+  background-color: #222222 !important;
+}
+
+html.smartera-system-dark .home-hero-bottom-fade {
+  background-image: linear-gradient(to top, #171717, transparent) !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--smartera-background);
+  color: var(--smartera-text);
+  overflow-x: hidden;
+}
+
+.smartera-dark {
+  --smartera-background: #050505;
+  --smartera-text: #ffffff;
+  color-scheme: dark;
+}
+
+.smartera-dark body,
+.smartera-dark header,
+.smartera-dark main,
+.smartera-dark footer,
+.smartera-dark section,
+.smartera-dark article,
+.smartera-dark aside,
+.smartera-dark nav,
+.smartera-dark form,
+.smartera-dark dialog {
+  background-color: #050505 !important;
+}
+
+.smartera-dark body,
+.smartera-dark
+  body
+  :where(
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span,
+    a,
+    button,
+    label,
+    li,
+    dt,
+    dd,
+    strong,
+    small,
+    time
+  ) {
+  color: #ffffff !important;
+}
+
+.smartera-dark body :where(svg, svg *) {
+  color: #ffffff !important;
+  stroke: currentColor !important;
+}
+
+.smartera-dark [class*="bg-white"],
+.smartera-dark [class*="bg-slate"],
+.smartera-dark [class*="bg-blue-50"],
+.smartera-dark [class*="bg-emerald-50"],
+.smartera-dark [class*="bg-violet-50"],
+.smartera-dark [class*="bg-orange-50"],
+.smartera-dark [class*="bg-amber-50"],
+.smartera-dark [class*="bg-[#E"],
+.smartera-dark [class*="bg-[#EE"],
+.smartera-dark [class*="bg-[#F2"],
+.smartera-dark [class*="bg-[#F3"],
+.smartera-dark [class*="bg-[#F4"],
+.smartera-dark [class*="bg-[#F5"],
+.smartera-dark [class*="bg-[#F6"],
+.smartera-dark [class*="bg-[#F7"],
+.smartera-dark [class*="bg-[#F8"],
+.smartera-dark [class*="bg-[#FB"] {
+  background-color: #0d0d0d !important;
+  color: #ffffff !important;
+}
+
+.smartera-dark input,
+.smartera-dark textarea,
+.smartera-dark select {
+  background-color: #0d0d0d !important;
+  border-color: #3a3a3a !important;
+  color: #ffffff !important;
+}
+
+.smartera-dark input::placeholder,
+.smartera-dark textarea::placeholder {
+  color: #a3a3a3 !important;
+}
+
+.smartera-dark [class*="border-"] {
+  border-color: #333333 !important;
+}
+
+.smartera-dark .theme-toggle {
+  background-color: #0d0d0d !important;
+  border-color: #555555 !important;
+  color: #ffffff !important;
+}
+
+.smartera-dark .opportunity-icon-badge {
+  background-color: #172033 !important;
+  border-color: #050505 !important;
+  color: #ffffff !important;
+  box-shadow:
+    0 0 0 1px #4b5563,
+    0 8px 18px rgba(0, 0, 0, 0.45) !important;
+}
+
+.smartera-dark .opportunity-icon-badge svg,
+.smartera-dark .opportunity-icon-badge svg * {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+.smartera-dark .academics-welcome-badge {
+  background-color: #172033 !important;
+  border: 1px solid #3b4b65;
+  color: #ffffff !important;
+}
+
+.smartera-dark .academics-welcome-dot {
+  background-color: #f59223 !important;
+  box-shadow: 0 0 0 4px rgba(245, 146, 35, 0.14);
+}
+
+.smartera-dark .home-page-hero {
+  background-color: #050505 !important;
+  background-image: none !important;
+}
+
+.smartera-dark .home-page-hero .smartera-hero-blob-one,
+.smartera-dark .home-page-hero .smartera-hero-blob-three {
+  background: rgba(27, 81, 159, 0.14) !important;
+}
+
+.smartera-dark .home-page-hero .smartera-hero-blob-two {
+  background: rgba(245, 146, 35, 0.1) !important;
+}
+
+.smartera-dark .home-hero-eyebrow {
+  background-color: #15100a !important;
+  border-color: rgba(245, 146, 35, 0.55) !important;
+}
+
+.smartera-dark .home-hero-bottom-fade {
+  background-image: linear-gradient(to top, #050505, transparent) !important;
+}
+
+.smartera-dark body .standard-eyebrow-badge {
+  background-color: #172033 !important;
+  border-color: rgba(245, 146, 35, 0.55) !important;
+}
+
+.smartera-dark body .standard-eyebrow-badge .smartera-eyebrow-shimmer {
+  color: #f59223 !important;
+  background: none !important;
+  -webkit-text-fill-color: #f59223 !important;
+}
+
+.smartera-dark .training-intro-panel {
+  background-color: #0d0d0d !important;
+  background-image: none !important;
+}
+
+.smartera-dark .training-image-fade {
+  background-image: linear-gradient(
+    to right,
+    rgba(5, 5, 5, 0.45),
+    transparent 48%
+  ) !important;
+}
+
+.smartera-dark .employer-avatar {
+  background-color: #172033 !important;
+  border: 1px solid #4b5563 !important;
+  color: #ffffff !important;
+}
+
+.smartera-dark a:hover,
+.smartera-dark button:hover {
+  background-color: #171717 !important;
+  color: #ffffff !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(22, 85, 163, 0.16);
+  color: #1b519f;
+}
+
+/* ==========================================================
+   SMARTERA HUB HERO ANIMATIONS
+   ========================================================== */
+
+@keyframes smarteraHeroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes smarteraBlobOne {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    border-radius: 42% 58% 65% 35% / 46% 42% 58% 54%;
+  }
+
+  50% {
+    transform: translate3d(24px, 16px, 0) scale(1.08);
+    border-radius: 62% 38% 42% 58% / 38% 59% 41% 62%;
+  }
+
+  100% {
+    transform: translate3d(-10px, 28px, 0) scale(0.97);
+    border-radius: 48% 52% 35% 65% / 57% 36% 64% 43%;
+  }
+}
+
+@keyframes smarteraBlobTwo {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: translate3d(-30px, 18px, 0) rotate(7deg) scale(1.08);
+  }
+
+  100% {
+    transform: translate3d(12px, -18px, 0) rotate(-4deg) scale(0.97);
+  }
+}
+
+@keyframes smarteraBlobThree {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(20px, -25px, 0) scale(1.1);
+  }
+
+  100% {
+    transform: translate3d(-16px, 10px, 0) scale(0.96);
+  }
+}
+
+@keyframes smarteraFloatingCard {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes smarteraFloatingCardSecondary {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-1deg);
+  }
+
+  50% {
+    transform: translate3d(0, -7px, 0) rotate(1deg);
+  }
+}
+
+@keyframes smarteraOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes smarteraHeroSlide {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  11% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  15% {
+    opacity: 0;
+    transform: translate3d(-52px, 0, 0) scale(1.01);
+  }
+  84% {
+    opacity: 0;
+    transform: translate3d(52px, 0, 0) scale(1.01);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(52px, 0, 0) scale(1.01);
+  }
+}
+
+@keyframes smarteraHeroIndicator {
+  0%,
+  12% {
+    width: 1.25rem;
+    opacity: 1;
+  }
+  14%,
+  100% {
+    width: 0.375rem;
+    opacity: 0.55;
+  }
+}
+
+@keyframes smarteraTrainingImageDrift {
+  0% {
+    transform: scale(1.01) translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: scale(1.045) translate3d(-8px, -4px, 0);
+  }
+
+  100% {
+    transform: scale(1.01) translate3d(0, 0, 0);
+  }
+}
+
+@keyframes smarteraStatPulse {
+  0%,
+  100% {
+    box-shadow: 0 14px 30px rgba(8, 43, 87, 0.16);
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    box-shadow: 0 20px 42px rgba(27, 81, 159, 0.24);
+    transform: translateY(-4px) scale(1.025);
+  }
+}
+
+@keyframes smarteraStatFlip {
+  0%,
+  72%,
+  100% {
+    transform: rotateY(0deg);
+  }
+
+  82% {
+    transform: rotateY(9deg);
+  }
+
+  90% {
+    transform: rotateY(-7deg);
+  }
+}
+
+@keyframes smarteraCardGlow {
+  0% {
+    transform: translateX(-120%) skewX(-16deg);
+  }
+
+  100% {
+    transform: translateX(140%) skewX(-16deg);
+  }
+}
+
+@theme inline {
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-blue-hover: var(--brand-blue-hover);
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-orange-hover: var(--brand-orange-hover);
+  --color-brand-heading: var(--brand-heading);
+  --color-brand-text: var(--brand-text);
+  --color-brand-light: var(--brand-light);
+  --color-brand-subtle: var(--brand-subtle);
+  --color-brand-border: var(--brand-border);
+}
+
+@keyframes partnerCardLogoFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 10px 24px rgba(15, 45, 85, 0.12);
+  }
+  50% {
+    transform: translateY(-4px) scale(1.015);
+    box-shadow: 0 16px 32px rgba(27, 81, 159, 0.2);
+  }
+}
+
+.partner-card-logo {
+  isolation: isolate;
+  animation: partnerCardLogoFloat 3.6s ease-in-out infinite;
+  will-change: transform, box-shadow;
+}
+
+.partner-card-logo::after {
+  position: absolute;
+  z-index: 0;
+  width: 6.5rem;
+  height: 6.5rem;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle,
+    rgba(27, 81, 159, 0.2) 0%,
+    rgba(27, 81, 159, 0.08) 45%,
+    transparent 72%
+  );
+  filter: blur(8px);
+  content: "";
+  pointer-events: none;
+  transition:
+    transform 500ms ease,
+    opacity 500ms ease;
+}
+
+.group:hover .partner-card-logo::after {
+  opacity: 0.95;
+  transform: scale(1.15);
+}
+@keyframes partnersMarqueeFadeOutLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes partnerLogoBorderGlow {
+  0%,
+  100% {
+    border-color: rgba(27, 81, 159, 0.22);
+    box-shadow: 0 4px 16px rgba(15, 45, 85, 0.08);
+  }
+  50% {
+    border-color: rgba(245, 146, 35, 0.7);
+    box-shadow: 0 7px 22px rgba(245, 146, 35, 0.16);
+  }
+}
+
+.partner-logo-card {
+  animation: partnerLogoBorderGlow 3.2s ease-in-out infinite;
+}
+
+@keyframes partnerLogoWalk {
+  0%,
+  100% {
+    transform: translateX(-10px) translateY(0) rotate(-0.7deg);
+  }
+  25% {
+    transform: translateX(-5px) translateY(-6px) rotate(0);
+  }
+  50% {
+    transform: translateX(10px) translateY(0) rotate(0.7deg);
+  }
+  75% {
+    transform: translateX(5px) translateY(-6px) rotate(0);
+  }
+}
+
+.partner-logo-only {
+  animation: partnerLogoWalk 4.2s ease-in-out infinite;
+  filter: drop-shadow(0 7px 10px rgba(15, 45, 85, 0.12));
+  will-change: transform;
+}
+
+.partners-logo-flex .partners-marquee-item:nth-child(even) .partner-logo-only {
+  animation-delay: -1.9s;
+}
+
+.partners-logo-flex .partners-marquee-item:nth-child(3n) .partner-logo-only {
+  animation-delay: -0.95s;
+}
+
+@keyframes smarteraEyebrowShimmer {
+  from {
+    background-position: 150% 50%;
+  }
+  to {
+    background-position: -50% 50%;
+  }
+}
+
+.smartera-eyebrow-shimmer {
+  color: #f59223;
+  background-image: linear-gradient(
+    100deg,
+    #f59223 0%,
+    #f59223 38%,
+    #f59223 48%,
+    #fff1cf 52%,
+    #f59223 56%,
+    #f59223 66%,
+    #f59223 100%
+  );
+  background-size: 250% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: smarteraEyebrowShimmer 3s linear infinite;
+  will-change: background-position;
+}
+
+.partners-marquee {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 4rem,
+    #000 calc(100% - 4rem),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 4rem,
+    #000 calc(100% - 4rem),
+    transparent
+  );
+}
+
+.partners-marquee-track {
+  animation-name: partnersMarqueeFadeOutLeft;
+  animation-duration: 38s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.partners-marquee-row {
+  --partner-gap: clamp(1rem, 3vw, 3rem);
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--partner-gap);
+  padding-right: var(--partner-gap);
+}
+
+.partners-marquee-item {
+  flex: 0 0 auto;
+  width: 130px;
+  height: 96px;
+}
+
+.partners-marquee-item .partner-logo-only {
+  animation: none;
+}
+
+@media (min-width: 640px) {
+  .partners-marquee-item {
+    width: 180px;
+    height: 112px;
+  }
+}
+.animate__fadeOutLeft {
+  animation-name: partnersMarqueeFadeOutLeft;
+}
+
+.partners-marquee:hover .partners-marquee-track {
+  animation-name: partnersMarqueeFadeOutLeft;
+  animation-play-state: paused;
+}
+
+/* Hero reveal */
+
+.smartera-hero-reveal {
+  opacity: 0;
+  animation: smarteraHeroReveal 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.smartera-delay-1 {
+  animation-delay: 80ms;
+}
+
+.smartera-delay-2 {
+  animation-delay: 160ms;
+}
+
+.smartera-delay-3 {
+  animation-delay: 240ms;
+}
+
+.smartera-delay-4 {
+  animation-delay: 320ms;
+}
+
+.smartera-delay-5 {
+  animation-delay: 400ms;
+}
+
+/* Animated blobs */
+
+.smartera-hero-blob {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform, border-radius;
+}
+
+.smartera-hero-blob-one {
+  left: -8rem;
+  top: 4rem;
+  width: 22rem;
+  height: 22rem;
+  background: rgba(22, 85, 163, 0.07);
+  animation: smarteraBlobOne 11s ease-in-out infinite alternate;
+}
+
+.smartera-hero-blob-two {
+  right: -7rem;
+  top: 3rem;
+  width: 24rem;
+  height: 24rem;
+  border-radius: 50%;
+  background: rgba(247, 148, 29, 0.1);
+  animation: smarteraBlobTwo 13s ease-in-out infinite alternate;
+}
+
+.smartera-hero-blob-three {
+  right: 28%;
+  bottom: -11rem;
+  width: 21rem;
+  height: 21rem;
+  border-radius: 50%;
+  background: rgba(22, 85, 163, 0.055);
+  animation: smarteraBlobThree 12s ease-in-out infinite alternate;
+}
+
+/* Floating hero cards */
+
+.smartera-floating-card {
+  animation: smarteraFloatingCard 4.4s ease-in-out infinite;
+}
+
+.smartera-floating-card-secondary {
+  animation: smarteraFloatingCardSecondary 5.2s ease-in-out infinite;
+}
+
+.smartera-orbit {
+  animation: smarteraOrbit 20s linear infinite;
+}
+
+.smartera-hero-slide {
+  animation: smarteraHeroSlide 33.6s ease-in-out infinite;
+}
+
+.smartera-hero-slide-2,
+.smartera-hero-indicator-2 {
+  animation-delay: -4.8s;
+}
+.smartera-hero-slide-3,
+.smartera-hero-indicator-3 {
+  animation-delay: -9.6s;
+}
+.smartera-hero-slide-4,
+.smartera-hero-indicator-4 {
+  animation-delay: -14.4s;
+}
+.smartera-hero-slide-5,
+.smartera-hero-indicator-5 {
+  animation-delay: -19.2s;
+}
+.smartera-hero-slide-6,
+.smartera-hero-indicator-6 {
+  animation-delay: -24s;
+}
+.smartera-hero-slide-7,
+.smartera-hero-indicator-7 {
+  animation-delay: -28.8s;
+}
+
+.smartera-hero-indicator {
+  animation: smarteraHeroIndicator 33.6s ease-in-out infinite;
+}
+
+.training-hero-image {
+  animation: smarteraTrainingImageDrift 9s ease-in-out infinite;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.training-stat-card {
+  animation: smarteraStatPulse 3.8s ease-in-out infinite;
+  perspective: 700px;
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow;
+}
+
+.training-stat-card > * {
+  animation: smarteraStatFlip 5.6s ease-in-out infinite;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.training-stat-card:nth-of-type(2),
+.training-stat-card:nth-of-type(2) > * {
+  animation-delay: 550ms;
+}
+
+.training-stat-card:nth-of-type(3),
+.training-stat-card:nth-of-type(3) > * {
+  animation-delay: 1.1s;
+}
+
+.training-card-media::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(
+    110deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.38) 48%,
+    transparent 72%
+  );
+  opacity: 0;
+  transform: translateX(-120%) skewX(-16deg);
+  transition: opacity 250ms ease;
+}
+
+.training-card:hover .training-card-media::after {
+  opacity: 1;
+  animation: smarteraCardGlow 900ms ease-out;
+}
+
+/* ==========================================================
+   ACCESSIBILITY
+   ========================================================== */
+
+:focus-visible {
+  outline: 2px solid var(--smartera-orange);
+  outline-offset: 3px;
+}
+
+/* The pill navigation uses a restrained blue focus treatment instead of an orange ring. */
+.site-navbar :focus-visible {
+  outline: none;
+  box-shadow: inset 0 -2px 0 var(--smartera-blue);
+}
+
+.course-list-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--smartera-blue) #dce6f3;
+}
+
+.course-list-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.course-list-scroll::-webkit-scrollbar-track {
+  background: #dce6f3;
+  border-radius: 999px;
+}
+
+.course-list-scroll::-webkit-scrollbar-thumb {
+  background: var(--smartera-blue);
+  border-radius: 999px;
+}
+
+/* ==========================================================
+   RESPONSIVE HERO ANIMATIONS
+   ========================================================== */
+
+@media (max-width: 639px) {
+  .smartera-hero-blob-one {
+    width: 15rem;
+    height: 15rem;
+    left: -8rem;
+  }
+
+  .smartera-hero-blob-two {
+    width: 16rem;
+    height: 16rem;
+    right: -9rem;
+  }
+
+  .smartera-hero-blob-three {
+    display: none;
+  }
+}
+
+/* ==========================================================
+   REDUCED MOTION
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .smartera-hero-reveal,
+  .smartera-hero-blob-one,
+  .smartera-hero-blob-two,
+  .smartera-hero-blob-three,
+  .smartera-floating-card,
+  .smartera-floating-card-secondary,
+  .smartera-orbit,
+  .smartera-hero-slide,
+  .smartera-hero-indicator,
+  .training-hero-image,
+  .training-stat-card,
+  .training-stat-card > *,
+  .training-card:hover .training-card-media::after {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .partners-marquee {
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  .smartera-eyebrow-shimmer {
+    animation: none !important;
+    background: none;
+    -webkit-text-fill-color: currentColor;
+  }
+
+  .partner-logo-card,
+  .partner-logo-only,
+  .partner-card-logo {
+    animation: none !important;
+  }
+
+  .partners-marquee-track {
+    display: block;
+    width: auto;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .partners-logo-flex {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .partners-marquee-row:first-child {
+    display: flex;
+    width: max-content;
+    padding: 0;
+  }
+
+  .partners-marquee-row:first-child > * {
+    width: 9.375rem;
+  }
+
+  .partners-marquee-item[aria-hidden="true"],
+  .partners-marquee-row[aria-hidden="true"] {
+    display: none;
+  }
+}
+
+/* Kept last so the global white-foreground rule cannot wash out eyebrow badges. */
+html.smartera-dark body [data-theme-surface="eyebrow"] {
+  background: #172033 !important;
+  border-color: rgba(245, 146, 35, 0.7) !important;
+}
+
+html.smartera-dark
+  body
+  [data-theme-surface="eyebrow"]
+  [data-theme-text="eyebrow"] {
+  color: #f59223 !important;
+  background: none !important;
+  -webkit-text-fill-color: #f59223 !important;
+  opacity: 1 !important;
+}
+
+html.smartera-dark body .about-eyebrow-badge {
+  background: #172033 !important;
+  border-color: rgba(245, 146, 35, 0.7) !important;
+}
+
+html.smartera-dark body .about-eyebrow-badge .about-eyebrow-text {
+  color: #f59223 !important;
+  -webkit-text-fill-color: #f59223 !important;
+}
+
+html.smartera-dark body .about-eyebrow-badge .about-eyebrow-dot {
+  background: #f59223 !important;
+  box-shadow: 0 0 0 4px rgba(245, 146, 35, 0.15);
+}
+
+/* Orange-tinted status chips such as the Jobs demo label. */
+html.smartera-dark body [class*="bg-[#FFF3DF]"] {
+  background: #2a1b0b !important;
+  border-color: rgba(245, 146, 35, 0.65) !important;
+  color: #f8a43e !important;
+  -webkit-text-fill-color: #f8a43e !important;
+}
+
+html.smartera-dark body .academics-testimonial-card {
+  background: #0d0d0d !important;
+  border-color: #3a3a3a !important;
+}
+
+html.smartera-dark
+  body
+  .academics-testimonial-card
+  .academics-testimonial-name {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+html.smartera-dark
+  body
+  .academics-testimonial-card
+  .academics-testimonial-course {
+  color: #d1d5db !important;
+  -webkit-text-fill-color: #d1d5db !important;
+}
+
+html.smartera-dark body .academics-testimonial-card blockquote {
+  color: #cbd5e1 !important;
+  -webkit-text-fill-color: #cbd5e1 !important;
+}
+
+/* Partners call-to-action uses a light gradient in the default theme. */
+html.smartera-dark body [class*="from-[#EEF5FF]"][class*="to-[#F8FBFF]"] {
+  background-color: #0d0d0d !important;
+  background-image: linear-gradient(110deg, #0d0d0d, #111827) !important;
+  border: 1px solid #374151 !important;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35) !important;
+}
+
+html.smartera-dark
+  body
+  [class*="from-[#EEF5FF]"][class*="to-[#F8FBFF]"]
+  > div:not([aria-hidden="true"])
+  > p:first-child {
+  color: #f59223 !important;
+  -webkit-text-fill-color: #f59223 !important;
+}
+
+html.smartera-dark body [class*="from-[#EEF5FF]"][class*="to-[#F8FBFF]"] h2 {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+html.smartera-dark
+  body
+  [class*="from-[#EEF5FF]"][class*="to-[#F8FBFF]"]
+  h2
+  + p {
+  color: #cbd5e1 !important;
+  -webkit-text-fill-color: #cbd5e1 !important;
+}
+
+/* SMARTERA INTERNSHIPS THEME START */
+
+/*
+  IMPORTANT:
+  Light is the default.
+  Dark is controlled ONLY by html.smartera-dark.
+  System is already resolved by the existing ThemeToggle.
+*/
+
+/* ==========================================================
+   LIGHT THEME
+   ========================================================== */
+
+html:not(.smartera-dark) .internships-theme-section {
+  background: #f5f9ff;
+  color: #10213b;
+}
+
+html:not(.smartera-dark) .internships-theme-secondary,
+html:not(.smartera-dark) .internship-success-theme-section {
+  background: #ffffff;
+  color: #10213b;
+}
+
+html:not(.smartera-dark) .internships-theme-panel,
+html:not(.smartera-dark) .smartera-adaptive-card,
+html:not(.smartera-dark) .internship-success-card {
+  background: #ffffff;
+  border-color: #e2e8f0;
+}
+
+html:not(.smartera-dark) .internships-theme-control {
+  background: #ffffff;
+  border-color: #e2e8f0;
+  color: #334155;
+}
+
+/* ==========================================================
+   DARK THEME
+   ========================================================== */
+
+html.smartera-dark .internships-theme-section {
+  background: #020617 !important;
+  color: #e2e8f0;
+}
+
+html.smartera-dark .internships-theme-secondary,
+html.smartera-dark .internship-success-theme-section {
+  background: #020617 !important;
+  color: #e2e8f0;
+}
+
+html.smartera-dark .internships-theme-panel {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+html.smartera-dark .internships-theme-control {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+  color: #e2e8f0 !important;
+}
+
+html.smartera-dark .internships-theme-control::placeholder {
+  color: #94a3b8;
+}
+
+html.smartera-dark .internships-theme-control option {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+/* ==========================================================
+   INTERNSHIP CARDS
+   ========================================================== */
+
+html.smartera-dark .smartera-adaptive-card {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.22);
+}
+
+/* Titles need better contrast in dark mode */
+html.smartera-dark .smartera-adaptive-card h3 {
+  color: #93c5fd;
+}
+
+html.smartera-dark .smartera-adaptive-card p {
+  color: #cbd5e1;
+}
+
+html.smartera-dark .smartera-adaptive-card:hover h3 {
+  color: #ffffff;
+}
+
+html.smartera-dark .smartera-adaptive-card:hover p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ==========================================================
+   SUCCESS STORIES
+   ========================================================== */
+
+html.smartera-dark .internship-success-card {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.22);
+}
+
+html.smartera-dark .internship-success-media {
+  background: #111827 !important;
+  border-color: #334155 !important;
+}
+
+/*
+  IMPORTANT:
+  Media remains separate.
+  The blue hover overlay exists only inside the lower content area.
+*/
+
+html.smartera-dark .internship-success-card h3 {
+  color: #93c5fd;
+}
+
+html.smartera-dark .internship-success-card p {
+  color: #cbd5e1;
+}
+
+html.smartera-dark .internship-success-card:hover h3 {
+  color: #ffffff;
+}
+
+html.smartera-dark .internship-success-card:hover p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ==========================================================
+   HEADINGS / SUPPORTING CONTENT
+   ========================================================== */
+
+html.smartera-dark .internships-theme-section h2,
+html.smartera-dark .internships-theme-secondary h2,
+html.smartera-dark .internship-success-theme-section h2 {
+  color: #bfdbfe !important;
+}
+
+html.smartera-dark .internships-theme-section > div > div p,
+html.smartera-dark .internship-success-theme-section > div > div > p {
+  color: #94a3b8;
+}
+
+/* ==========================================================
+   HOW INTERNSHIPS WORK / WHAT YOU GAIN
+   ========================================================== */
+
+html.smartera-dark .internships-theme-secondary strong {
+  color: #bfdbfe;
+}
+
+html.smartera-dark .internships-theme-secondary [class*="border-slate-200"] {
+  border-color: #334155;
+}
+
+html.smartera-dark .internships-theme-secondary [class*="bg-[#EEF5FF]"] {
+  background: #172554;
+}
+
+html.smartera-dark .internships-theme-secondary [class*="text-[#1B519F]"] {
+  color: #bfdbfe;
+}
+
+/* ==========================================================
+   SYSTEM THEME
+   ========================================================== */
+
+/*
+  No separate CSS is needed for System.
+
+  Existing theme-toggle.tsx already does:
+
+  System + OS Dark
+      -> html.smartera-dark
+
+  System + OS Light
+      -> no smartera-dark
+
+  Therefore these same rules automatically work for System.
+*/
+
+/* SMARTERA INTERNSHIPS THEME END */
+
+/* INTERNSHIP HOVER CONTRAST START */
+
+/*
+  When the blue hover background enters the card,
+  all normal textual information must remain readable.
+*/
+
+.smartera-adaptive-card:hover h3,
+.smartera-adaptive-card:hover p {
+  color: #ffffff !important;
+}
+
+.smartera-adaptive-card:hover
+  article
+  > div:first-child
+  span:not([class*="bg-white"]):not([class*="rounded-full"]) {
+  color: #ffffff;
+}
+
+/* Metadata */
+.smartera-adaptive-card:hover [class*="text-slate-500"],
+.smartera-adaptive-card:hover [class*="text-slate-600"] {
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+
+/* Skill badges */
+.smartera-adaptive-card:hover [class*="bg-[#EEF5FF]"] {
+  background: rgba(255, 255, 255, 0.14) !important;
+  color: #ffffff !important;
+}
+
+/* Demo / Featured labels */
+.smartera-adaptive-card:hover [class*="bg-slate-100"] {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+}
+
+/* Save */
+.smartera-adaptive-card:hover button {
+  color: #ffffff !important;
+}
+
+/* View Details */
+.smartera-adaptive-card:hover
+  a[href*="/opportunities/internships/"]:not([href$="/apply"]) {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.7) !important;
+  color: #ffffff !important;
+}
+
+/* Apply Now */
+.smartera-adaptive-card:hover a[href$="/apply"] {
+  background: #ffffff !important;
+  border-color: #ffffff !important;
+  color: #1b519f !important;
+}
+
+/* Keep the organization initial readable */
+.smartera-adaptive-card:hover article > div:first-child > span:first-child {
+  background: #ffffff !important;
+  color: #1b519f !important;
+}
+
+/* INTERNSHIP HOVER CONTRAST END */
+
+/* INTERNSHIP STORY DETAIL THEME START */
+
+html.smartera-dark .internship-story-detail-page {
+  background: #020617 !important;
+  color: #e2e8f0;
+}
+
+html.smartera-dark .internship-story-detail-page > section {
+  background: #020617;
+  border-color: #334155;
+}
+
+html.smartera-dark .internship-story-detail-card {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+}
+
+html.smartera-dark .internship-story-detail-card h2 {
+  color: #bfdbfe !important;
+}
+
+html.smartera-dark .internship-story-detail-card p,
+html.smartera-dark .internship-story-detail-card dd {
+  color: #cbd5e1;
+}
+
+html.smartera-dark .internship-story-media {
+  background: #111827 !important;
+  border-color: #334155 !important;
+}
+
+html.smartera-dark .internship-story-detail-card [class*="bg-[#F8FBFF]"] {
+  background: #111827;
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+html.smartera-dark .internship-story-detail-card [class*="bg-[#EEF5FF]"] {
+  background: #172554;
+  color: #bfdbfe;
+}
+
+/* INTERNSHIP STORY DETAIL THEME END */
+
+/* JOB ASSISTANCE THEME START */
+
+html:not(.smartera-dark) .jobs-theme-section,
+html:not(.smartera-dark) .jobs-success-theme-section {
+  background: #f5f9ff;
+}
+
+html:not(.smartera-dark) .jobs-theme-panel,
+html:not(.smartera-dark) .jobs-success-card,
+html:not(.smartera-dark) .jobs-theme-control {
+  background: #ffffff;
+}
+
+html.smartera-dark .jobs-theme-section,
+html.smartera-dark .jobs-success-theme-section,
+html.smartera-dark .employment-story-detail-page {
+  background: #020617 !important;
+}
+
+html.smartera-dark .jobs-theme-panel,
+html.smartera-dark .jobs-success-card,
+html.smartera-dark .employment-story-detail-card {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+}
+
+html.smartera-dark .jobs-theme-control {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+  color: #e2e8f0 !important;
+}
+
+html.smartera-dark .jobs-theme-control option {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+html.smartera-dark .jobs-success-media,
+html.smartera-dark .employment-story-media {
+  background: #111827 !important;
+  border-color: #334155 !important;
+}
+
+html.smartera-dark .jobs-theme-section h2,
+html.smartera-dark .jobs-success-theme-section h2,
+html.smartera-dark .employment-story-detail-page h1,
+html.smartera-dark .employment-story-detail-page h2 {
+  color: #bfdbfe !important;
+}
+
+html.smartera-dark .jobs-theme-section p,
+html.smartera-dark .jobs-success-theme-section p,
+html.smartera-dark .employment-story-detail-page p {
+  color: #cbd5e1;
+}
+
+/* JOB ASSISTANCE THEME END */
+
+/* JOB ASSISTANCE HERO START */
+
+/*
+  Branded hero stays dark blue in Light, Dark and System.
+  The rest of the page still follows the selected theme.
+*/
+
+.jobs-hero-section {
+  background: #071d3d !important;
+  color: #ffffff;
+}
+
+.jobs-hero-description {
+  color: rgba(219, 234, 254, 0.82) !important;
+}
+
+.jobs-hero-badge {
+  color: #dbeafe !important;
+}
+
+.jobs-hero-search {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+.jobs-hero-search input {
+  color: #10213b !important;
+}
+
+.jobs-hero-search input::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* JOB ASSISTANCE HERO END */
+
+/* TRAINERS FEATURE THEME START */
+
+.trainers-surface {
+  background: #f8fbff;
+  color: #10213b;
+}
+
+.trainer-card,
+.trainer-filter-panel,
+.trainer-pagination {
+  background: #ffffff;
+}
+
+.trainer-muted {
+  color: #64748b;
+}
+
+.trainer-highlight {
+  background: #f8fafc;
+}
+
+.trainer-input {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.trainer-chip {
+  background: #eef5ff;
+}
+
+html.smartera-dark .trainers-surface {
+  background: #07111f;
+  color: #ffffff;
+}
+
+html.smartera-dark .trainer-card,
+html.smartera-dark .trainer-filter-panel,
+html.smartera-dark .trainer-pagination {
+  background: #0c1a2d;
+  border-color: rgba(148, 163, 184, 0.18);
+}
+
+html.smartera-dark .trainer-muted {
+  color: #a8b7cb !important;
+}
+
+html.smartera-dark .trainer-highlight {
+  background: #101f33;
+}
+
+html.smartera-dark .trainer-input {
+  background: #101f33;
+  border-color: rgba(148, 163, 184, 0.22);
+  color: #ffffff;
+}
+
+html.smartera-dark .trainer-input::placeholder {
+  color: #7890aa;
+}
+
+html.smartera-dark .trainer-chip {
+  background: rgba(27, 81, 159, 0.25);
+}
+
+/* TRAINERS FEATURE THEME END */
+
+/* TRAINING REQUEST TOAST START */
+
+@keyframes trainerToastIn {
+  from {
+    opacity: 0;
+    transform: translate3d(20px, -8px, 0) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes trainerToastProgress {
+  from {
+    transform: scaleX(1);
+  }
+
+  to {
+    transform: scaleX(0);
+  }
+}
+
+/* TRAINING REQUEST TOAST END */
+
+/* ICT PROJECT REQUEST TOAST START */
+
+@keyframes ictRequestToastIn {
+  from {
+    opacity: 0;
+    transform: translate3d(20px, -8px, 0) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes ictRequestToastProgress {
+  from {
+    transform: scaleX(1);
+  }
+
+  to {
+    transform: scaleX(0);
+  }
+}
+
+/* ICT PROJECT REQUEST TOAST END */
+
+/* BLOG FEEDBACK TOAST START */
+
+@keyframes blogFeedbackToastIn {
+  from {
+    opacity: 0;
+    transform: translate3d(20px, -8px, 0) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes blogFeedbackToastProgress {
+  from {
+    transform: scaleX(1);
+  }
+
+  to {
+    transform: scaleX(0);
+  }
+}
+
+/* BLOG FEEDBACK TOAST END */
+
+/* PARTNERSHIP REQUEST TOAST START */
+
+@keyframes partnershipToastIn {
+  from {
+    opacity: 0;
+    transform: translate3d(20px, -8px, 0) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes partnershipToastProgress {
+  from {
+    transform: scaleX(1);
+  }
+
+  to {
+    transform: scaleX(0);
+  }
+}
+
+/* PARTNERSHIP REQUEST TOAST END */
+
+.field-label {
+  margin-bottom: 0.375rem;
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #475569;
+}
+
+.field-input {
+  height: 2.75rem;
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid #e2e8f0;
+  background: #f8fbff;
+  padding: 0 0.75rem;
+  font-size: 0.875rem;
+  color: #1b519f;
+  outline: none;
+}
+
+.field-input:focus {
+  border-color: #1b519f;
+  background: white;
+  box-shadow: 0 0 0 4px rgb(27 81 159 / 10%);
+}
+
+/* ICT technology tabs */
+@keyframes ictTechnologyPanelIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ictTechnologyCardIn {
+  from { opacity: 0; transform: translateY(16px) scale(.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.ict-technology-panel {
+  animation: ictTechnologyPanelIn 320ms ease-out both;
+}
+
+.ict-technology-card {
+  opacity: 0;
+  animation: ictTechnologyCardIn 420ms ease-out forwards;
+  transition: transform 240ms ease, background-color 240ms ease, box-shadow 240ms ease;
+}
+
+.ict-technology-card:hover {
+  background: #f2f6fc;
+  box-shadow: 0 12px 26px rgba(27, 81, 159, .13);
+  transform: translateY(-6px);
+}
+
+.ict-technology-icon {
+  transition: transform 260ms ease, box-shadow 260ms ease;
+}
+
+.ict-technology-card:hover .ict-technology-icon {
+  box-shadow: 0 8px 18px rgba(27, 81, 159, .24);
+  transform: rotate(-4deg) scale(1.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ict-technology-panel,
+  .ict-technology-card {
+    animation: none;
+    opacity: 1;
+  }
+
+  .ict-technology-card,
+  .ict-technology-icon {
+    transition: none;
+  }
+}
+
+
+.ict-technology-tab:focus-visible {
+  outline: none;
+  box-shadow: 0 4px 10px rgba(27, 81, 159, .18);
+}
+
+@keyframes heartBeat {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.16); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.16); }
+  70%, 100% { transform: scale(1); }
+}
+
+.animate__animated.animate__heartBeat {
+  animation-name: heartBeat;
+  animation-duration: 1.3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate__animated.animate__heartBeat {
+    animation: none;
+  }
+}
+
+
+/* Animista-inspired flicker-5 attention animation. */
+@keyframes flicker-5 {
+  0%, 8%, 10%, 12%, 20%, 25%, 30%, 100% { opacity: 1; }
+  9%, 11%, 21%, 24%, 29% { opacity: 0; }
+}
+
+.flicker-5 {
+  animation: flicker-5 8s linear infinite both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flicker-5 {
+    animation: none;
+  }
+}
