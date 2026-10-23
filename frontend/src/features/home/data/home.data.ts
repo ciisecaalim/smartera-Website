@@ -6,7 +6,7 @@ export const homeHero = {
   description:
     "Smartera Hub waxay isku xirtaa practical learning, career development iyo fursado kaa caawinaya inaad dhisto mustaqbal xirfadeed oo xooggan.",
 
-  image: "/images/home/hero.jpg",
+  image: "/images/home/men-learning-v3.png",
 
   primaryAction: {
     label: "Explore Opportunities",
@@ -39,18 +39,18 @@ export const homeHero = {
 
 /** Curated visual stories used by the homepage hero slideshow. */
 export const homeHeroSlides = [
-  { src: "/images/home/hero.jpg", alt: "Dhalinyaro wada baranaya oo laptop ku shaqeynaya", label: "Learning together" },
-  { src: "/images/home/training.jpg", alt: "Tababar practical ah oo ka socda Smartera Hub", label: "Practical training" },
-  { src: "/images/home/employment.jpg", alt: "Xirfadlayaal ku jira jawi shaqo", label: "Career opportunities" },
-  { src: "/images/home/academy.jpg", alt: "Arday ku jira jawi waxbarasho", label: "Academy learning" },
-  { src: "/images/home/internships.jpg", alt: "Dhalinyaro internship ku jirta oo wada shaqeynaya", label: "Internship experience" },
+  { src: "/images/home/men-learning-v3.png", alt: "Dhalinyaro wada baranaya oo laptop ku shaqeynaya", label: "Learning together" },
+  { src: "/images/home/men-learning-v3.png", alt: "Tababar practical ah oo ka socda Smartera Hub", label: "Practical training" },
+  { src: "/images/home/men-ict-v3.png", alt: "Xirfadlayaal ku jira jawi shaqo", label: "Career opportunities" },
+  { src: "/images/home/men-learning-v3.png", alt: "Arday ku jira jawi waxbarasho", label: "Academy learning" },
+  { src: "/images/home/men-learning-v3.png", alt: "Dhalinyaro internship ku jirta oo wada shaqeynaya", label: "Internship experience" },
 ] as const;
 
 /** Headline outcomes displayed on the homepage hero. */
 export const homeImpactStats = [
   { value: "350+", label: "Internships" },
   { value: "35+", label: "Employer Partners" },
-  { value: "92%", label: "Placement Rate" },
+  { value: "1000+", label: "Consulting" },
   { value: "1+", label: "Years of Impact" },
 ] as const;
 

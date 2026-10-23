@@ -3,7 +3,7 @@ import { Container } from "@/components/ui/container";
 
 export const partnerGalleryImages = [
   { src: "/images/partners/partners-hero.png", alt: "Professionals beginning a collaborative partnership" },
-  { src: "/images/contact/contact-team.jpg", alt: "A team discussing plans around a shared table" },
+  { src: "/images/home/men-learning-v3.png", alt: "A team discussing plans around a shared table" },
   { src: "/images/home/impact-building.jpg", alt: "Professionals building practical solutions together" },
   { src: "/images/home/ict-team.jpg", alt: "A technology team collaborating in the workplace" },
 ] as const;

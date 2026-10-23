@@ -12,7 +12,14 @@ export function BrandLogo() {
       </Lspan>
       <Lspan className="hidden min-w-0 sm:block">
         <Lspan className="block truncate text-[18px] font-black tracking-tight"><Lspan className="text-brand-blue">SMARTERA</Lspan><Lspan className="text-[#FF9418]"> HUB</Lspan></Lspan>
-        <Lspan className="block truncate text-[10px] font-semibold text-slate-500">{siteConfig.tagline}</Lspan>
+        <Lspan className="block truncate text-[10px] font-semibold text-slate-500">
+          {siteConfig.tagline.split(" • ").map((word, index) => (
+            <Lspan key={word}>
+              {index > 0 && " • "}
+              <Lspan className={word === "Career" ? "text-[#FF9418]" : word === "Impact" ? "text-brand-blue" : undefined}>{word}</Lspan>
+            </Lspan>
+          ))}
+        </Lspan>
       </Lspan>
     </Link>
   );

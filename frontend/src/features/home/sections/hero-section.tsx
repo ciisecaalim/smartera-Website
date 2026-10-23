@@ -73,7 +73,7 @@ export async function HeroSection() {
             <Ldiv className="smartera-hero-reveal smartera-delay-4 mt-5 flex flex-col gap-3 sm:mt-6 sm:flex-row sm:flex-wrap">
               <Link
                 href={homeHero.primaryAction.href}
-                className="group inline-flex min-h-11 items-center justify-center rounded-xl bg-[#1B519F] px-5 py-3 text-sm font-extrabold text-white shadow-[0_10px_25px_rgba(22,85,163,0.20)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:bg-[#174783] hover:shadow-[0_16px_32px_rgba(22,85,163,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F59223] focus-visible:ring-offset-2 motion-reduce:transform-none sm:px-6"
+                className="group inline-flex min-h-11 items-center justify-center rounded-xl bg-[#1B519F] px-5 py-3 text-sm font-extrabold text-white shadow-[0_10px_25px_rgba(22,85,163,0.20)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:bg-[#1B519F] hover:shadow-[0_16px_32px_rgba(22,85,163,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F59223] focus-visible:ring-offset-2 motion-reduce:transform-none sm:px-6"
               >
                 {homeHero.primaryAction.label}
 
@@ -159,7 +159,7 @@ export async function HeroSection() {
             </Ldiv>
 
             {/* Floating card */}
-            <Ldiv className="smartera-floating-card absolute -bottom-10 right-3 z-20 hidden w-[330px] rounded-[22px] border border-white/15 bg-[linear-gradient(135deg,#1B519F_0%,#174783_100%)] px-6 py-5 text-white shadow-[0_20px_50px_rgba(27,81,159,0.28)] sm:block lg:right-5">
+            <Ldiv className="smartera-floating-card absolute -bottom-10 right-3 z-20 hidden w-[330px] rounded-[22px] border border-white/15 bg-[#1B519F] px-6 py-5 text-white shadow-[0_20px_50px_rgba(27,81,159,0.28)] sm:block lg:right-5">
               <Lp className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-[#F59223]">
                 Our Impact
               </Lp>

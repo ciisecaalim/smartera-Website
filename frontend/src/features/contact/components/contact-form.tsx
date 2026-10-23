@@ -239,10 +239,6 @@ export function ContactForm() {
               Partnership
             </Loption>
 
-            <Loption value="ict">
-              ICT Solutions
-            </Loption>
-
             <Loption value="other">
               Other
             </Loption>
