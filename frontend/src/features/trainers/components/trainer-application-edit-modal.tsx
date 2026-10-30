@@ -42,9 +42,6 @@ type EditForm = {
   highestEducationLevel: string;
   fieldOfStudy: string;
 
-  linkedinUrl: string;
-  portfolioUrl: string;
-
   expertiseAreas: string;
 
   hasTrainingExperience: boolean;
@@ -71,6 +68,7 @@ type EditForm = {
 type ApiApplication = {
   applicationNumber: string;
   status: string;
+  deletionRequestedAt?: string | null;
 
   fullName?: string;
   email?: string;
@@ -82,9 +80,6 @@ type ApiApplication = {
   yearsExperience?: string | number;
   highestEducationLevel?: string;
   fieldOfStudy?: string | null;
-
-  linkedinUrl?: string | null;
-  portfolioUrl?: string | null;
 
   expertiseAreas?: string[];
 
@@ -143,19 +138,20 @@ type Props = {
 
   applicationNumber: string;
   editToken: string;
+  deletionRequested?: boolean;
 
   onClose: () => void;
   onUpdated: () => void;
 };
 
 const INPUT =
-  "mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 outline-none transition focus:border-[#1B519F] focus:ring-2 focus:ring-[#1B519F]/15";
+  "mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 outline-none transition focus:border-[#1B519F] focus:ring-2 focus:ring-[#1B519F]/15 invalid:border-red-500 invalid:ring-2 invalid:ring-red-100";
 
 const READONLY_INPUT =
   "mt-2 min-h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm font-semibold text-slate-600 outline-none";
 
 const TEXTAREA =
-  "mt-2 min-h-28 w-full resize-y rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm text-slate-900 outline-none transition focus:border-[#1B519F] focus:ring-2 focus:ring-[#1B519F]/15";
+  "mt-2 min-h-28 w-full resize-y rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm text-slate-900 outline-none transition focus:border-[#1B519F] focus:ring-2 focus:ring-[#1B519F]/15 invalid:border-red-500 invalid:ring-2 invalid:ring-red-100";
 
 function dateOnly(
   value?: string | null,
@@ -213,12 +209,6 @@ function toEditForm(
 
     fieldOfStudy:
       data.fieldOfStudy ?? "",
-
-    linkedinUrl:
-      data.linkedinUrl ?? "",
-
-    portfolioUrl:
-      data.portfolioUrl ?? "",
 
     expertiseAreas:
       (data.expertiseAreas ?? [])
@@ -352,6 +342,7 @@ export function TrainerApplicationEditModal({
   open,
   applicationNumber,
   editToken,
+  deletionRequested = false,
   onClose,
   onUpdated,
 }: Props) {
@@ -552,6 +543,14 @@ export function TrainerApplicationEditModal({
       return;
     }
 
+    if (deletionRequested) {
+      setError(
+        "Your deletion request is waiting for administrator approval, so you can no longer change this application.",
+      );
+
+      return;
+    }
+
     setError("");
 
     if (
@@ -619,18 +618,6 @@ export function TrainerApplicationEditModal({
       payload,
       "fieldOfStudy",
       form.fieldOfStudy,
-    );
-
-    optionalAppend(
-      payload,
-      "linkedinUrl",
-      form.linkedinUrl,
-    );
-
-    optionalAppend(
-      payload,
-      "portfolioUrl",
-      form.portfolioUrl,
     );
 
     payload.append(
@@ -878,6 +865,12 @@ export function TrainerApplicationEditModal({
               </div>
             ) : null}
 
+            {deletionRequested ? (
+              <div className="mb-6 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm font-semibold leading-6 text-amber-900">
+                Your deletion request is waiting for administrator approval. This application is locked while the request is reviewed.
+              </div>
+            ) : null}
+
             <section>
               <div className="mb-5">
                 <p className="text-xs font-black uppercase tracking-wider text-[#1B519F]">
@@ -894,6 +887,7 @@ export function TrainerApplicationEditModal({
                   Full Name *
                   <input
                     required
+                    disabled={deletionRequested}
                     value={form.fullName}
                     onChange={(event) =>
                       updateField(
@@ -909,6 +903,7 @@ export function TrainerApplicationEditModal({
                   Email Address *
                   <input
                     required
+                    disabled={deletionRequested}
                     type="email"
                     value={form.email}
                     onChange={(event) =>
@@ -925,6 +920,7 @@ export function TrainerApplicationEditModal({
                   Phone Number *
                   <input
                     required
+                    disabled={deletionRequested}
                     value={form.phone}
                     onChange={(event) =>
                       updateField(
@@ -940,6 +936,7 @@ export function TrainerApplicationEditModal({
                   Current Job Title *
                   <input
                     required
+                    disabled={deletionRequested}
                     value={
                       form.currentJobTitle
                     }
@@ -973,6 +970,7 @@ export function TrainerApplicationEditModal({
                   Years of Experience *
                   <input
                     required
+                    disabled={deletionRequested}
                     type="number"
                     min="0"
                     value={
@@ -1031,44 +1029,11 @@ export function TrainerApplicationEditModal({
                   />
                 </label>
 
-                <label className="text-sm font-bold text-slate-700">
-                  LinkedIn URL
-                  <input
-                    type="url"
-                    value={
-                      form.linkedinUrl
-                    }
-                    onChange={(event) =>
-                      updateField(
-                        "linkedinUrl",
-                        event.target.value,
-                      )
-                    }
-                    className={INPUT}
-                  />
-                </label>
-
-                <label className="text-sm font-bold text-slate-700">
-                  Portfolio URL
-                  <input
-                    type="url"
-                    value={
-                      form.portfolioUrl
-                    }
-                    onChange={(event) =>
-                      updateField(
-                        "portfolioUrl",
-                        event.target.value,
-                      )
-                    }
-                    className={INPUT}
-                  />
-                </label>
-
                 <label className="text-sm font-bold text-slate-700 md:col-span-2">
                   Expertise Areas *
                   <textarea
                     required
+                    disabled={deletionRequested}
                     value={
                       form.expertiseAreas
                     }
@@ -1273,6 +1238,7 @@ export function TrainerApplicationEditModal({
                   Short Bio *
                   <textarea
                     required
+                    disabled={deletionRequested}
                     minLength={30}
                     maxLength={300}
                     value={form.shortBio}
@@ -1300,6 +1266,7 @@ export function TrainerApplicationEditModal({
                   Motivation *
                   <textarea
                     required
+                    disabled={deletionRequested}
                     value={
                       form.motivation
                     }
@@ -1561,10 +1528,12 @@ export function TrainerApplicationEditModal({
 
               <button
                 type="submit"
-                disabled={saving}
+                disabled={saving || deletionRequested}
                 className="min-h-11 rounded-xl bg-[#1B519F] px-7 py-3 text-sm font-black text-white transition hover:bg-[#143f7d] disabled:cursor-not-allowed disabled:opacity-60"
               >
-                {saving
+                {deletionRequested
+                  ? "Changes Locked"
+                  : saving
                   ? "Saving Changes..."
                   : "Save Changes"}
               </button>

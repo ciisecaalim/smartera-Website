@@ -481,24 +481,6 @@ export async function HomeTrainersSection() {
               Apply as a Trainer 
             </Link>
 
-            <Link
-              href="/trainers/manage"
-              className="
-                inline-flex h-11
-                items-center justify-center
-                rounded-xl
-                border border-white/30
-                bg-white/10
-                px-5
-                text-xs font-black
-                text-white
-                transition
-                hover:bg-white
-                hover:text-[#071D3D]
-              "
-            >
-              Manage My Profile
-            </Link>
           </Ldiv>
         </Ldiv>
       </Ldiv>

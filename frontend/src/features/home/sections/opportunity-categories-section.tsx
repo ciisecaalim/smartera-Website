@@ -22,11 +22,11 @@ const cardTypes = [
 ] as const;
 
 const cardActions = [
-  "View SWE Program",
-  "View Trainer",
+  "Read SWE Program",
+  "Read Trainer",
   "Read Blog",
-  "View Internship",
-  "View Job",
+  "Read Internship",
+  "Read Job",
 ] as const;
 
 export async function OpportunityCategoriesSection() {
