@@ -43,6 +43,7 @@ export function FinalCtaSection() {
               src="/images/home/job-3.jpg"
               alt="Young professionals collaborating in a modern workplace"
               fill
+              quality={90}
               sizes="(max-width:1024px) 100vw, 44vw"
               className="object-cover object-center transition-transform duration-[900ms] ease-out group-hover:scale-[1.045] motion-reduce:transform-none"
             />

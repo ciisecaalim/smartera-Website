@@ -20,8 +20,8 @@ const API =
 const TRAINER_APPLICATION_ACCESS_KEY =
   "smartera.trainerApplicationAccess.v1";
 
-const CV_MAX_BYTES = 700 * 1024;
-const CERT_MAX_BYTES = 5 * 1024 * 1024;
+const CV_MAX_BYTES = 3 * 1024 * 1024;
+const CERT_MAX_BYTES = 3 * 1024 * 1024;
 
 const DAYS = [
   ["SUNDAY", "Sunday"],
@@ -48,6 +48,7 @@ type SuccessData = {
   applicationNumber: string;
   submittedAt: string;
   editToken: string;
+  deletionRequestedAt?: string | null;
 };
 
 type ApiError = {
@@ -296,6 +297,29 @@ export function TrainerApplicationForm() {
   ] = useState("");
 
   const [
+    deleteConfirmOpen,
+    setDeleteConfirmOpen,
+  ] = useState(false);
+
+  const [
+    deletionSubmitting,
+    setDeletionSubmitting,
+  ] = useState(false);
+
+  const [
+    deletionRequestSent,
+    setDeletionRequestSent,
+  ] = useState(false);
+
+  const [
+    deletionNotice,
+    setDeletionNotice,
+  ] = useState<{
+    message: string;
+    variant: "success" | "error";
+  } | null>(null);
+
+  const [
     previewOpen,
     setPreviewOpen,
   ] = useState(false);
@@ -406,6 +430,7 @@ export function TrainerApplicationForm() {
 
                 data?: {
                   submittedAt?: string;
+                  deletionRequestedAt?: string | null;
                 };
               };
 
@@ -424,6 +449,11 @@ export function TrainerApplicationForm() {
                           result.data
                             ?.submittedAt ??
                           current.submittedAt,
+
+                        deletionRequestedAt:
+                          result.data
+                            ?.deletionRequestedAt ??
+                          null,
                       }
                     : current,
               );
@@ -527,7 +557,7 @@ export function TrainerApplicationForm() {
 
     if (cv.size > CV_MAX_BYTES) {
       setError(
-        "CV / Resume must not exceed 700 KB.",
+        "CV / Resume must not exceed 3 MB.",
       );
       return;
     }
@@ -608,7 +638,7 @@ export function TrainerApplicationForm() {
         CERT_MAX_BYTES
       ) {
         setError(
-          "Each certification PDF must not exceed 5 MB.",
+          "Each certification PDF must not exceed 3 MB.",
         );
         return;
       }
@@ -716,18 +746,6 @@ export function TrainerApplicationForm() {
       payload,
       "fieldOfStudy",
       text(raw, "fieldOfStudy"),
-    );
-
-    appendOptional(
-      payload,
-      "linkedinUrl",
-      text(raw, "linkedinUrl"),
-    );
-
-    appendOptional(
-      payload,
-      "portfolioUrl",
-      text(raw, "portfolioUrl"),
     );
 
     payload.append(
@@ -1285,15 +1303,6 @@ export function TrainerApplicationForm() {
         <div class="value">${get("expertiseAreas")}</div>
       </div>
 
-      <div class="field">
-        <div class="label">LinkedIn</div>
-        <div class="value">${get("linkedinUrl")}</div>
-      </div>
-
-      <div class="field">
-        <div class="label">Portfolio</div>
-        <div class="value">${get("portfolioUrl")}</div>
-      </div>
     </div>
   </section>
 
@@ -1486,6 +1495,94 @@ export function TrainerApplicationForm() {
       },
     );
   }
+
+  async function requestDeletion() {
+    if (!success) {
+      return;
+    }
+
+    setDeletionSubmitting(true);
+    setDeleteConfirmOpen(false);
+    setDeletionNotice(null);
+
+    try {
+      const response = await fetch(
+        `${API}/web/trainers/applications/${encodeURIComponent(
+          success.applicationNumber,
+        )}/delete-request`,
+        {
+          method: "POST",
+          headers: {
+            "x-trainer-edit-token": success.editToken,
+          },
+        },
+      );
+
+      const result = (await response.json()) as ApiError & {
+        data?: {
+          deletionRequestedAt?: string;
+        };
+      };
+
+      if (!response.ok) {
+        if (
+          response.status === 401 ||
+          response.status === 404
+        ) {
+          const message =
+            "We could not find this application from this browser. It may already have been removed. You can submit a new application below.";
+
+          window.localStorage.removeItem(
+            TRAINER_APPLICATION_ACCESS_KEY,
+          );
+          setSuccess(null);
+          setError(message);
+
+          return;
+        }
+
+        throw new Error(
+          "We could not send your request right now. Please try again in a moment.",
+        );
+      }
+
+      setDeletionNotice(
+        {
+          message:
+            "We received your deletion request. Your application is now locked while our team reviews it. We will email you once the decision is complete.",
+          variant: "success",
+        },
+      );
+      setDeletionRequestSent(true);
+      setEditModalOpen(false);
+      setSuccess((current) =>
+        current
+          ? {
+              ...current,
+              deletionRequestedAt:
+                result.data
+                  ?.deletionRequestedAt ??
+                new Date().toISOString(),
+            }
+          : current,
+      );
+    }
+    catch (requestError) {
+      setDeletionNotice(
+        {
+          message:
+            requestError instanceof Error
+              ? requestError.message
+              : "Unable to send your deletion request.",
+          variant: "error",
+        },
+      );
+    }
+    finally {
+      setDeletionSubmitting(false);
+    }
+  }
+
   if (success) {
     const editModal = (
       <TrainerApplicationEditModal
@@ -1495,6 +1592,12 @@ export function TrainerApplicationForm() {
         }
         editToken={
           success.editToken
+        }
+        deletionRequested={
+          Boolean(
+            success.deletionRequestedAt ||
+            deletionRequestSent,
+          )
         }
         onClose={() =>
           setEditModalOpen(false)
@@ -1593,6 +1696,11 @@ export function TrainerApplicationForm() {
 
     return (
       <>
+        <PublicSubmissionToast
+          message={deletionNotice?.message ?? ""}
+          variant={deletionNotice?.variant ?? "success"}
+          onDismiss={() => setDeletionNotice(null)}
+        />
         <div className="rounded-3xl border border-blue-100 bg-white p-6 shadow-sm sm:p-8">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div className="min-w-0">
@@ -1615,7 +1723,9 @@ export function TrainerApplicationForm() {
               </h2>
 
               <p className="mt-2 max-w-xl text-sm font-medium leading-6 text-slate-600">
-                You already submitted a trainer application from this browser. If you notice a mistake, you can edit your application while it is still pending.
+                {success.deletionRequestedAt || deletionRequestSent
+                  ? "Your deletion request is waiting for review. This application cannot be changed while our team processes it. We will email you after a decision is made."
+                  : "You already submitted a trainer application from this browser. If you notice a mistake, you can edit your application while it is still pending."}
               </p>
 
               {manageNotice ? (
@@ -1626,18 +1736,23 @@ export function TrainerApplicationForm() {
             </div>
 
             <div className="flex shrink-0 flex-col gap-3 sm:min-w-56">
-              <button
-                type="button"
-                onClick={() =>
-                  setEditModalOpen(
-                    true,
-                  )
-                }
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#1B519F] px-5 py-3 text-sm font-black text-white transition hover:bg-[#143f7d]"
-              >
-
-                Edit Your Application
-              </button>
+              {success.deletionRequestedAt || deletionRequestSent ? (
+                <div className="inline-flex min-h-12 items-center justify-center rounded-xl bg-amber-50 px-5 py-3 text-center text-sm font-black text-amber-800">
+                  Deletion Request Pending
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() =>
+                    setEditModalOpen(
+                      true,
+                    )
+                  }
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#1B519F] px-5 py-3 text-sm font-black text-white transition hover:bg-[#143f7d]"
+                >
+                  Edit Your Application
+                </button>
+              )}
 
               <Link
                 href="/trainers"
@@ -1645,6 +1760,16 @@ export function TrainerApplicationForm() {
               >
                 Back to Trainers
               </Link>
+
+              {!success.deletionRequestedAt && !deletionRequestSent && !deletionSubmitting ? (
+                <button
+                  type="button"
+                  onClick={() => setDeleteConfirmOpen(true)}
+                  className="inline-flex min-h-11 items-center justify-center rounded-xl border border-red-200 px-5 py-3 text-sm font-black text-red-700 transition hover:bg-red-50"
+                >
+                  Request Deletion
+                </button>
+              ) : null}
             </div>
           </div>
 
@@ -1659,6 +1784,38 @@ export function TrainerApplicationForm() {
         </div>
 
         {editModal}
+
+        {deleteConfirmOpen ? (
+          <div
+            className="fixed inset-0 z-[120] flex items-center justify-center bg-slate-950/60 p-4"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="delete-application-title"
+          >
+            <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
+              <p className="text-xs font-black uppercase tracking-[0.16em] text-red-600">
+                Remove application
+              </p>
+              <h2 id="delete-application-title" className="mt-2 text-xl font-black text-slate-950">
+                Remove your application?
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-slate-600">
+                Our team will check your request before anything is removed. Your application will stay safe until then, and we will email you when it is complete.
+              </p>
+              <div className="mt-4 rounded-xl bg-slate-50 p-3 text-sm">
+                <p><span className="font-bold">Your application number:</span> {success.applicationNumber}</p>
+              </div>
+              <div className="mt-5 flex justify-end gap-3">
+                <button type="button" disabled={deletionSubmitting} onClick={() => setDeleteConfirmOpen(false)} className="rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-bold text-slate-700 disabled:opacity-50">
+                  Cancel
+                </button>
+                <button type="button" disabled={deletionSubmitting} onClick={() => void requestDeletion()} className="rounded-lg bg-red-600 px-4 py-2.5 text-sm font-bold text-white hover:bg-red-700 disabled:opacity-50">
+                  {deletionSubmitting ? "Sending..." : "Ask Us to Remove It"}
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : null}
       </>
     );
   }
@@ -1667,7 +1824,7 @@ export function TrainerApplicationForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="space-y-8"
+      className="trainer-application-form space-y-8"
     >
       <PublicSubmissionToast
         message={error}
@@ -1762,7 +1919,7 @@ export function TrainerApplicationForm() {
               type="tel"
               required
               className={inputClass}
-              placeholder="0612345678"
+              placeholder="+252 61 234 5678"
             />
           </Field>
 
@@ -1839,23 +1996,6 @@ export function TrainerApplicationForm() {
             />
           </Field>
 
-          <Field label="LinkedIn URL">
-            <input
-              name="linkedinUrl"
-              type="url"
-              className={inputClass}
-              placeholder="https://linkedin.com/in/..."
-            />
-          </Field>
-
-          <Field label="Portfolio URL">
-            <input
-              name="portfolioUrl"
-              type="url"
-              className={inputClass}
-              placeholder="https://..."
-            />
-          </Field>
         </div>
 
         <div className="mt-5">
@@ -2078,7 +2218,7 @@ export function TrainerApplicationForm() {
         <Field
           label="CV / Resume"
           required
-          hint="PDF, DOC, or DOCX. Maximum size: 700 KB."
+          hint="PDF, DOC, or DOCX. Maximum size: 3 MB."
         >
           <input
             name="cv"
@@ -2265,7 +2405,7 @@ export function TrainerApplicationForm() {
                       <Field
                         label="Certification PDF"
                         required
-                        hint="PDF only. Maximum 5 MB."
+                        hint="PDF only. Maximum 3 MB per file."
                       >
                         <input
                           type="file"
@@ -2575,21 +2715,6 @@ export function TrainerApplicationForm() {
                         )}
                       />
 
-                      <TrainerPreviewField
-                        label="LinkedIn URL"
-                        value={trainerPreviewValue(
-                          previewData,
-                          "linkedinUrl",
-                        )}
-                      />
-
-                      <TrainerPreviewField
-                        label="Portfolio URL"
-                        value={trainerPreviewValue(
-                          previewData,
-                          "portfolioUrl",
-                        )}
-                      />
                     </div>
                   </section>
 
@@ -2958,7 +3083,7 @@ const textareaClass =
   "w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-[#1B519F] focus:ring-2 focus:ring-blue-100";
 
 const fileClass =
-  "block w-full rounded-xl border border-dashed border-slate-300 bg-slate-50 px-4 py-4 text-sm text-slate-600 file:mr-4 file:rounded-lg file:border-0 file:bg-[#1B519F] file:px-4 file:py-2 file:text-sm file:font-bold file:text-white";
+  "block w-full rounded-xl border border-dashed border-slate-300 bg-slate-50 px-4 py-4 text-sm text-slate-600 outline-none transition focus:border-[#1B519F] focus:ring-2 focus:ring-blue-100 file:mr-4 file:rounded-lg file:border-0 file:bg-[#1B519F] file:px-4 file:py-2 file:text-sm file:font-bold file:text-white";
 
 const choiceClass =
   "flex cursor-pointer items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700";

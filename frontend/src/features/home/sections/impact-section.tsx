@@ -61,6 +61,7 @@ export async function ImpactSection() {
                 src={homeImpact.image}
                 alt="Modern professional building representing future growth"
                 fill
+                quality={90}
                 sizes="(max-width:1024px) 100vw, 42vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-[1.06] motion-reduce:transform-none"
               />

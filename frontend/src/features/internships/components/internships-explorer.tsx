@@ -84,7 +84,7 @@ function BriefcaseIcon() {
 
 export function InternshipsExplorer({
   internships,
-  heroImage = "/images/internships/internships.jpg",
+  heroImage = "/images/home/men-learning-v3.png",
   heroAlt = "Young professionals collaborating during an internship",
 }: {
   internships: Internship[];

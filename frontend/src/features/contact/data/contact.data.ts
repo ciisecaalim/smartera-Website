@@ -40,7 +40,7 @@ export const contactMain = {
   description:
     "Si kooban noogu sheeg waxa aad u baahan tahay. Foomku wuxuu kaa caawinayaa inaad fariinta u dirto qaab cad oo nidaamsan.",
 
-  image: "/images/contact/contact-team.jpg",
+  image: "/images/home/men-learning-v3.png",
 
   imageAlt:
     "Koox xirfadlayaal ah oo wada shaqeynaya",

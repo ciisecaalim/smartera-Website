@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 
-const ADMIN_NUMBER = "252619810803";
+const ADMIN_NUMBER = "252615813772";
 type FormValues = { fullName: string; phone: string; message: string };
 type FormErrors = Partial<Record<keyof FormValues, string>>;
 
@@ -17,6 +17,7 @@ export function WhatsAppFloatingChat() {
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const nameInput = useRef<HTMLInputElement>(null);
+  const dialogRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (!open) return;
@@ -24,8 +25,20 @@ export function WhatsAppFloatingChat() {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") close();
     };
+    const onPointerDown = (event: PointerEvent) => {
+      if (
+        event.target instanceof Node &&
+        !dialogRef.current?.contains(event.target)
+      ) {
+        close();
+      }
+    };
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
   }, [open]);
 
   function close() {
@@ -56,16 +69,26 @@ export function WhatsAppFloatingChat() {
   }
 
   const input =
-    "mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#1B519F] focus:ring-4 focus:ring-[#1B519F]/10";
+    "whatsapp-field mt-1 w-full rounded-xl border border-transparent bg-slate-50 px-3 py-2 text-sm text-black !outline-none transition placeholder:text-gray-400 focus:bg-white focus:!outline-none focus-visible:!outline-none";
+  const fieldClass = (field: keyof FormValues) => {
+    if (errors[field]) {
+      return `${input} border-red-500 bg-red-50/40 focus:border-red-600`;
+    }
+    if (values[field].trim()) {
+      return `${input} border-emerald-500 bg-emerald-50/40 focus:border-emerald-600`;
+    }
+    return `${input} focus:border-emerald-500`;
+  };
   return (
     <div className="fixed bottom-5 right-4 z-[70] sm:bottom-6 sm:right-6">
       {open ? (
         <section
           role="dialog"
+          ref={dialogRef}
           aria-labelledby="whatsapp-title"
-          className="fixed bottom-24 right-4 w-[calc(100vw-2rem)] max-w-[380px] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_20px_55px_rgba(8,43,87,.24)] sm:bottom-28 sm:right-6"
+          className="fixed bottom-24 right-4 w-[calc(100vw-2rem)] max-w-[380px] overflow-hidden rounded-2xl bg-white shadow-[0_20px_55px_rgba(8,43,87,.24)] sm:bottom-28 sm:right-6"
         >
-          <header className="flex items-start justify-between border-b border-slate-100 bg-[#F7FAFF] px-4 py-3.5">
+          <header className="flex items-start justify-between bg-[#F7FAFF] px-4 py-3.5">
             <div>
               <p className="text-[10px] font-black uppercase tracking-[.16em] text-[#F59223]">
                 Smartera Hub
@@ -84,13 +107,13 @@ export function WhatsAppFloatingChat() {
               type="button"
               onClick={close}
               aria-label="Close WhatsApp form"
-              className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-slate-200 bg-white text-lg leading-none text-slate-500 transition hover:bg-slate-100"
+              className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-white text-lg leading-none text-slate-500 transition hover:bg-slate-100"
             >
               ×
             </button>
           </header>
           <form onSubmit={submit} noValidate className="space-y-2 p-4">
-            <label className="block text-sm font-bold text-[#1B519F]">
+            <label className="block text-sm font-bold text-black">
               Full Name <span className="text-red-600">*</span>
               <input
                 ref={nameInput}
@@ -100,7 +123,7 @@ export function WhatsAppFloatingChat() {
                 aria-describedby={
                   errors.fullName ? "whatsapp-name-error" : undefined
                 }
-                className={input}
+                className={fieldClass("fullName")}
                 placeholder="Your full name"
               />
             </label>
@@ -112,7 +135,7 @@ export function WhatsAppFloatingChat() {
                 {errors.fullName}
               </p>
             ) : null}
-            <label className="block text-sm font-bold text-[#1B519F]">
+            <label className="block text-sm font-bold text-black">
               Phone Number <span className="text-red-600">*</span>
               <input
                 type="tel"
@@ -122,7 +145,7 @@ export function WhatsAppFloatingChat() {
                 aria-describedby={
                   errors.phone ? "whatsapp-phone-error" : undefined
                 }
-                className={input}
+                className={fieldClass("phone")}
                 placeholder="+252 ..."
               />
             </label>
@@ -134,7 +157,7 @@ export function WhatsAppFloatingChat() {
                 {errors.phone}
               </p>
             ) : null}
-            <label className="block text-sm font-bold text-[#1B519F]">
+            <label className="block text-sm font-bold text-black">
               Message <span className="text-red-600">*</span>
               <textarea
                 value={values.message}
@@ -143,7 +166,7 @@ export function WhatsAppFloatingChat() {
                 aria-describedby={
                   errors.message ? "whatsapp-message-error" : undefined
                 }
-                className={`${input} min-h-16 resize-none`}
+                className={`${fieldClass("message")} min-h-16 resize-none`}
                 placeholder="How can we help you?"
               />
             </label>
@@ -233,6 +256,11 @@ export function WhatsAppFloatingChat() {
         .whatsapp-pulse-delay {
           animation: whatsapp-pulse 1.8s cubic-bezier(0.2, 0.7, 0.3, 1) 0.65s
             infinite;
+        }
+        .whatsapp-field:focus,
+        .whatsapp-field:focus-visible {
+          box-shadow: none !important;
+          outline: none !important;
         }
         @media (prefers-reduced-motion: reduce) {
           .whatsapp-pulse,

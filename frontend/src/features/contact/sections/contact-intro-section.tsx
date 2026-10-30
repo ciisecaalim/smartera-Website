@@ -76,7 +76,7 @@ export function ContactIntroSection() {
            ===================================================== */}
         <Ldiv className="group relative min-h-[340px] overflow-hidden rounded-[30px] shadow-[0_24px_70px_rgba(6,59,134,0.16)] sm:min-h-[390px] lg:min-h-[430px]">
           <Image
-            src="/images/contact/contact-team.jpg"
+            src="/images/home/men-learning-v3.png"
             alt="Smartera Hub contact and support team"
             fill
             priority

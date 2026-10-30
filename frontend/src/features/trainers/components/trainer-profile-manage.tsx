@@ -21,6 +21,11 @@ type Profile = {
     | "NONE"
     | "PENDING";
 
+  pendingAction?:
+    | "UPDATE"
+    | "DELETE"
+    | null;
+
   fullName: string;
   currentJobTitle: string;
 
@@ -31,8 +36,6 @@ type Profile = {
 
   shortBio: string;
 
-  linkedinUrl?: string;
-  portfolioUrl?: string;
 };
 
 function splitTags(
@@ -99,6 +102,16 @@ export function TrainerProfileManage() {
     setSaving,
   ] =
     useState(false);
+
+  const [
+    deleting,
+    setDeleting,
+  ] = useState(false);
+
+  const [
+    confirmDeletion,
+    setConfirmDeletion,
+  ] = useState(false);
 
   const [
     error,
@@ -292,13 +305,6 @@ export function TrainerProfileManage() {
                   shortBio:
                     profile.shortBio,
 
-                  linkedinUrl:
-                    profile.linkedinUrl ??
-                    "",
-
-                  portfolioUrl:
-                    profile.portfolioUrl ??
-                    "",
                 },
               }),
           },
@@ -345,6 +351,52 @@ export function TrainerProfileManage() {
     }
     finally {
       setSaving(false);
+    }
+  }
+
+  async function requestDeletion() {
+    setError("");
+    setNotice("");
+    setDeleting(true);
+
+    try {
+      const response = await fetch(
+        `${API}/web/trainers/profile-manage/delete-request`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            accessCode: accessCode.trim(),
+          }),
+        },
+      );
+      const result = await response.json();
+
+      if (!response.ok || !result?.success) {
+        throw new Error(
+          apiMessage(result, "Unable to submit profile deletion request."),
+        );
+      }
+
+      setProfile((current) => current ? {
+        ...current,
+        profileUpdateStatus: "PENDING",
+        pendingAction: "DELETE",
+      } : current);
+      setConfirmDeletion(false);
+      setNotice(
+        "Your profile deletion request was sent to an administrator. Your profile will remain public until the request is approved.",
+      );
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Unable to submit profile deletion request.",
+      );
+    } finally {
+      setDeleting(false);
     }
   }
 
@@ -447,7 +499,9 @@ export function TrainerProfileManage() {
             {profile.profileUpdateStatus ===
             "PENDING" ? (
               <div className="mt-5 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-bold text-amber-800">
-                Profile changes are waiting for admin approval.
+                {profile.pendingAction === "DELETE"
+                  ? "Profile deletion is waiting for admin approval. Your profile is still public."
+                  : "Profile changes are waiting for admin approval."}
               </div>
             ) : null}
           </header>
@@ -618,62 +672,6 @@ export function TrainerProfileManage() {
               </label>
             </section>
 
-            <section>
-              <h2 className="text-lg font-black text-slate-950">
-                Professional Links
-              </h2>
-
-              <p className="mt-1 text-xs text-slate-500">
-                These are stored in the database but are not shown as direct-contact links on the public trainer landing page.
-              </p>
-
-              <div className="mt-4 grid gap-5 md:grid-cols-2">
-
-                <label className="text-sm font-bold text-slate-700">
-                  LinkedIn
-
-                  <input
-                    type="url"
-                    value={
-                      profile.linkedinUrl ??
-                      ""
-                    }
-                    onChange={(
-                      event,
-                    ) =>
-                      updateField(
-                        "linkedinUrl",
-                        event.target.value,
-                      )
-                    }
-                    className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm outline-none"
-                  />
-                </label>
-
-                <label className="text-sm font-bold text-slate-700">
-                  Portfolio
-
-                  <input
-                    type="url"
-                    value={
-                      profile.portfolioUrl ??
-                      ""
-                    }
-                    onChange={(
-                      event,
-                    ) =>
-                      updateField(
-                        "portfolioUrl",
-                        event.target.value,
-                      )
-                    }
-                    className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm outline-none"
-                  />
-                </label>
-
-              </div>
-            </section>
-
             {error ? (
               <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-700">
                 {error}
@@ -714,6 +712,51 @@ export function TrainerProfileManage() {
               </button>
 
             </div>
+
+            <section className="rounded-2xl border border-red-200 bg-red-50 p-5">
+              <h2 className="text-lg font-black text-red-900">
+                Remove My Trainer Profile
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-red-800">
+                Send a deletion request to the administrator. Your landing-page profile and database record will only be deleted after approval.
+              </p>
+              {!confirmDeletion ? (
+                <button
+                  type="button"
+                  disabled={profile.pendingAction === "DELETE"}
+                  onClick={() => setConfirmDeletion(true)}
+                  className="mt-4 min-h-11 rounded-xl border border-red-300 bg-white px-5 py-2.5 text-sm font-black text-red-700 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  {profile.pendingAction === "DELETE"
+                    ? "Deletion Request Pending"
+                    : "Request Profile Deletion"}
+                </button>
+              ) : (
+                <div className="mt-4 rounded-xl border border-red-300 bg-white p-4">
+                  <p className="text-sm font-bold text-slate-800">
+                    Are you sure you want the administrator to permanently delete this trainer profile?
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-3">
+                    <button
+                      type="button"
+                      disabled={deleting}
+                      onClick={() => setConfirmDeletion(false)}
+                      className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-bold text-slate-700"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="button"
+                      disabled={deleting}
+                      onClick={requestDeletion}
+                      className="rounded-lg bg-red-600 px-4 py-2 text-sm font-black text-white disabled:opacity-50"
+                    >
+                      {deleting ? "Sending..." : "Yes, Send Deletion Request"}
+                    </button>
+                  </div>
+                </div>
+              )}
+            </section>
           </form>
         </div>
       </div>

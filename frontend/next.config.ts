@@ -2,6 +2,9 @@
 
 const nextConfig: NextConfig = {
   devIndicators: false,
+  images: {
+    qualities: [75, 90],
+  },
 };
 
 export default nextConfig;

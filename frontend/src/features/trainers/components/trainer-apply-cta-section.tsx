@@ -178,18 +178,6 @@ export function TrainerApplyCtaSection() {
               Apply as a Trainer 
             </Link>
 
-            <div className="mt-5 border-t border-white/20 pt-5">
-              <p className="text-center text-xs font-bold text-blue-100">
-                Already an approved trainer?
-              </p>
-
-              <Link
-                href="/trainers/manage"
-                className="mt-3 flex min-h-12 w-full items-center justify-center rounded-xl border border-white/40 bg-white/10 px-5 text-sm font-black text-white transition hover:bg-white hover:text-[#1B519F]"
-              >
-                Manage My Profile
-              </Link>
-            </div>
           </div>
 
         </div>

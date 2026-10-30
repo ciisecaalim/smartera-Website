@@ -260,10 +260,6 @@ export function AboutInquiryForm() {
                     Career Opportunities
                   </Loption>
 
-                  <Loption value="ict">
-                    ICT Solutions
-                  </Loption>
-
                   <Loption value="partnership">
                     Partnership & Collaboration
                   </Loption>

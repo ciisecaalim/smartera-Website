@@ -811,6 +811,24 @@ select {
   outline-offset: 3px;
 }
 
+/* Public application controls use their own clear validation colours. */
+.trainer-application-form :focus-visible {
+  outline: none;
+}
+
+.trainer-application-form input:user-invalid,
+.trainer-application-form textarea:user-invalid,
+.trainer-application-form select:user-invalid {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 2px rgb(239 68 68 / 12%);
+}
+
+.trainer-application-form input:user-valid,
+.trainer-application-form textarea:user-valid,
+.trainer-application-form select:user-valid {
+  border-color: var(--smartera-blue);
+}
+
 /* The pill navigation uses a restrained blue focus treatment instead of an orange ring. */
 .site-navbar :focus-visible {
   outline: none;

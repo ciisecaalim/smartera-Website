@@ -92,7 +92,7 @@ export function HomeHeroMedia({ media, fallbackImage, fallbackAlt }: { media?: H
       const poster = heroAssetUrl(item.posterUrl);
       return <div key={item.id} aria-hidden={!visible} className={'absolute inset-0 transition-opacity duration-500 motion-reduce:transition-none ' + (visible ? 'z-0 opacity-100' : 'pointer-events-none opacity-0')}>
         {item.type === 'IMAGE'
-          ? <Image unoptimized={source.startsWith('http')} src={source} alt={item.altText || fallbackAlt} fill priority={index === 0} loading={index === 0 ? 'eager' : 'lazy'} sizes="(max-width:1279px) 100vw,55vw" className="object-cover" />
+          ? <Image unoptimized={source.startsWith('http')} src={source} alt={item.altText || fallbackAlt} fill priority={index === 0} loading={index === 0 ? 'eager' : 'lazy'} quality={90} sizes="(max-width:1279px) 100vw,55vw" className="object-cover" />
           : <video ref={(node) => { videoRefs.current[index] = node; }} autoPlay={visible} muted={visible ? muted : true} playsInline preload={visible ? 'metadata' : 'none'} poster={poster || undefined} onEnded={visible ? handleVideoEnded : undefined} onPlay={() => { if (visible) setPlaying(true); }} onPause={() => { if (visible) setPlaying(false); }} onVolumeChange={(event) => { if (visible) setMuted(event.currentTarget.muted); }} className="h-full w-full object-cover"><source src={source} /></video>}
       </div>;
     })}

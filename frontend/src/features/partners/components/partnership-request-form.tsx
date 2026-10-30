@@ -301,10 +301,6 @@ export function PartnershipRequestForm({
                     Internship & Employment
                   </option>
 
-                  <option value="ict">
-                    ICT Solutions
-                  </option>
-
                   <option value="academic">
                     Academic Collaboration
                   </option>
